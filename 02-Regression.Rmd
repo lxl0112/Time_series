@@ -1,0 +1,15 @@
+# Regression
+
+## Explanation in my own words
+
+My explanation of this econometric technique 
+
+Example of how to include an equation:
+
+$$
+y_i=\beta_0 + \beta_1 x_{1i}+\beta_2 x_{2i} + ... + \beta_k x_{ki} + u_i
+$$
+
+### MLR Modle
+
+List Assumptions MLR.1 - MLR.4 and then Theorem 3.1 from 380 with brief explanations of each (trying to tie it to the way it's described in MM). 

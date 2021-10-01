@@ -1,0 +1,43 @@
+# Regression Discontinuity (RD)
+
+## Key features
+
+My explanation of this econometric technique in general terms (you'll explain it in the context of specific examples when you replicate the MM examples)
+
+
+## Replication of MM Examples
+
+### Add subsection for each part of the replication
+
+You can use the code from [@mmRpackage] to replicate all tables and/or figures, along with additional explanations of what each part of the code is doing. Show both your code and the output in the output (for all code chunks in the BP). Also include explanations of the results (and how the results relate to this chapter's econometric technique)
+
+#### SubSub section
+
+Note that you can also add subsubsections too to keep things organized (here and in the other sections...they might be helpful for the replications in particular)
+
+
+## Example: (short description of your example)
+
+Find a journal article from the economics (or closely related) academic literature that utilizes this econometric technique. Include here a brief summary of the paper (add a formal citation by adding it to references.bib and @ referencing it here...tip: use Google Scholar to export a BiBTeX citation and paste it into references.bib). Please put a copy of the PDF file in the pdf folder (the first time you'll need to create a pdf folder in the main project directory).
+
+### Results
+
+Include a (clear) screenshot of a main results table and explain key results. Remember the idea is to demonstrate usage of this chapter's econometric technique. Make sure to include necessary information to understand the model corresponding with the results shown in the table (include an equation if it helps, include summary statistics if that helps). 
+
+
+
+## Replication: Food Stamps and Recidivism
+
+This subsection includes a replication of "Snapping back: Food stamp bans and criminal recidivism" [@tuttle2019snapping].
+
+First, include a summary of the paper. Explain enough so if you look at this again in a year, you'll remember what the paper is about and the main results.
+
+### Data
+
+Part of replication is getting the data set up. Set it up here, explaining what you're doing in each code chunk. Remember that all data is either read in from a URL (if it's quick) or goes in the "data" folder (and the data folder is not pushed up to GitHub...just put the data manually in the folder and anyone else using the repo has to do the same thing on their computer). Include a table of summary statistics for variables you'll use in the regressions.
+
+### Regressions
+
+Explain the details of the model (include an equation if it's helpful), estimate the model, and display the results. Explain what you're doing with your code and explain the results. If anything doesn't match exactly with the paper, mention it (and explain why if you know). 
+
+

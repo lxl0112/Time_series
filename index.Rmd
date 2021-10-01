@@ -1,0 +1,21 @@
+--- 
+title: "Mastering Metrics Companion"
+author: "481 Student"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+bibliography: references.bib
+biblio-style: apalike
+link-citations: yes
+---
+
+# Preface {-}
+
+This book is a companion to *Mastering Metrics* [@AngristPischke2014] written as part of Econ 481. There is one chapter in this companion for each chapter of *Mastering Metrics* (hereinafter "MM"). Each chapter starts with a summary of that chapter's econometric technique. Most chapters include replication of the empirical examples found in MM. Specifically, everything that is replicated in the MM R Package [@mmRpackage] is replicated here, along with additional explanations of that code. That package is also used for obtaining the data needed to replicate MM. The references .bib file was also populated using the references file from that package. 
+
+Following the discussion and replication of MM, for chapters 1 (RCT), 3 (IV), 4 (RD), and 5 (DD), I found a paper that utilizes the econometric technique from that chapter. Chapters 3 (IV), 4 (RD), and 5 (DD) also include replication of papers using the econometric techniques.
+
+
+
+
+
+

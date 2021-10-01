@@ -1,0 +1,7 @@
+book_filename: "BP"
+output_dir: docs
+delete_merged_file: true
+new_session: yes
+edit: https://github.com/Econ481f20/YOUR REPO NAME/edit/master/%s
+view: https://github.com/Econ481f20/YOUR REPO NAME/blob/master/%s
+history: https://github.com/Econ481f20/YOUR REPO NAME/commits/master/%s
