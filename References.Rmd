@@ -1,0 +1,3 @@
+# References {-}
+
+Time Series Fundamentals https://bookdown.org/gary_a_napier/time_series_lecture_notes/ChapterOne.html

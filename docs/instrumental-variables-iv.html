@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Instrumental Variables (IV) | Mastering Metrics Companion</title>
-  <meta name="description" content="3 Instrumental Variables (IV) | Mastering Metrics Companion" />
+  <title>3 Instrumental Variables (IV) | Time Series</title>
+  <meta name="description" content="3 Instrumental Variables (IV) | Time Series" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Instrumental Variables (IV) | Mastering Metrics Companion" />
+  <meta property="og:title" content="3 Instrumental Variables (IV) | Time Series" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Instrumental Variables (IV) | Mastering Metrics Companion" />
+  <meta name="twitter:title" content="3 Instrumental Variables (IV) | Time Series" />
   
   
   
 
-<meta name="author" content="481 Student" />
+<meta name="author" content="Luke Le" />
 
 
-<meta name="date" content="2020-09-30" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="regression.html"/>
 <link rel="next" href="regression-discontinuity-rd.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 
@@ -68,68 +68,95 @@
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="randomized-trials.html"><a href="randomized-trials.html"><i class="fa fa-check"></i><b>1</b> Randomized Trials</a><ul>
-<li class="chapter" data-level="1.1" data-path="randomized-trials.html"><a href="randomized-trials.html#key-features"><i class="fa fa-check"></i><b>1.1</b> Key features</a></li>
-<li class="chapter" data-level="1.2" data-path="randomized-trials.html"><a href="randomized-trials.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>1.2</b> Replication of MM Examples</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="randomized-trials.html"><a href="randomized-trials.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>1.2.1</b> Add subsection for each part of the replication</a></li>
+<li class="chapter" data-level="1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>1</b> Chapter 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter-1.html"><a href="chapter-1.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter-1.html"><a href="chapter-1.html#white-noise-purely-random-process"><i class="fa fa-check"></i><b>1.2</b> White Noise: purely random process</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter-1.html"><a href="chapter-1.html#random-walk-random-but-dependent"><i class="fa fa-check"></i><b>1.3</b> Random Walk: random but dependent</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="chapter-1.html"><a href="chapter-1.html#log-transformation"><i class="fa fa-check"></i><b>1.3.1</b> Log Transformation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="chapter-1.html"><a href="chapter-1.html#box-cox-transformation"><i class="fa fa-check"></i><b>1.3.2</b> Box-Cox Transformation</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="randomized-trials.html"><a href="randomized-trials.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>1.3</b> Example: (short description of your example)</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="randomized-trials.html"><a href="randomized-trials.html#results"><i class="fa fa-check"></i><b>1.3.1</b> Results</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter-1.html"><a href="chapter-1.html#time-series-properties"><i class="fa fa-check"></i><b>1.4</b> Time Series Properties</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="chapter-1.html"><a href="chapter-1.html#mean-function-if-mean-is-constant"><i class="fa fa-check"></i><b>1.4.1</b> Mean function (if mean is constant)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="chapter-1.html"><a href="chapter-1.html#variance-function-if-variance-is-constant"><i class="fa fa-check"></i><b>1.4.2</b> Variance function (if variance is constant)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="chapter-1.html"><a href="chapter-1.html#autocovariance-function-acvf"><i class="fa fa-check"></i><b>1.4.3</b> Autocovariance function (ACVF):</a></li>
+<li class="chapter" data-level="1.4.4" data-path="chapter-1.html"><a href="chapter-1.html#autocorrelation-function-acf"><i class="fa fa-check"></i><b>1.4.4</b> Autocorrelation function (ACF):</a></li>
+<li class="chapter" data-level="1.4.5" data-path="chapter-1.html"><a href="chapter-1.html#properties"><i class="fa fa-check"></i><b>1.4.5</b> Properties</a></li>
 </ul></li>
+<li class="chapter" data-level="1.5" data-path="chapter-1.html"><a href="chapter-1.html#stationarity"><i class="fa fa-check"></i><b>1.5</b> Stationarity</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2</b> Regression</a><ul>
-<li class="chapter" data-level="2.1" data-path="regression.html"><a href="regression.html#explanation-in-my-own-words"><i class="fa fa-check"></i><b>2.1</b> Explanation in my own words</a><ul>
+<li class="chapter" data-level="2" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2</b> Regression</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regression.html"><a href="regression.html#explanation-in-my-own-words"><i class="fa fa-check"></i><b>2.1</b> Explanation in my own words</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="regression.html"><a href="regression.html#mlr-modle"><i class="fa fa-check"></i><b>2.1.1</b> MLR Modle</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html"><i class="fa fa-check"></i><b>3</b> Instrumental Variables (IV)</a><ul>
-<li class="chapter" data-level="3.1" data-path="randomized-trials.html"><a href="randomized-trials.html#key-features"><i class="fa fa-check"></i><b>3.1</b> Key features</a></li>
-<li class="chapter" data-level="3.2" data-path="randomized-trials.html"><a href="randomized-trials.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>3.2</b> Replication of MM Examples</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="randomized-trials.html"><a href="randomized-trials.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>3.2.1</b> Add subsection for each part of the replication</a></li>
+<li class="chapter" data-level="3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html"><i class="fa fa-check"></i><b>3</b> Instrumental Variables (IV)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#key-features"><i class="fa fa-check"></i><b>3.1</b> Key features</a></li>
+<li class="chapter" data-level="3.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>3.2</b> Replication of MM Examples</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>3.2.1</b> Add subsection for each part of the replication</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="randomized-trials.html"><a href="randomized-trials.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>3.3</b> Example: (short description of your example)</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="randomized-trials.html"><a href="randomized-trials.html#results"><i class="fa fa-check"></i><b>3.3.1</b> Results</a></li>
+<li class="chapter" data-level="3.3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>3.3</b> Example: (short description of your example)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#results"><i class="fa fa-check"></i><b>3.3.1</b> Results</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-settler-mortality-and-development"><i class="fa fa-check"></i><b>3.4</b> Replication: Settler Mortality and Development</a><ul>
+<li class="chapter" data-level="3.4" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-settler-mortality-and-development"><i class="fa fa-check"></i><b>3.4</b> Replication: Settler Mortality and Development</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 <li class="chapter" data-level="3.4.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#regressions"><i class="fa fa-check"></i><b>3.4.2</b> Regressions</a></li>
 <li class="chapter" data-level="3.4.3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#maps"><i class="fa fa-check"></i><b>3.4.3</b> Maps</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="regression-discontinuity-rd.html"><a href="regression-discontinuity-rd.html"><i class="fa fa-check"></i><b>4</b> Regression Discontinuity (RD)</a><ul>
-<li class="chapter" data-level="4.1" data-path="randomized-trials.html"><a href="randomized-trials.html#key-features"><i class="fa fa-check"></i><b>4.1</b> Key features</a></li>
-<li class="chapter" data-level="4.2" data-path="randomized-trials.html"><a href="randomized-trials.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>4.2</b> Replication of MM Examples</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="randomized-trials.html"><a href="randomized-trials.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>4.2.1</b> Add subsection for each part of the replication</a></li>
+<li class="chapter" data-level="4" data-path="regression-discontinuity-rd.html"><a href="regression-discontinuity-rd.html"><i class="fa fa-check"></i><b>4</b> Regression Discontinuity (RD)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#key-features"><i class="fa fa-check"></i><b>4.1</b> Key features</a></li>
+<li class="chapter" data-level="4.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>4.2</b> Replication of MM Examples</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>4.2.1</b> Add subsection for each part of the replication</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="randomized-trials.html"><a href="randomized-trials.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>4.3</b> Example: (short description of your example)</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="randomized-trials.html"><a href="randomized-trials.html#results"><i class="fa fa-check"></i><b>4.3.1</b> Results</a></li>
+<li class="chapter" data-level="4.3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>4.3</b> Example: (short description of your example)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#results"><i class="fa fa-check"></i><b>4.3.1</b> Results</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="regression-discontinuity-rd.html"><a href="regression-discontinuity-rd.html#replication-food-stamps-and-recidivism"><i class="fa fa-check"></i><b>4.4</b> Replication: Food Stamps and Recidivism</a><ul>
+<li class="chapter" data-level="4.4" data-path="regression-discontinuity-rd.html"><a href="regression-discontinuity-rd.html#replication-food-stamps-and-recidivism"><i class="fa fa-check"></i><b>4.4</b> Replication: Food Stamps and Recidivism</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#data"><i class="fa fa-check"></i><b>4.4.1</b> Data</a></li>
 <li class="chapter" data-level="4.4.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#regressions"><i class="fa fa-check"></i><b>4.4.2</b> Regressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html"><i class="fa fa-check"></i><b>5</b> Differences-in-Differences (DD)</a><ul>
-<li class="chapter" data-level="5.1" data-path="randomized-trials.html"><a href="randomized-trials.html#key-features"><i class="fa fa-check"></i><b>5.1</b> Key features</a></li>
-<li class="chapter" data-level="5.2" data-path="randomized-trials.html"><a href="randomized-trials.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>5.2</b> Replication of MM Examples</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="randomized-trials.html"><a href="randomized-trials.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>5.2.1</b> Add subsection for each part of the replication</a></li>
+<li class="chapter" data-level="5" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html"><i class="fa fa-check"></i><b>5</b> Differences-in-Differences (DD)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#key-features"><i class="fa fa-check"></i><b>5.1</b> Key features</a></li>
+<li class="chapter" data-level="5.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>5.2</b> Replication of MM Examples</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>5.2.1</b> Add subsection for each part of the replication</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="randomized-trials.html"><a href="randomized-trials.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>5.3</b> Example: (short description of your example)</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="randomized-trials.html"><a href="randomized-trials.html#results"><i class="fa fa-check"></i><b>5.3.1</b> Results</a></li>
+<li class="chapter" data-level="5.3" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#example-short-description-of-your-example"><i class="fa fa-check"></i><b>5.3</b> Example: (short description of your example)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#results"><i class="fa fa-check"></i><b>5.3.1</b> Results</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#replication-of-mariel-boatlift-immigration-effects"><i class="fa fa-check"></i><b>5.4</b> Replication of Mariel Boatlift Immigration Effects</a><ul>
+<li class="chapter" data-level="5.4" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#replication-of-mariel-boatlift-immigration-effects"><i class="fa fa-check"></i><b>5.4</b> Replication of Mariel Boatlift Immigration Effects</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#data"><i class="fa fa-check"></i><b>5.4.1</b> Data</a></li>
 <li class="chapter" data-level="5.4.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#regressions"><i class="fa fa-check"></i><b>5.4.2</b> Regressions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#replication-tipping-discrimination"><i class="fa fa-check"></i><b>5.5</b> Replication: Tipping Discrimination</a><ul>
+<li class="chapter" data-level="5.5" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#replication-tipping-discrimination"><i class="fa fa-check"></i><b>5.5</b> Replication: Tipping Discrimination</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#data-1"><i class="fa fa-check"></i><b>5.5.1</b> Data</a></li>
 <li class="chapter" data-level="5.5.2" data-path="differences-in-differences-dd.html"><a href="differences-in-differences-dd.html#regressions-1"><i class="fa fa-check"></i><b>5.5.2</b> Regressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="wages-of-schooling.html"><a href="wages-of-schooling.html"><i class="fa fa-check"></i><b>6</b> Wages of Schooling</a><ul>
-<li class="chapter" data-level="6.1" data-path="randomized-trials.html"><a href="randomized-trials.html#key-features"><i class="fa fa-check"></i><b>6.1</b> Key features</a></li>
-<li class="chapter" data-level="6.2" data-path="randomized-trials.html"><a href="randomized-trials.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>6.2</b> Replication of MM Examples</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="randomized-trials.html"><a href="randomized-trials.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>6.2.1</b> Add subsection for each part of the replication</a></li>
+<li class="chapter" data-level="6" data-path="wages-of-schooling.html"><a href="wages-of-schooling.html"><i class="fa fa-check"></i><b>6</b> Wages of Schooling</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#key-features"><i class="fa fa-check"></i><b>6.1</b> Key features</a></li>
+<li class="chapter" data-level="6.2" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#replication-of-mm-examples"><i class="fa fa-check"></i><b>6.2</b> Replication of MM Examples</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="instrumental-variables-iv.html"><a href="instrumental-variables-iv.html#add-subsection-for-each-part-of-the-replication"><i class="fa fa-check"></i><b>6.2.1</b> Add subsection for each part of the replication</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -142,7 +169,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mastering Metrics Companion</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series</a>
           </h1>
         </div>
 
@@ -150,44 +177,44 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instrumental-variables-iv" class="section level1">
+<div id="instrumental-variables-iv" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Instrumental Variables (IV)</h1>
-<div id="key-features" class="section level2">
+<div id="key-features" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Key features</h2>
 <p>My explanation of this econometric technique in general terms (you’ll explain it in the context of specific examples when you replicate the MM examples)</p>
 </div>
-<div id="replication-of-mm-examples" class="section level2">
+<div id="replication-of-mm-examples" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Replication of MM Examples</h2>
-<div id="add-subsection-for-each-part-of-the-replication" class="section level3">
+<div id="add-subsection-for-each-part-of-the-replication" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Add subsection for each part of the replication</h3>
-<p>You can use the code from <span class="citation">(Arnold <a href="#ref-mmRpackage" role="doc-biblioref">2020</a>)</span> to replicate all tables and/or figures, along with additional explanations of what each part of the code is doing. Show both your code and the output in the output (for all code chunks in the BP). Also include explanations of the results (and how the results relate to this chapter’s econometric technique)</p>
-<div id="subsub-section" class="section level4">
+<p>You can use the code from <span class="citation">(<a href="references.html#ref-mmRpackage" role="doc-biblioref">Arnold 2020</a>)</span> to replicate all tables and/or figures, along with additional explanations of what each part of the code is doing. Show both your code and the output in the output (for all code chunks in the BP). Also include explanations of the results (and how the results relate to this chapter’s econometric technique)</p>
+<div id="subsub-section" class="section level4" number="3.2.1.1">
 <h4><span class="header-section-number">3.2.1.1</span> SubSub section</h4>
 <p>Note that you can also add subsubsections too to keep things organized (here and in the other sections…they might be helpful for the replications in particular)</p>
 </div>
 </div>
 </div>
-<div id="example-short-description-of-your-example" class="section level2">
+<div id="example-short-description-of-your-example" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Example: (short description of your example)</h2>
 <p>Find a journal article from the economics (or closely related) academic literature that utilizes this econometric technique. Include here a brief summary of the paper (add a formal citation by adding it to references.bib and @ referencing it here…tip: use Google Scholar to export a BiBTeX citation and paste it into references.bib). Please put a copy of the PDF file in the pdf folder (the first time you’ll need to create a pdf folder in the main project directory).</p>
-<div id="results" class="section level3">
+<div id="results" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Results</h3>
 <p>Include a (clear) screenshot of a main results table and explain key results. Remember the idea is to demonstrate usage of this chapter’s econometric technique. Make sure to include necessary information to understand the model corresponding with the results shown in the table (include an equation if it helps, include summary statistics if that helps).</p>
 </div>
 </div>
-<div id="replication-settler-mortality-and-development" class="section level2">
+<div id="replication-settler-mortality-and-development" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Replication: Settler Mortality and Development</h2>
-<p>This subsection includes a replication of “The colonial origins of comparative development: An empirical investigation” <span class="citation">(Acemoglu, Johnson, and Robinson <a href="#ref-acemoglu2001colonial" role="doc-biblioref">2001</a>)</span>.</p>
+<p>This subsection includes a replication of “The colonial origins of comparative development: An empirical investigation” <span class="citation">(<a href="references.html#ref-acemoglu2001colonial" role="doc-biblioref">Acemoglu, Johnson, and Robinson 2001</a>)</span>.</p>
 <p>First, include a summary of the paper. Explain enough so if you look at this again in a year, you’ll remember what the paper is about and the main results.</p>
-<div id="data" class="section level3">
+<div id="data" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Data</h3>
 <p>Part of replication is getting the data set up. Set it up here, explaining what you’re doing in each code chunk. Remember that all data is either read in from a URL (if it’s quick) or goes in the “data” folder (and the data folder is not pushed up to GitHub…just put the data manually in the folder and anyone else using the repo has to do the same thing on their computer). Include a table of summary statistics for variables you’ll use in the regressions.</p>
 </div>
-<div id="regressions" class="section level3">
+<div id="regressions" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Regressions</h3>
 <p>Explain the details of the model (include an equation if it’s helpful), estimate the model, and display the results. Explain what you’re doing with your code and explain the results. If anything doesn’t match exactly with the paper, mention it (and explain why if you know).</p>
 </div>
-<div id="maps" class="section level3">
+<div id="maps" class="section level3" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Maps</h3>
 <p>For the Settler Mortality paper, you should also include 3 choropleth maps:</p>
 <ol style="list-style-type: decimal">
@@ -198,15 +225,6 @@
 <p>Explain briefly what we see in the three maps and how they demonstrate the IV model. You can use leaflet and make interactive maps (like you did in 380, and I included as an example in the Bookdown Example). If you prefer you can use a different package.</p>
 
 </div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-acemoglu2001colonial">
-<p>Acemoglu, Daron, Simon Johnson, and James A Robinson. 2001. “The Colonial Origins of Comparative Development: An Empirical Investigation.” <em>American Economic Review</em> 91 (5): 1369–1401. <a href="https://www.aeaweb.org/articles?id=10.1257/aer.91.5.1369">https://www.aeaweb.org/articles?id=10.1257/aer.91.5.1369</a>.</p>
-</div>
-<div id="ref-mmRpackage">
-<p>Arnold, Jeffrey. 2020. <em>R Code for Mastering ’Metrics</em>. <a href="https://jrnold.github.io/masteringmetrics/">https://jrnold.github.io/masteringmetrics/</a>.</p>
 </div>
 </div>
             </section>
