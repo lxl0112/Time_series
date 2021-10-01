@@ -1,4 +1,4 @@
-# Chapter 1
+# Chapter 1: Time Series Fundamentals
 
 ## Definition
 $$\{X_t|t\in T \}$$

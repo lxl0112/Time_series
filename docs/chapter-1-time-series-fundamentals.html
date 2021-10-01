@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Time Series</title>
-  <meta name="description" content="References | Time Series" />
+  <title>1 Chapter 1: Time Series Fundamentals | Time Series</title>
+  <meta name="description" content="1 Chapter 1: Time Series Fundamentals | Time Series" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Time Series" />
+  <meta property="og:title" content="1 Chapter 1: Time Series Fundamentals | Time Series" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Time Series" />
+  <meta name="twitter:title" content="1 Chapter 1: Time Series Fundamentals | Time Series" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-2-modelling-trends-and-seasonal-patterns.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="chapter-2-modelling-trends-and-seasonal-patterns.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -124,18 +124,89 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<p>Time Series Fundamentals <a href="https://bookdown.org/gary_a_napier/time_series_lecture_notes/ChapterOne.html" class="uri">https://bookdown.org/gary_a_napier/time_series_lecture_notes/ChapterOne.html</a></p>
+<div id="chapter-1-time-series-fundamentals" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Chapter 1: Time Series Fundamentals</h1>
+<div id="definition" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Definition</h2>
+<p><span class="math display">\[\{X_t|t\in T \}\]</span>
+where <span class="math inline">\(X_t\)</span> denotes random variables that are continuous, <span class="math inline">\(T\)</span> denotes index sets that are discrete and equally spaced in time</p>
+<p><span class="math inline">\(x_t\)</span> denotes observations, or realisations of <span class="math inline">\(X_t\)</span></p>
+</div>
+<div id="white-noise-purely-random-process" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> White Noise: purely random process</h2>
+<p><span class="math display">\[E[X_t]=\mu\]</span>
+<span class="math inline">\(Var[X_t]=\sigma^2\)</span> where each <span class="math inline">\(X_t\)</span> is independent</p>
+<p>It asssumes the observations are all independent</p>
+</div>
+<div id="random-walk-random-but-dependent" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Random Walk: random but dependent</h2>
+<p><span class="math display">\[ X_T = X_{t-1} +Z_t\]</span>
+where <span class="math inline">\(Z_t\)</span> is a purely random process with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span></p>
+<p><img src="Chapter1_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+## Time Series Modelling</p>
+<p>Time series data are often decomposed into the following three components: Trend, Seasonal Effect, Unexplained variation</p>
+<p><img src="chpt1_plot7.png" /></p>
+<p>Data with additive structure is easier to analyze as compared to multiplicative structure. If the time series data has multiplicative structure, we can model it by using transformations.</p>
+<div id="log-transformation" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Log Transformation</h3>
+<p><span class="math display">\[log(X_t)=log(m_t\cdot s_t\cdot e_t)=log(m_t)+log(s_t)+log(e_t)\]</span></p>
+<p>Use to stablize variance, make seasonal effect <span class="math inline">\(s_t\)</span> additive, &amp; make the data normally distributed.</p>
+</div>
+<div id="box-cox-transformation" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Box-Cox Transformation</h3>
+<p><span class="math display">\[ y_t=(x_t^\lambda-1)/\lambda \space\space \lambda\ne0\]</span>
+<span class="math display">\[ or \space y_t=ln(x_t) \space\space \lambda=0\]</span>
+where <span class="math inline">\(\lambda\)</span> is a tuning parameter chosen by the analyst</p>
+</div>
+</div>
+<div id="time-series-properties" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Time Series Properties</h2>
+<div id="mean-function-if-mean-is-constant" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Mean function (if mean is constant)</h3>
+<p><span class="math display">\[\mu_t=E[X_t]\]</span>
+<span class="math display">\[\hat \mu=\frac 1n\sum_{t=1}^{n}x_t\]</span>
+In case of walking average, see ch.2</p>
+</div>
+<div id="variance-function-if-variance-is-constant" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Variance function (if variance is constant)</h3>
+<p><span class="math display">\[\sigma_t^2=Var[X_t]=E[X_t^2]-E[X_t]^2\]</span>
+<span class="math display">\[\hat \sigma^2=\frac1{n-1} \sum_{t=1}^n{(x_t-\hat\mu)^2}\]</span></p>
+</div>
+<div id="autocovariance-function-acvf" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Autocovariance function (ACVF):</h3>
+<p><span class="math display">\[\gamma_{s,t}=Cov[X_s,X_t]=E[X_sX_t]-E[X_t]E[X_s]\]</span>
+where <span class="math inline">\(\gamma_{t,t}=Cov[X_t,X_t]=Var[X_t]=\sigma_t^2\)</span></p>
+<p>Real data:
+<span class="math display">\[\gamma_\tau=Cov[X_tX_{t+\tau}]\]</span> with lag <span class="math inline">\(\tau=0,1,2,..\)</span></p>
+</div>
+<div id="autocorrelation-function-acf" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Autocorrelation function (ACF):</h3>
+<p><span class="math display">\[\rho_{s,t}=Corr[X_s,X_t]=\frac{Cov[X_s,X_t]}{\sqrt{Var[X_s]Var[X_t]}}=\frac{\gamma_{s,t}}{\sigma_s\sigma_t}\]</span>
+where <span class="math inline">\(\rho_{t,t}=Corr[X_t,X_t]=1\)</span></p>
+<p>Real data:
+<span class="math display">\[\rho_\tau=Corr[X_tX_{t+\tau}]=\frac{Cov[X_t,X_{t+\tau}]}{\sqrt{Var[X_t]Var[X_{t+\tau}]}}=\frac{\gamma_\tau}{\gamma_0}\]</span></p>
+</div>
+<div id="properties" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Properties</h3>
+<p>Property 1: <span class="math inline">\(\rho_\tau=\rho_{-\tau}\)</span></p>
+<p>Property 2: <span class="math inline">\(|\rho_\tau|\leq1\)</span></p>
+<p>Property 3: Invertibility is not assumed</p>
+</div>
+</div>
+<div id="stationarity" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Stationarity</h2>
+<p>A time series process <span class="math inline">\(\{X_t|t\in T\}\)</span> is strictly stationary if the joint distribution <span class="math inline">\(f(X_{t1},...,X_{tk})\)</span> is identical to the joint distribution <span class="math inline">\(f(X_{t1+r},...,X_{tk+r})\)</span> for all collections <span class="math inline">\(t_1,...,t_k\)</span> and separation values <span class="math inline">\(r\)</span>. In other words, shifting the time origin of the series by <span class="math inline">\(r\)</span> has no effect on its joint distribution.</p>
+<p>A time series process <span class="math inline">\(\{X_t|t\in T\}\)</span> is weakly stationary (or second-order stationary) if 1, mean function is constant and finite; 2, variance function is constant and finite; 3, autocovariance and autocorrelation functions only depend on the lag.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="chapter-2-modelling-trends-and-seasonal-patterns.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-2-modelling-trends-and-seasonal-patterns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -166,15 +237,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/References.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter1.Rmd",
 "text": "Edit"
 },
 "history": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/References.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter1.Rmd",
 "text": null
 },
 "view": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/References.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter1.Rmd",
 "text": null
 },
 "download": null,
