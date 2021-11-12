@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Chapter 2: Modelling trends and seasonal patterns | Final Report</title>
-  <meta name="description" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <title>4 Chapter 2 Lab | Final Report</title>
+  <meta name="description" content="4 Chapter 2 Lab | Final Report" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta property="og:title" content="4 Chapter 2 Lab | Final Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta name="twitter:title" content="4 Chapter 2 Lab | Final Report" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-1-lab.html"/>
-<link rel="next" href="chapter-2-lab.html"/>
+<link rel="prev" href="chapter-2-modelling-trends-and-seasonal-patterns.html"/>
+<link rel="next" href="chapter-3-autoregressive-processes.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,130 +274,206 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-2-modelling-trends-and-seasonal-patterns" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Chapter 2: Modelling trends and seasonal patterns</h1>
+<div id="chapter-2-lab" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Chapter 2 Lab</h1>
+<div id="model-choice-and-residual-analysis" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Model choice and Residual analysis</h2>
+<p>AIC and BIC are great measures for fit of models:</p>
+<p><span class="math display">\[ average(observed-predicted)^2+k(p+q)\]</span>
+The smaller these measures are, the better the prediction.</p>
+<p>As mentioned, sarima() returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:</p>
 <ol style="list-style-type: decimal">
-<li><p>Trend and Seasonality can be the main interests</p></li>
-<li><p>Need to remove trend and seasonality to determine short-term correlation</p></li>
+<li>Standardized residuals: does it look like white noise?</li>
+<li>Sample ACF of residuals: no statistically significant ACF (everything within the blue lines)</li>
+<li>Normal Q-Q plot: it should look like a line with a few outliers</li>
+<li>Q-statistic p-values: all p-values should be above the line</li>
 </ol>
-<p>For this chapter, assume additivity: <span class="math inline">\(X_t=m_t+s_t+e_t\)</span> (Refer to Ch.1)</p>
-<p>First is to estimate the trend and seasonal variation <span class="math inline">\(\hat m_t+\hat s_t\)</span>, then calculate the residual series <span class="math inline">\(e_t^*=X_t-\hat m_t-\hat s_t\)</span></p>
-<p>3 of the most common methods for modelling trend and seasonality are described here.</p>
-<div id="method-1-regression" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Method 1: Regression</h2>
-<p><span class="math display">\[m_t+s_t=\beta_0+\beta_1z_{t1}+...+\beta_pz_{tp}\]</span>
-Cons: OLS estimation assumes observations are independent.
-Pros: Remove trend to later model the correlation by a stationary time series process</p>
-<p><span class="math inline">\(z_{tn}\)</span> are often functions of time</p>
-<div id="examples" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Examples</h3>
-<div id="linear-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.1">
-<h4><span class="header-section-number">3.1.1.1</span> Linear trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot1.png" /></p>
-<p>Trend can be modelled by <span class="math inline">\(X_t=\beta_0+\beta_1t+e_t\)</span> and using series <span class="math inline">\(e_t\)</span> to analyze short-term correlation</p>
-</div>
-<div id="quadratic-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.2">
-<h4><span class="header-section-number">3.1.1.2</span> Quadratic trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot3.png" />
-Trend can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2t^2+e_t\)</span></p>
-</div>
-<div id="seasonal-pattern-in-time-and-a-linear-trend-with-365-data-points" class="section level4" number="3.1.1.3">
-<h4><span class="header-section-number">3.1.1.3</span> Seasonal pattern in time and a linear trend with 365 data points:</h4>
-<p><img src="chpt2_plot5.png" />
-Trend and Seasonality can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2sin(8\pi t/365)+e_t\)</span></p>
-</div>
-</div>
-<div id="other-common-models" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Other common models</h3>
-<div id="other-covariates" class="section level4" number="3.1.2.1">
-<h4><span class="header-section-number">3.1.2.1</span> Other Covariates</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1\alpha_t\]</span></p>
-</div>
-<div id="polynomials" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> Polynomials</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1t+\beta_qt^q\]</span>
-Higher <span class="math inline">\(q\)</span>, more flexible the trend</p>
-</div>
-<div id="harmonics" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Harmonics</h4>
-<p><span class="math display">\[s_t=\beta_0+\sum_{i=1}^q\beta_{1i}sin(w_it)+\beta_{2i}cos(w_it)\]</span>
-Harmonics assume the seasonal pattern has a regular shape, i.e. the height of the peaks is the same as the depth of the troughs.</p>
-</div>
-<div id="seasonal-factors" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Seasonal Factors</h4>
-<p>Assuming the seasonal pattern repeats itself every d time points, a less restrictive approach is to model it as:</p>
-<p><span class="math display">\[s_{t}=\left\{\begin{array}{cc}0&amp;\mbox{if}~t=1, d+1, 2d+2,\ldots\\
-  s_{2}&amp;\mbox{if}~t=2, d+2, 2d+2,\ldots\\
-  \vdots&amp;\vdots\\
-  s_{d}&amp;\mbox{if}~t=d, 2d, 3d,\ldots\\\end{array}\right.\]</span></p>
-<p>This model can be fitted by creating <span class="math inline">\(d - 1\)</span> dummy variables in the design matrix, that contain 1’s and 0’s.</p>
-</div>
-<div id="natural-cubic-splines-more-flexible" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Natural cubic splines (More flexible)</h4>
-<p><span class="math display">\[m_{t}+s_{t}=\beta_{0}+\sum_{i=1}^{q}\beta_{i}B_{i}(t)\]</span>
-<img src="chpt2_plot6d.png" /></p>
-</div>
-</div>
-</div>
-<div id="method-2-moving-average-smoothing" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Method 2: Moving Average Smoothing</h2>
-<p>A Moving average smoother estimates the trend and seasonal variation at time t by averaging the current observation and the q either side</p>
-<p><span class="math display">\[\hat{m}_{t}+\hat{s}_{t}=\frac{1}{2q+1}\sum_{j=-q}^{q}x_{t-j}\]</span>
-Note: Shorten length of time series by <span class="math inline">\(2q\)</span>, therefore if the trend is smooth and <span class="math inline">\(q\)</span> is large, the series shortens significantly.</p>
-</div>
-<div id="method-3-differencing" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Method 3: Differencing</h2>
-<div id="remove-trends" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Remove Trends</h3>
-<div id="first-order-difference-operator-nabla" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span> First order difference operator <span class="math inline">\(\nabla\)</span>:</h4>
-<p><span class="math display">\[\nabla X_{t}=X_{t}-X_{t-1}=(1-B)X_{t}\]</span></p>
-<p>where <span class="math inline">\(B\)</span> is the Backshift operator defined as <span class="math inline">\(BX_{t}=X_{t-1}\)</span></p>
-</div>
-<div id="general-order-difference-operator-nablaq" class="section level4" number="3.3.1.2">
-<h4><span class="header-section-number">3.3.1.2</span> General order difference operator <span class="math inline">\(\nabla^q\)</span></h4>
-<p><span class="math display">\[\nabla^{q} X_{t}=\nabla[\nabla^{q-1}X_{t}]\]</span>
-<span class="math display">\[B^{q}X_{t}=X_{t-q}\]</span>
-Notes:
-1. A polynomial trend of order <span class="math inline">\(q\)</span> can be removed by <span class="math inline">\(q^{th}\)</span> order differencing
-2. Typically only first or second order differencing is required
-3. Shortens length by <span class="math inline">\(q\)</span>
-4. Differencing won’t allow to estimate the trend but only to remove it.</p>
-</div>
-</div>
-<div id="remove-seasonality" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Remove Seasonality</h3>
-<p>The seasonal difference of order <span class="math inline">\(d\)</span> is the operator <span class="math inline">\(\nabla_d\)</span> given by
-<span class="math display">\[\nabla_{d} X_{t}=X_{t}-X_{t-d}=(1-B^{d})X_{t}\]</span>
-Notes:
-1. Trial and Error approach
-2. No point differencing twice if once is adequate
-3. Differencing increases the variance</p>
-</div>
-</div>
-<div id="choosing-a-smoothing-parameter" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Choosing a smoothing parameter</h2>
-<div id="simplicity" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Simplicity</h3>
-<p>Simple statistical models are preferred since they are easier to make inferences from.</p>
-</div>
-<div id="objective-criteria-aic-bic" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Objective criteria (AIC &amp; BIC)</h3>
-<p>Assumptions:
-1. Normally distributed observations
-2. <span class="math inline">\(m_{t}+s_{t}=\textbf{z}_{t}^\top \boldsymbol{\beta}\)</span></p>
-<p>where <span class="math inline">\(\textbf{z}_{t}^\top\)</span> is a vector of <span class="math inline">\(q-1\)</span> known covariates and a one to represent the intercept term</p>
-<div id="akaikes-information-criterion-aic" class="section level4" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Akaike’s Information Criterion (AIC)</h4>
-<p><span class="math display">\[\mbox{AIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + 2q\]</span></p>
-</div>
-<div id="bayesian-information-criterion-bic" class="section level4" number="3.4.2.2">
-<h4><span class="header-section-number">3.4.2.2</span> Bayesian Information Criterion (BIC)</h4>
-<p><span class="math display">\[\mbox{BIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + \ln(n)q\]</span></p>
-<p>where <span class="math inline">\(\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}})\)</span> is the maximised log likelihood function of <span class="math inline">\(\mathbf{x}\)</span></p>
-<p>Both criteria tradeoff the fit to the data against simplicity (i.e. few parameters), and small values suggest a good fit to the data.</p>
-</div>
-</div>
+<p>Finding the right model most of the time are through trials and errors starting with some ideas based off what we know about the data.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter-2-lab.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(astsa)</span>
+<span id="cb8-2"><a href="chapter-2-lab.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="chapter-2-lab.html#cb8-3" aria-hidden="true" tabindex="-1"></a>dl_varve <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(varve))</span>
+<span id="cb8-4"><a href="chapter-2-lab.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="chapter-2-lab.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(1) to dl_varve.   </span></span>
+<span id="cb8-6"><a href="chapter-2-lab.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## initial  value -0.551780 
+## iter   2 value -0.671633
+## iter   3 value -0.706234
+## iter   4 value -0.707586
+## iter   5 value -0.718543
+## iter   6 value -0.719692
+## iter   7 value -0.721967
+## iter   8 value -0.722970
+## iter   9 value -0.723231
+## iter  10 value -0.723247
+## iter  11 value -0.723248
+## iter  12 value -0.723248
+## iter  12 value -0.723248
+## iter  12 value -0.723248
+## final  value -0.723248 
+## converged
+## initial  value -0.722762 
+## iter   2 value -0.722764
+## iter   3 value -0.722764
+## iter   4 value -0.722765
+## iter   4 value -0.722765
+## iter   4 value -0.722765
+## final  value -0.722765 
+## converged</code></pre>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## $fit
+## 
+## Call:
+## stats::arima(x = xdata, order = c(p, d, q), seasonal = list(order = c(P, D, 
+##     Q), period = S), xreg = xmean, include.mean = FALSE, transform.pars = trans, 
+##     fixed = fixed, optim.control = list(trace = trc, REPORT = 1, reltol = tol))
+## 
+## Coefficients:
+##           ma1    xmean
+##       -0.7710  -0.0013
+## s.e.   0.0341   0.0044
+## 
+## sigma^2 estimated as 0.2353:  log likelihood = -440.68,  aic = 887.36
+## 
+## $degrees_of_freedom
+## [1] 631
+## 
+## $ttable
+##       Estimate     SE  t.value p.value
+## ma1    -0.7710 0.0341 -22.6002  0.0000
+## xmean  -0.0013 0.0044  -0.2818  0.7782
+## 
+## $AIC
+## [1] 1.401826
+## 
+## $AICc
+## [1] 1.401856
+## 
+## $BIC
+## [1] 1.422918</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chapter-2-lab.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(2) to dl_varve. Improvement?</span></span>
+<span id="cb11-2"><a href="chapter-2-lab.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## initial  value -0.551780 
+## iter   2 value -0.679736
+## iter   3 value -0.728605
+## iter   4 value -0.734640
+## iter   5 value -0.735449
+## iter   6 value -0.735979
+## iter   7 value -0.736015
+## iter   8 value -0.736059
+## iter   9 value -0.736060
+## iter  10 value -0.736060
+## iter  11 value -0.736061
+## iter  12 value -0.736061
+## iter  12 value -0.736061
+## iter  12 value -0.736061
+## final  value -0.736061 
+## converged
+## initial  value -0.735372 
+## iter   2 value -0.735378
+## iter   3 value -0.735379
+## iter   4 value -0.735379
+## iter   4 value -0.735379
+## iter   4 value -0.735379
+## final  value -0.735379 
+## converged</code></pre>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre><code>## $fit
+## 
+## Call:
+## stats::arima(x = xdata, order = c(p, d, q), seasonal = list(order = c(P, D, 
+##     Q), period = S), xreg = xmean, include.mean = FALSE, transform.pars = trans, 
+##     fixed = fixed, optim.control = list(trace = trc, REPORT = 1, reltol = tol))
+## 
+## Coefficients:
+##           ma1      ma2    xmean
+##       -0.6710  -0.1595  -0.0013
+## s.e.   0.0375   0.0392   0.0033
+## 
+## sigma^2 estimated as 0.2294:  log likelihood = -432.69,  aic = 873.39
+## 
+## $degrees_of_freedom
+## [1] 630
+## 
+## $ttable
+##       Estimate     SE  t.value p.value
+## ma1    -0.6710 0.0375 -17.9057  0.0000
+## ma2    -0.1595 0.0392  -4.0667  0.0001
+## xmean  -0.0013 0.0033  -0.4007  0.6888
+## 
+## $AIC
+## [1] 1.379757
+## 
+## $AICc
+## [1] 1.379817
+## 
+## $BIC
+## [1] 1.40788</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter-2-lab.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an ARMA(1,1) to dl_varve. Improvement?</span></span>
+<span id="cb14-2"><a href="chapter-2-lab.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">1</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## initial  value -0.550994 
+## iter   2 value -0.648962
+## iter   3 value -0.676965
+## iter   4 value -0.699167
+## iter   5 value -0.724554
+## iter   6 value -0.726719
+## iter   7 value -0.729066
+## iter   8 value -0.731976
+## iter   9 value -0.734235
+## iter  10 value -0.735969
+## iter  11 value -0.736410
+## iter  12 value -0.737045
+## iter  13 value -0.737600
+## iter  14 value -0.737641
+## iter  15 value -0.737643
+## iter  16 value -0.737643
+## iter  17 value -0.737643
+## iter  18 value -0.737643
+## iter  18 value -0.737643
+## iter  18 value -0.737643
+## final  value -0.737643 
+## converged
+## initial  value -0.737522 
+## iter   2 value -0.737527
+## iter   3 value -0.737528
+## iter   4 value -0.737529
+## iter   5 value -0.737530
+## iter   5 value -0.737530
+## iter   5 value -0.737530
+## final  value -0.737530 
+## converged</code></pre>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<pre><code>## $fit
+## 
+## Call:
+## stats::arima(x = xdata, order = c(p, d, q), seasonal = list(order = c(P, D, 
+##     Q), period = S), xreg = xmean, include.mean = FALSE, transform.pars = trans, 
+##     fixed = fixed, optim.control = list(trace = trc, REPORT = 1, reltol = tol))
+## 
+## Coefficients:
+##          ar1      ma1    xmean
+##       0.2341  -0.8871  -0.0013
+## s.e.  0.0518   0.0292   0.0028
+## 
+## sigma^2 estimated as 0.2284:  log likelihood = -431.33,  aic = 870.66
+## 
+## $degrees_of_freedom
+## [1] 630
+## 
+## $ttable
+##       Estimate     SE  t.value p.value
+## ar1     0.2341 0.0518   4.5184  0.0000
+## ma1    -0.8871 0.0292 -30.4107  0.0000
+## xmean  -0.0013 0.0028  -0.4618  0.6444
+## 
+## $AIC
+## [1] 1.375456
+## 
+## $AICc
+## [1] 1.375517
+## 
+## $BIC
+## [1] 1.403579</code></pre>
+
 </div>
 </div>
             </section>
@@ -405,8 +481,8 @@ Notes:
           </div>
         </div>
       </div>
-<a href="chapter-1-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-2-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-2-modelling-trends-and-seasonal-patterns.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-3-autoregressive-processes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Conclusion and looking into the future | Final Report</title>
+  <meta name="description" content="9 Conclusion and looking into the future | Final Report" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Conclusion and looking into the future | Final Report" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Conclusion and looking into the future | Final Report" />
+  
+  
+  
+
+<meta name="author" content="Luke Le" />
+
+
+<meta name="date" content="2021-11-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="forecasting-key-concepts-and-applying-on-dataset.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html"><i class="fa fa-check"></i><b>1</b> Chapter 1: Time Series Fundamentals</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#white-noise-purely-random-process"><i class="fa fa-check"></i><b>1.2</b> White Noise: purely random process</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#random-walk-random-but-dependent"><i class="fa fa-check"></i><b>1.3</b> Random Walk: random but dependent</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#time-series-modelling"><i class="fa fa-check"></i><b>1.4</b> Time Series Modelling</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#log-transformation"><i class="fa fa-check"></i><b>1.4.1</b> Log Transformation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#box-cox-transformation"><i class="fa fa-check"></i><b>1.4.2</b> Box-Cox Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#time-series-properties"><i class="fa fa-check"></i><b>1.5</b> Time Series Properties</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#mean-function-if-mean-is-constant"><i class="fa fa-check"></i><b>1.5.1</b> Mean function (if mean is constant)</a></li>
+<li class="chapter" data-level="1.5.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#variance-function-if-variance-is-constant"><i class="fa fa-check"></i><b>1.5.2</b> Variance function (if variance is constant)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#autocovariance-function-acvf"><i class="fa fa-check"></i><b>1.5.3</b> Autocovariance function (ACVF):</a></li>
+<li class="chapter" data-level="1.5.4" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#autocorrelation-function-acf"><i class="fa fa-check"></i><b>1.5.4</b> Autocorrelation function (ACF):</a></li>
+<li class="chapter" data-level="1.5.5" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#properties"><i class="fa fa-check"></i><b>1.5.5</b> Properties</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#stationarity"><i class="fa fa-check"></i><b>1.6</b> Stationarity</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html"><i class="fa fa-check"></i><b>2</b> Chapter 2: Modelling trends and seasonal patterns</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-1-regression"><i class="fa fa-check"></i><b>2.1</b> Method 1: Regression</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#examples"><i class="fa fa-check"></i><b>2.1.1</b> Examples</a></li>
+<li class="chapter" data-level="2.1.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#other-common-models"><i class="fa fa-check"></i><b>2.1.2</b> Other common models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-2-moving-average-smoothing"><i class="fa fa-check"></i><b>2.2</b> Method 2: Moving Average Smoothing</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-3-differencing"><i class="fa fa-check"></i><b>2.3</b> Method 3: Differencing</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#remove-trends"><i class="fa fa-check"></i><b>2.3.1</b> Remove Trends</a></li>
+<li class="chapter" data-level="2.3.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#remove-seasonality"><i class="fa fa-check"></i><b>2.3.2</b> Remove Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#choosing-a-smoothing-parameter"><i class="fa fa-check"></i><b>2.4</b> Choosing a smoothing parameter</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#simplicity"><i class="fa fa-check"></i><b>2.4.1</b> Simplicity</a></li>
+<li class="chapter" data-level="2.4.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#objective-criteria-aic-bic"><i class="fa fa-check"></i><b>2.4.2</b> Objective criteria (AIC &amp; BIC)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html"><i class="fa fa-check"></i><b>3</b> Chapter 3: Autoregressive processes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>3.1</b> Definition</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#first-order-autoregressive-process"><i class="fa fa-check"></i><b>3.2</b> First order Autoregressive process</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#mean"><i class="fa fa-check"></i><b>3.2.1</b> Mean</a></li>
+<li class="chapter" data-level="3.2.2" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#variance"><i class="fa fa-check"></i><b>3.2.2</b> Variance</a></li>
+<li class="chapter" data-level="3.2.3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#examples"><i class="fa fa-check"></i><b>3.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#arp-process"><i class="fa fa-check"></i><b>3.3</b> <span class="math inline">\(AR(p)\)</span> process</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#mean-1"><i class="fa fa-check"></i><b>3.3.1</b> Mean</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#stationarity"><i class="fa fa-check"></i><b>3.3.2</b> Stationarity</a></li>
+<li class="chapter" data-level="3.3.3" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#variance-1"><i class="fa fa-check"></i><b>3.3.3</b> Variance</a></li>
+<li class="chapter" data-level="3.3.4" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#autocorrelation-function"><i class="fa fa-check"></i><b>3.3.4</b> Autocorrelation Function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basics-of-time-series-when-and-why-we-use-them-basic-terminology.html"><a href="basics-of-time-series-when-and-why-we-use-them-basic-terminology.html"><i class="fa fa-check"></i><b>4</b> Basics of time series (when and why we use them, basic terminology)</a></li>
+<li class="chapter" data-level="5" data-path="autoregressive-models.html"><a href="autoregressive-models.html"><i class="fa fa-check"></i><b>5</b> Autoregressive models</a></li>
+<li class="chapter" data-level="6" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>6</b> Moving average models</a></li>
+<li class="chapter" data-level="7" data-path="real-world-application-using-one-of-the-above-techniques.html"><a href="real-world-application-using-one-of-the-above-techniques.html"><i class="fa fa-check"></i><b>7</b> Real-world Application using one of the above techniques</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="real-world-application-using-one-of-the-above-techniques.html"><a href="real-world-application-using-one-of-the-above-techniques.html#an-overview-of-dataset-why-a-time-series-model-is-appropriate"><i class="fa fa-check"></i><b>7.1</b> An overview of dataset, why a time series model is appropriate</a></li>
+<li class="chapter" data-level="7.2" data-path="real-world-application-using-one-of-the-above-techniques.html"><a href="real-world-application-using-one-of-the-above-techniques.html#fitting-ar-and-mr-models-to-the-data-explaining-the-parameters-and-why-i-choose-them"><i class="fa fa-check"></i><b>7.2</b> Fitting AR and MR models to the data, explaining the parameters and why I choose them</a></li>
+<li class="chapter" data-level="7.3" data-path="real-world-application-using-one-of-the-above-techniques.html"><a href="real-world-application-using-one-of-the-above-techniques.html#discussion-conclusion"><i class="fa fa-check"></i><b>7.3</b> Discussion &amp; Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="forecasting-key-concepts-and-applying-on-dataset.html"><a href="forecasting-key-concepts-and-applying-on-dataset.html"><i class="fa fa-check"></i><b>8</b> Forecasting. Key concepts and applying on dataset</a></li>
+<li class="chapter" data-level="9" data-path="conclusion-and-looking-into-the-future.html"><a href="conclusion-and-looking-into-the-future.html"><i class="fa fa-check"></i><b>9</b> Conclusion and looking into the future</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Final Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conclusion-and-looking-into-the-future" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Conclusion and looking into the future</h1>
+<p>(1 page)</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="forecasting-key-concepts-and-applying-on-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/FinalReport.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/FinalReport.Rmd",
+"text": null
+},
+"view": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/FinalReport.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

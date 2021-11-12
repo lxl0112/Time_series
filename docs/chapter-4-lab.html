@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Chapter 2: Modelling trends and seasonal patterns | Final Report</title>
-  <meta name="description" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <title>8 Chapter 4 Lab | Final Report</title>
+  <meta name="description" content="8 Chapter 4 Lab | Final Report" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta property="og:title" content="8 Chapter 4 Lab | Final Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta name="twitter:title" content="8 Chapter 4 Lab | Final Report" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-1-lab.html"/>
-<link rel="next" href="chapter-2-lab.html"/>
+<link rel="prev" href="chapter-4-moving-average-processes.html"/>
+<link rel="next" href="chapter-5-more-general-time-series-processes.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,130 +274,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-2-modelling-trends-and-seasonal-patterns" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Chapter 2: Modelling trends and seasonal patterns</h1>
-<ol style="list-style-type: decimal">
-<li><p>Trend and Seasonality can be the main interests</p></li>
-<li><p>Need to remove trend and seasonality to determine short-term correlation</p></li>
-</ol>
-<p>For this chapter, assume additivity: <span class="math inline">\(X_t=m_t+s_t+e_t\)</span> (Refer to Ch.1)</p>
-<p>First is to estimate the trend and seasonal variation <span class="math inline">\(\hat m_t+\hat s_t\)</span>, then calculate the residual series <span class="math inline">\(e_t^*=X_t-\hat m_t-\hat s_t\)</span></p>
-<p>3 of the most common methods for modelling trend and seasonality are described here.</p>
-<div id="method-1-regression" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Method 1: Regression</h2>
-<p><span class="math display">\[m_t+s_t=\beta_0+\beta_1z_{t1}+...+\beta_pz_{tp}\]</span>
-Cons: OLS estimation assumes observations are independent.
-Pros: Remove trend to later model the correlation by a stationary time series process</p>
-<p><span class="math inline">\(z_{tn}\)</span> are often functions of time</p>
-<div id="examples" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Examples</h3>
-<div id="linear-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.1">
-<h4><span class="header-section-number">3.1.1.1</span> Linear trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot1.png" /></p>
-<p>Trend can be modelled by <span class="math inline">\(X_t=\beta_0+\beta_1t+e_t\)</span> and using series <span class="math inline">\(e_t\)</span> to analyze short-term correlation</p>
-</div>
-<div id="quadratic-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.2">
-<h4><span class="header-section-number">3.1.1.2</span> Quadratic trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot3.png" />
-Trend can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2t^2+e_t\)</span></p>
-</div>
-<div id="seasonal-pattern-in-time-and-a-linear-trend-with-365-data-points" class="section level4" number="3.1.1.3">
-<h4><span class="header-section-number">3.1.1.3</span> Seasonal pattern in time and a linear trend with 365 data points:</h4>
-<p><img src="chpt2_plot5.png" />
-Trend and Seasonality can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2sin(8\pi t/365)+e_t\)</span></p>
-</div>
-</div>
-<div id="other-common-models" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Other common models</h3>
-<div id="other-covariates" class="section level4" number="3.1.2.1">
-<h4><span class="header-section-number">3.1.2.1</span> Other Covariates</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1\alpha_t\]</span></p>
-</div>
-<div id="polynomials" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> Polynomials</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1t+\beta_qt^q\]</span>
-Higher <span class="math inline">\(q\)</span>, more flexible the trend</p>
-</div>
-<div id="harmonics" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Harmonics</h4>
-<p><span class="math display">\[s_t=\beta_0+\sum_{i=1}^q\beta_{1i}sin(w_it)+\beta_{2i}cos(w_it)\]</span>
-Harmonics assume the seasonal pattern has a regular shape, i.e. the height of the peaks is the same as the depth of the troughs.</p>
-</div>
-<div id="seasonal-factors" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Seasonal Factors</h4>
-<p>Assuming the seasonal pattern repeats itself every d time points, a less restrictive approach is to model it as:</p>
-<p><span class="math display">\[s_{t}=\left\{\begin{array}{cc}0&amp;\mbox{if}~t=1, d+1, 2d+2,\ldots\\
-  s_{2}&amp;\mbox{if}~t=2, d+2, 2d+2,\ldots\\
-  \vdots&amp;\vdots\\
-  s_{d}&amp;\mbox{if}~t=d, 2d, 3d,\ldots\\\end{array}\right.\]</span></p>
-<p>This model can be fitted by creating <span class="math inline">\(d - 1\)</span> dummy variables in the design matrix, that contain 1’s and 0’s.</p>
-</div>
-<div id="natural-cubic-splines-more-flexible" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Natural cubic splines (More flexible)</h4>
-<p><span class="math display">\[m_{t}+s_{t}=\beta_{0}+\sum_{i=1}^{q}\beta_{i}B_{i}(t)\]</span>
-<img src="chpt2_plot6d.png" /></p>
-</div>
-</div>
-</div>
-<div id="method-2-moving-average-smoothing" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Method 2: Moving Average Smoothing</h2>
-<p>A Moving average smoother estimates the trend and seasonal variation at time t by averaging the current observation and the q either side</p>
-<p><span class="math display">\[\hat{m}_{t}+\hat{s}_{t}=\frac{1}{2q+1}\sum_{j=-q}^{q}x_{t-j}\]</span>
-Note: Shorten length of time series by <span class="math inline">\(2q\)</span>, therefore if the trend is smooth and <span class="math inline">\(q\)</span> is large, the series shortens significantly.</p>
-</div>
-<div id="method-3-differencing" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Method 3: Differencing</h2>
-<div id="remove-trends" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Remove Trends</h3>
-<div id="first-order-difference-operator-nabla" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span> First order difference operator <span class="math inline">\(\nabla\)</span>:</h4>
-<p><span class="math display">\[\nabla X_{t}=X_{t}-X_{t-1}=(1-B)X_{t}\]</span></p>
-<p>where <span class="math inline">\(B\)</span> is the Backshift operator defined as <span class="math inline">\(BX_{t}=X_{t-1}\)</span></p>
-</div>
-<div id="general-order-difference-operator-nablaq" class="section level4" number="3.3.1.2">
-<h4><span class="header-section-number">3.3.1.2</span> General order difference operator <span class="math inline">\(\nabla^q\)</span></h4>
-<p><span class="math display">\[\nabla^{q} X_{t}=\nabla[\nabla^{q-1}X_{t}]\]</span>
-<span class="math display">\[B^{q}X_{t}=X_{t-q}\]</span>
-Notes:
-1. A polynomial trend of order <span class="math inline">\(q\)</span> can be removed by <span class="math inline">\(q^{th}\)</span> order differencing
-2. Typically only first or second order differencing is required
-3. Shortens length by <span class="math inline">\(q\)</span>
-4. Differencing won’t allow to estimate the trend but only to remove it.</p>
-</div>
-</div>
-<div id="remove-seasonality" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Remove Seasonality</h3>
-<p>The seasonal difference of order <span class="math inline">\(d\)</span> is the operator <span class="math inline">\(\nabla_d\)</span> given by
-<span class="math display">\[\nabla_{d} X_{t}=X_{t}-X_{t-d}=(1-B^{d})X_{t}\]</span>
-Notes:
-1. Trial and Error approach
-2. No point differencing twice if once is adequate
-3. Differencing increases the variance</p>
-</div>
-</div>
-<div id="choosing-a-smoothing-parameter" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Choosing a smoothing parameter</h2>
-<div id="simplicity" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Simplicity</h3>
-<p>Simple statistical models are preferred since they are easier to make inferences from.</p>
-</div>
-<div id="objective-criteria-aic-bic" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Objective criteria (AIC &amp; BIC)</h3>
-<p>Assumptions:
-1. Normally distributed observations
-2. <span class="math inline">\(m_{t}+s_{t}=\textbf{z}_{t}^\top \boldsymbol{\beta}\)</span></p>
-<p>where <span class="math inline">\(\textbf{z}_{t}^\top\)</span> is a vector of <span class="math inline">\(q-1\)</span> known covariates and a one to represent the intercept term</p>
-<div id="akaikes-information-criterion-aic" class="section level4" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Akaike’s Information Criterion (AIC)</h4>
-<p><span class="math display">\[\mbox{AIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + 2q\]</span></p>
-</div>
-<div id="bayesian-information-criterion-bic" class="section level4" number="3.4.2.2">
-<h4><span class="header-section-number">3.4.2.2</span> Bayesian Information Criterion (BIC)</h4>
-<p><span class="math display">\[\mbox{BIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + \ln(n)q\]</span></p>
-<p>where <span class="math inline">\(\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}})\)</span> is the maximised log likelihood function of <span class="math inline">\(\mathbf{x}\)</span></p>
-<p>Both criteria tradeoff the fit to the data against simplicity (i.e. few parameters), and small values suggest a good fit to the data.</p>
-</div>
-</div>
+<div id="chapter-4-lab" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Chapter 4 Lab</h1>
+<div id="moving-average-model-ma" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Moving Average model (MA)</h2>
+<p><span class="math display">\[ X_t = \mu + Noise_t + \theta \cdot(Noise_{t-1})\]</span>
+Regression on today’s data using yesterday’s noise.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter-4-lab.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA model with slope 0.5</span></span>
+<span id="cb27-2"><a href="chapter-4-lab.html#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fl">0.5</span>), <span class="at">n =</span> <span class="dv">100</span>)</span>
+<span id="cb27-3"><a href="chapter-4-lab.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="chapter-4-lab.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA model with slope 0.9</span></span>
+<span id="cb27-5"><a href="chapter-4-lab.html#cb27-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fl">0.9</span>), <span class="at">n =</span> <span class="dv">100</span>)</span>
+<span id="cb27-6"><a href="chapter-4-lab.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="chapter-4-lab.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA model with slope -0.5</span></span>
+<span id="cb27-8"><a href="chapter-4-lab.html#cb27-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">n =</span> <span class="dv">100</span>)</span>
+<span id="cb27-9"><a href="chapter-4-lab.html#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="chapter-4-lab.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all three models together</span></span>
+<span id="cb27-11"><a href="chapter-4-lab.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ts</span>(<span class="fu">cbind</span>(x, y, z))</span></code></pre></div>
+<p><img src="Chapter4_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="chapter-4-lab.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb28-2"><a href="chapter-4-lab.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the ACF </span></span>
+<span id="cb28-3"><a href="chapter-4-lab.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(x)</span>
+<span id="cb28-4"><a href="chapter-4-lab.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(y)</span>
+<span id="cb28-5"><a href="chapter-4-lab.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(z)</span></code></pre></div>
+<p><img src="Chapter4_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+
 </div>
 </div>
             </section>
@@ -405,8 +306,8 @@ Notes:
           </div>
         </div>
       </div>
-<a href="chapter-1-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-2-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-4-moving-average-processes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-5-more-general-time-series-processes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -437,15 +338,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter4.Rmd",
 "text": "Edit"
 },
 "history": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter4.Rmd",
 "text": null
 },
 "view": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter4.Rmd",
 "text": null
 },
 "download": null,

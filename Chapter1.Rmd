@@ -1,3 +1,7 @@
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 # Chapter 1: Time Series Fundamentals
 
 ## Definition
@@ -71,6 +75,7 @@ plot.E.rw <- ggplot(data = E.rw, aes(x = n, y = Y)) +
 
 grid.arrange(plot.G.wn, plot.E.wn, plot.G.rw, plot.E.rw)
 ```
+
 ## Time Series Modelling
 
 Time series data are often decomposed into the following three components: Trend, Seasonal Effect, Unexplained variation
@@ -129,4 +134,57 @@ A time series process $\{X_t|t\in T\}$ is strictly stationary if the joint distr
 
 
 A time series process $\{X_t|t\in T\}$ is weakly stationary (or second-order stationary) if 1, mean function is constant and finite; 2, variance function is constant and finite; 3, autocovariance and autocorrelation functions only depend on the lag.
+
+# Chapter 1 Lab 
+
+Using R to dive in the building blocks of time series models. These building blocks include White Noise (WN), Random Walk (RW), Correlation analysis and ACF/PACF graphs, Autoregressive model (AR), and Moving Average (MA).
+
+First thing to note is that sampling frequency tend to be not exact. If the data was recorded daily or hourly, that is exact sampling frequency. But if data is recorded monthly or yearly, it is not since months differ in number of days. 
+
+Second thing to know is detrending. Detrending is necessary to remove variability resulted from "trend" over time (oftentimes using diff()). Think of this as standardized for analysis. Sometimes the data needs log transformation before detrending (more on this in future chapter)
+
+## White Noise (WN)
+
+Introduce the simulation function: 
+
+```{r echo=TRUE}
+WN_example <- arima.sim(model = list(order = c(0,0,0)), n = 50)
+ts.plot(WN_example)
+```
+
+For now, just know that the c(0,0,0) specifies the WN model. 
+
+Note that WN model has no pattern or trend. Named after white light in physics which display similar characteristics.
+
+## Random Walk (RW)
+
+$$ X_T = X_{t-1} +Noise_t$$
+with $Noise_t = Z_t (White noise)$
+
+Think of White Noise but with trend. The value of the next period depends on the value of the previous with a random level of noise. 
+
+```{r echo=TRUE}
+random_walk <- arima.sim(model = list(order = c(0, 1, 0)), n = 100)
+plot(random_walk)
+```
+
+Again, just know that 0,1,0 specifies RW. 
+
+## Stationary 
+
+Stationary is preferable since its behavior can be modeled with fewer parameter (which we will get into in ARIMA).  
+
+Examples:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(quantmod)
+getSymbols("CPIAUCSL", auto.assign = TRUE, src = "FRED")
+
+# Here I imported the CPI data from the FRED database. CPI is nonstationary, its difference (which is inflation rate) is nonstationary, but inflation's difference is stationary
+plot(CPIAUCSL)
+plot(diff(CPIAUCSL))
+plot(diff(diff(CPIAUCSL)))
+```
+
+
 

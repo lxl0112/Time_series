@@ -1,3 +1,7 @@
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 # Chapter 2: Modelling trends and seasonal patterns
 
 1. Trend and Seasonality can be the main interests
@@ -125,3 +129,37 @@ $$\mbox{BIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + \ln(n)q$$
 where $\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}})$ is the maximised log likelihood function of $\mathbf{x}$
 
 Both criteria tradeoff the fit to the data against simplicity (i.e. few parameters), and small values suggest a good fit to the data.
+
+# Chapter 2 Lab
+
+## Model choice and Residual analysis
+
+AIC and BIC are great measures for fit of models:
+
+$$ average(observed-predicted)^2+k(p+q)$$
+The smaller these measures are, the better the prediction. 
+
+As mentioned, sarima() returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:
+
+1. Standardized residuals: does it look like white noise?
+2. Sample ACF of residuals: no statistically significant ACF (everything within the blue lines)
+3. Normal Q-Q plot: it should look like a line with a few outliers 
+4. Q-statistic p-values: all p-values should be above the line
+
+Finding the right model most of the time are through trials and errors starting with some ideas based off what we know about the data. 
+
+```{r echo=TRUE}
+library(astsa)
+
+dl_varve <- diff(log(varve))
+
+# Fit an MA(1) to dl_varve.   
+sarima(dl_varve, p = 0, d = 0, q = 1)
+
+# Fit an MA(2) to dl_varve. Improvement?
+sarima(dl_varve, p = 0, d = 0, q = 2)
+
+# Fit an ARMA(1,1) to dl_varve. Improvement?
+sarima(dl_varve, p = 1, d = 0, q = 1)
+
+```

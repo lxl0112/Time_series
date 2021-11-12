@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Chapter 2: Modelling trends and seasonal patterns | Final Report</title>
-  <meta name="description" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <title>9 Chapter 5: More general time series processes | Final Report</title>
+  <meta name="description" content="9 Chapter 5: More general time series processes | Final Report" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta property="og:title" content="9 Chapter 5: More general time series processes | Final Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta name="twitter:title" content="9 Chapter 5: More general time series processes | Final Report" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-1-lab.html"/>
-<link rel="next" href="chapter-2-lab.html"/>
+<link rel="prev" href="chapter-4-lab.html"/>
+<link rel="next" href="chapter-5-lab.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,130 +274,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-2-modelling-trends-and-seasonal-patterns" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Chapter 2: Modelling trends and seasonal patterns</h1>
+<div id="chapter-5-more-general-time-series-processes" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Chapter 5: More general time series processes</h1>
+<p>For most data sets the AR and MA models will be adequate to represent short-term correlation, with autoregressive correlation occurring more often than moving average. However, occasionally you may meet data that are not well represented by either of these time series processes, an example of which is shown below.</p>
+<p>Example:</p>
+<p>Consider the following data which appear to be stationary but contain short-term correlation.</p>
+<p><img src="chpt5_plot1.png" /></p>
+<p>The ACF and PACF suggest that neither an AR nor an MA process is appropriate, but as these are the only models we know, we fit them to the data to see how well they remove the short-term correlation. We chose the order (p and q) as the lowest values that removed the majority of the correlation, which resulted in an AR(6) model or an MA(5) model:</p>
+<p><img src="chpt5_plot2.png" />
+Neither fits the data perfectly as the residual series isn’t white noise. Both also used high order processess (p=6 and q=5) which include a relatively large number of parameters. This emphasizes two points:</p>
 <ol style="list-style-type: decimal">
-<li><p>Trend and Seasonality can be the main interests</p></li>
-<li><p>Need to remove trend and seasonality to determine short-term correlation</p></li>
+<li><p>Even if the correlation structure does not look like an AR(p) or an MA(q) process, fitting these models with large enough p and q will remove the majority of the correlation. Therefore it is better to model correlation with the wrong time series process than not to model it at all.</p></li>
+<li><p>However, AR(p) and MA(q) processes are not always appropriate models for short-term correlation</p></li>
 </ol>
-<p>For this chapter, assume additivity: <span class="math inline">\(X_t=m_t+s_t+e_t\)</span> (Refer to Ch.1)</p>
-<p>First is to estimate the trend and seasonal variation <span class="math inline">\(\hat m_t+\hat s_t\)</span>, then calculate the residual series <span class="math inline">\(e_t^*=X_t-\hat m_t-\hat s_t\)</span></p>
-<p>3 of the most common methods for modelling trend and seasonality are described here.</p>
-<div id="method-1-regression" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Method 1: Regression</h2>
-<p><span class="math display">\[m_t+s_t=\beta_0+\beta_1z_{t1}+...+\beta_pz_{tp}\]</span>
-Cons: OLS estimation assumes observations are independent.
-Pros: Remove trend to later model the correlation by a stationary time series process</p>
-<p><span class="math inline">\(z_{tn}\)</span> are often functions of time</p>
-<div id="examples" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Examples</h3>
-<div id="linear-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.1">
-<h4><span class="header-section-number">3.1.1.1</span> Linear trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot1.png" /></p>
-<p>Trend can be modelled by <span class="math inline">\(X_t=\beta_0+\beta_1t+e_t\)</span> and using series <span class="math inline">\(e_t\)</span> to analyze short-term correlation</p>
+<div id="arma-model" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> ARMA model</h2>
+<p>An Autoregressive Moving Average process of order (p,q) denoted ARMA(p,q) is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+X_{t}&amp;=&amp;\alpha_{1}X_{t-1}+\ldots+\alpha_{p}X_{t-p} + Z_{t} + \lambda_{1}Z_{t-1}+\ldots+\lambda_{q}Z_{t-q}\nonumber\\
+&amp;=&amp;\sum_{j=1}^{p}\alpha_{j}X_{t-j}+\sum_{j=1}^{q}\lambda_{j}Z_{t-j} + Z_{t}\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Using Backshift operator the model can be rewritten as</p>
+<p><span class="math display">\[\phi(B)X_{t} = \theta(B)Z_{t}\]</span></p>
+<p>Example:</p>
+<p>The data in the first example can be modelled by an ARMA(1,1) process</p>
+<p><span class="math display">\[X_{t}=\alpha X_{t-1}+\lambda Z_{t-1}+Z_{t}
+\]</span></p>
+<p><img src="chpt5_plot3.png" /></p>
+<div id="mean-of-armapq-process" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Mean of ARMA(p,q) process</h3>
+<p><span class="math display">\[E[X_t] = 0\]</span></p>
 </div>
-<div id="quadratic-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.2">
-<h4><span class="header-section-number">3.1.1.2</span> Quadratic trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot3.png" />
-Trend can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2t^2+e_t\)</span></p>
+<div id="variance-and-autocorrelation-function" class="section level3" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Variance and autocorrelation function</h3>
+<p>Variance:</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[X_{t}]&amp;=&amp;\alpha \gamma_{1}+\lambda (\alpha\sigma^{2}_{z} + \lambda\sigma^{2}_{z})+\sigma^{2}_{z}\nonumber\\
+&amp;=&amp;\alpha \gamma_{1}+\sigma^{2}_{z}(\lambda^{2}+\lambda\alpha+1).\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Autocorrelation function:</p>
+<p><span class="math display">\[\rho_{\tau}=\alpha \rho_{\tau-1}\]</span></p>
 </div>
-<div id="seasonal-pattern-in-time-and-a-linear-trend-with-365-data-points" class="section level4" number="3.1.1.3">
-<h4><span class="header-section-number">3.1.1.3</span> Seasonal pattern in time and a linear trend with 365 data points:</h4>
-<p><img src="chpt2_plot5.png" />
-Trend and Seasonality can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2sin(8\pi t/365)+e_t\)</span></p>
+<div id="stationarity-and-invertibility" class="section level3" number="9.1.3">
+<h3><span class="header-section-number">9.1.3</span> Stationarity and Invertibility</h3>
+<p>We know that MA(q) process is always stationary and AR(p) process is always invertible. Therefore an ARMA(p,q) process</p>
+<ol style="list-style-type: decimal">
+<li><p>is stationary if the AR(p) part is stationary, i.e., if the roots of the AR(p) characteristic polynomial have modulus larger than 1; and</p></li>
+<li><p>is invertible if the MA(q) part is invertible, i.e., if the roots of the MA(q) characteristic polynomial have modulus larger than 1</p></li>
+</ol>
+<p>Example:</p>
+<p>Consider the ARMA(1,1) process</p>
+<p><span class="math display">\[X_{t}=2X_{t-1}-0.4Z_{t-1}+Z_{t}\]</span></p>
+<p>which can be re-written as</p>
+<p><span class="math display">\[X_{t}(1-2B)=Z_{t}(1-0.4B)\]</span></p>
+<p>AR part has root <span class="math inline">\(B=0.5\)</span>, therefore the process is not stationary. The MA part has root <span class="math inline">\(B=2.5\)</span>, therefore the process is invertible.</p>
 </div>
+<div id="arma-model-identification" class="section level3" number="9.1.4">
+<h3><span class="header-section-number">9.1.4</span> ARMA model identification</h3>
+<p>AR and MA processes are straightforward to identify from ACF and PACF:</p>
+<ol style="list-style-type: decimal">
+<li><p>If the ACF is significantly different from zero for only the first q lags (for small q), then an MA(q) model is appropriate.</p></li>
+<li><p>If the PACF is significantly different from zero for only the first lags (for small p), then an AR(p) model is appropriate.</p></li>
+</ol>
+<p>Take another look at the data in the first example:</p>
+<p><img src="chpt5_plot1.png" /></p>
+<p>Neither the ACF or PACF give any clues as to the appropriate type of time series process. All they tell us is that it is not an AR(p) process or an MA(q) process</p>
+<p>Notes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Model identification for ARMA(p,q) process when p,q &gt; 0 is difficult</p></li>
+<li><p>First determine if the ACF and PACF resemble either an MA(q) or an AR(p) process</p></li>
+<li><p>If not then adopt a trial and error approach, starting with the simplest model (i.e., an ARMA(1,1)) and increasing the complexity until the correlation has been removed.</p></li>
+</ol>
 </div>
-<div id="other-common-models" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Other common models</h3>
-<div id="other-covariates" class="section level4" number="3.1.2.1">
-<h4><span class="header-section-number">3.1.2.1</span> Other Covariates</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1\alpha_t\]</span></p>
-</div>
-<div id="polynomials" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> Polynomials</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1t+\beta_qt^q\]</span>
-Higher <span class="math inline">\(q\)</span>, more flexible the trend</p>
-</div>
-<div id="harmonics" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Harmonics</h4>
-<p><span class="math display">\[s_t=\beta_0+\sum_{i=1}^q\beta_{1i}sin(w_it)+\beta_{2i}cos(w_it)\]</span>
-Harmonics assume the seasonal pattern has a regular shape, i.e. the height of the peaks is the same as the depth of the troughs.</p>
-</div>
-<div id="seasonal-factors" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Seasonal Factors</h4>
-<p>Assuming the seasonal pattern repeats itself every d time points, a less restrictive approach is to model it as:</p>
-<p><span class="math display">\[s_{t}=\left\{\begin{array}{cc}0&amp;\mbox{if}~t=1, d+1, 2d+2,\ldots\\
-  s_{2}&amp;\mbox{if}~t=2, d+2, 2d+2,\ldots\\
-  \vdots&amp;\vdots\\
-  s_{d}&amp;\mbox{if}~t=d, 2d, 3d,\ldots\\\end{array}\right.\]</span></p>
-<p>This model can be fitted by creating <span class="math inline">\(d - 1\)</span> dummy variables in the design matrix, that contain 1’s and 0’s.</p>
-</div>
-<div id="natural-cubic-splines-more-flexible" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Natural cubic splines (More flexible)</h4>
-<p><span class="math display">\[m_{t}+s_{t}=\beta_{0}+\sum_{i=1}^{q}\beta_{i}B_{i}(t)\]</span>
-<img src="chpt2_plot6d.png" /></p>
-</div>
-</div>
-</div>
-<div id="method-2-moving-average-smoothing" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Method 2: Moving Average Smoothing</h2>
-<p>A Moving average smoother estimates the trend and seasonal variation at time t by averaging the current observation and the q either side</p>
-<p><span class="math display">\[\hat{m}_{t}+\hat{s}_{t}=\frac{1}{2q+1}\sum_{j=-q}^{q}x_{t-j}\]</span>
-Note: Shorten length of time series by <span class="math inline">\(2q\)</span>, therefore if the trend is smooth and <span class="math inline">\(q\)</span> is large, the series shortens significantly.</p>
-</div>
-<div id="method-3-differencing" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Method 3: Differencing</h2>
-<div id="remove-trends" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Remove Trends</h3>
-<div id="first-order-difference-operator-nabla" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span> First order difference operator <span class="math inline">\(\nabla\)</span>:</h4>
-<p><span class="math display">\[\nabla X_{t}=X_{t}-X_{t-1}=(1-B)X_{t}\]</span></p>
-<p>where <span class="math inline">\(B\)</span> is the Backshift operator defined as <span class="math inline">\(BX_{t}=X_{t-1}\)</span></p>
-</div>
-<div id="general-order-difference-operator-nablaq" class="section level4" number="3.3.1.2">
-<h4><span class="header-section-number">3.3.1.2</span> General order difference operator <span class="math inline">\(\nabla^q\)</span></h4>
-<p><span class="math display">\[\nabla^{q} X_{t}=\nabla[\nabla^{q-1}X_{t}]\]</span>
-<span class="math display">\[B^{q}X_{t}=X_{t-q}\]</span>
-Notes:
-1. A polynomial trend of order <span class="math inline">\(q\)</span> can be removed by <span class="math inline">\(q^{th}\)</span> order differencing
-2. Typically only first or second order differencing is required
-3. Shortens length by <span class="math inline">\(q\)</span>
-4. Differencing won’t allow to estimate the trend but only to remove it.</p>
+<div id="arma-parameter-estimation" class="section level3" number="9.1.5">
+<h3><span class="header-section-number">9.1.5</span> ARMA parameter estimation</h3>
+<p>Not in this course.</p>
 </div>
 </div>
-<div id="remove-seasonality" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Remove Seasonality</h3>
-<p>The seasonal difference of order <span class="math inline">\(d\)</span> is the operator <span class="math inline">\(\nabla_d\)</span> given by
-<span class="math display">\[\nabla_{d} X_{t}=X_{t}-X_{t-d}=(1-B^{d})X_{t}\]</span>
-Notes:
-1. Trial and Error approach
-2. No point differencing twice if once is adequate
-3. Differencing increases the variance</p>
-</div>
-</div>
-<div id="choosing-a-smoothing-parameter" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Choosing a smoothing parameter</h2>
-<div id="simplicity" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Simplicity</h3>
-<p>Simple statistical models are preferred since they are easier to make inferences from.</p>
-</div>
-<div id="objective-criteria-aic-bic" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Objective criteria (AIC &amp; BIC)</h3>
-<p>Assumptions:
-1. Normally distributed observations
-2. <span class="math inline">\(m_{t}+s_{t}=\textbf{z}_{t}^\top \boldsymbol{\beta}\)</span></p>
-<p>where <span class="math inline">\(\textbf{z}_{t}^\top\)</span> is a vector of <span class="math inline">\(q-1\)</span> known covariates and a one to represent the intercept term</p>
-<div id="akaikes-information-criterion-aic" class="section level4" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Akaike’s Information Criterion (AIC)</h4>
-<p><span class="math display">\[\mbox{AIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + 2q\]</span></p>
-</div>
-<div id="bayesian-information-criterion-bic" class="section level4" number="3.4.2.2">
-<h4><span class="header-section-number">3.4.2.2</span> Bayesian Information Criterion (BIC)</h4>
-<p><span class="math display">\[\mbox{BIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + \ln(n)q\]</span></p>
-<p>where <span class="math inline">\(\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}})\)</span> is the maximised log likelihood function of <span class="math inline">\(\mathbf{x}\)</span></p>
-<p>Both criteria tradeoff the fit to the data against simplicity (i.e. few parameters), and small values suggest a good fit to the data.</p>
-</div>
-</div>
+<div id="arima-model" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> ARIMA model</h2>
 </div>
 </div>
             </section>
@@ -405,8 +362,8 @@ Notes:
           </div>
         </div>
       </div>
-<a href="chapter-1-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-2-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-4-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-5-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -437,15 +394,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter5.Rmd",
 "text": "Edit"
 },
 "history": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter5.Rmd",
 "text": null
 },
 "view": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter5.Rmd",
 "text": null
 },
 "download": null,

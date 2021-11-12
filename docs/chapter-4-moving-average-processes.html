@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Chapter 2: Modelling trends and seasonal patterns | Final Report</title>
-  <meta name="description" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <title>7 Chapter 4: Moving Average processes | Final Report</title>
+  <meta name="description" content="7 Chapter 4: Moving Average processes | Final Report" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta property="og:title" content="7 Chapter 4: Moving Average processes | Final Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Chapter 2: Modelling trends and seasonal patterns | Final Report" />
+  <meta name="twitter:title" content="7 Chapter 4: Moving Average processes | Final Report" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-1-lab.html"/>
-<link rel="next" href="chapter-2-lab.html"/>
+<link rel="prev" href="chapter-3-lab.html"/>
+<link rel="next" href="chapter-4-lab.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,130 +274,232 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-2-modelling-trends-and-seasonal-patterns" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Chapter 2: Modelling trends and seasonal patterns</h1>
+<div id="chapter-4-moving-average-processes" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Chapter 4: Moving Average processes</h1>
+<div id="definition" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Definition</h2>
+<p>A Moving Average process of order <span class="math inline">\(q\)</span>, denoted MA(<span class="math inline">\(q\)</span>), is given by</p>
+<p><span class="math display">\[X_{t}=\lambda_{0}Z_{t}+\lambda_{1}Z_{t-1}+\ldots+\lambda_{q}Z_{t-q}\]</span></p>
+<p>where <span class="math inline">\(\lambda_0=1\)</span></p>
+</div>
+<div id="mean-and-variance" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Mean and Variance</h2>
+<p>Mean of any MA(<span class="math inline">\(q\)</span>) process: <span class="math inline">\(E[X_t]=0\)</span></p>
+<p>Variance:
+<span class="math display">\[X_{t}=\sigma^{2}_{z}\left[1+\sum_{j=1}^{q}\lambda_{j}^{2}\right]\]</span></p>
+</div>
+<div id="autocorrelation-functions" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Autocorrelation functions</h2>
+<p>Autocovariance function:</p>
+<p><span class="math display">\[\gamma_{\tau}=\mathrm{Cov}[X_{t},X_{t+\tau}]=\left\{\begin{array}{cc}\sigma_{z}^{2}\sum_{j=0}^{q-\tau}\lambda_{j}\lambda_{j+\tau}&amp;\mbox{if}~\tau=0,1,\ldots,q\\
+0&amp;\tau&gt;q\\
+\end{array}\right.\]</span></p>
+<p>and autocorrelation function:</p>
+<p><span class="math display">\[\rho_{\tau}=\mathrm{Corr}[X_{t},X_{t+\tau}]=\left\{\begin{array}{cc}1&amp;\mbox{if}~\tau=0\\
+\frac{\sum_{j=0}^{q-\tau}\lambda_{j}\lambda_{j+\tau}}{\sum_{j=0}^{q}\lambda_{j}^{2}}&amp;\mbox{if}~\tau=1,\ldots,q\\
+0&amp;\tau&gt;q\\
+\end{array}\right.\]</span></p>
+<p>where <span class="math inline">\(\lambda_0=1\)</span></p>
+<p>Notes:</p>
 <ol style="list-style-type: decimal">
-<li><p>Trend and Seasonality can be the main interests</p></li>
-<li><p>Need to remove trend and seasonality to determine short-term correlation</p></li>
+<li><p>The mean and variance of any MA(<span class="math inline">\(q\)</span>) process are finite and constant, while the autocorrelation function is finite and does not depend on <span class="math inline">\(t\)</span>. Therefore any MA(<span class="math inline">\(q\)</span>) is weakly stationary.</p></li>
+<li><p>The autocorrelation function of an MA(<span class="math inline">\(q\)</span>) process is positive at lags <span class="math inline">\(1,…,q\)</span> and zero for any lag greater than <span class="math inline">\(q\)</span>. This gives us a method for detecting whether an MA(<span class="math inline">\(q\)</span>) process is an appropriate model for a given data set.</p></li>
 </ol>
-<p>For this chapter, assume additivity: <span class="math inline">\(X_t=m_t+s_t+e_t\)</span> (Refer to Ch.1)</p>
-<p>First is to estimate the trend and seasonal variation <span class="math inline">\(\hat m_t+\hat s_t\)</span>, then calculate the residual series <span class="math inline">\(e_t^*=X_t-\hat m_t-\hat s_t\)</span></p>
-<p>3 of the most common methods for modelling trend and seasonality are described here.</p>
-<div id="method-1-regression" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Method 1: Regression</h2>
-<p><span class="math display">\[m_t+s_t=\beta_0+\beta_1z_{t1}+...+\beta_pz_{tp}\]</span>
-Cons: OLS estimation assumes observations are independent.
-Pros: Remove trend to later model the correlation by a stationary time series process</p>
-<p><span class="math inline">\(z_{tn}\)</span> are often functions of time</p>
-<div id="examples" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Examples</h3>
-<div id="linear-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.1">
-<h4><span class="header-section-number">3.1.1.1</span> Linear trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot1.png" /></p>
-<p>Trend can be modelled by <span class="math inline">\(X_t=\beta_0+\beta_1t+e_t\)</span> and using series <span class="math inline">\(e_t\)</span> to analyze short-term correlation</p>
+<div id="examples" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Examples:</h3>
+<p>Consider the MA(1) process: <span class="math inline">\(X_t = Z_t + \lambda Z_{t-1}\)</span>. Its variance is given by
+<span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[X_{t}]&amp;=&amp;\mathrm{Var}[Z_{t}+\lambda Z_{t-1}]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}(1+\lambda^{2}).\nonumber
+\end{eqnarray}\]</span></p>
+<p>Its lag one autocovariance is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Cov}[X_{t},X_{t+1}]&amp;=&amp;\mathrm{Cov}[Z_{t}+\lambda Z_{t-1},~Z_{t+1}+\lambda Z_{t}]\nonumber\\
+&amp;=&amp;\mathrm{Cov}[Z_{t},~Z_{t+1}]+\lambda \mathrm{Cov}[Z_{t},~Z_{t}]+\lambda \mathrm{Cov}[Z_{t-1},~Z_{t+1}]+\lambda^{2}\mathrm{Cov}[Z_{t-1},~Z_{t}]\nonumber\\
+&amp;=&amp;\lambda \sigma_{z}^{2}\nonumber
+\end{eqnarray}\]</span></p>
+<p>lag 2 autocovariance is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Cov}[X_{t},X_{t+2}]&amp;=&amp;\mathrm{Cov}[Z_{t}+\lambda Z_{t-1},~Z_{t+2}+\lambda Z_{t+1}]\nonumber\\
+&amp;=&amp;\mathrm{Cov}[Z_{t},~Z_{t+2}]+\lambda \mathrm{Cov}[Z_{t},~Z_{t+1}]+\lambda \mathrm{Cov}[Z_{t-1},~Z_{t+2}]+\lambda^{2}\mathrm{Cov}[Z_{t-1},~Z_{t+1}]\nonumber\\
+&amp;=&amp;0.\nonumber
+\end{eqnarray}\]</span></p>
+<p>the autocorrelation function is given by</p>
+<p><span class="math display">\[\rho_{\tau}=\left\{\begin{array}{cc}1&amp;\mbox{if}~\tau=0\\
+\frac{\lambda}{1+\lambda^{2}}&amp;\mbox{if}~\tau=1\\
+0&amp;\tau&gt;1\\
+\end{array}\right.\]</span></p>
 </div>
-<div id="quadratic-trend-in-time-but-no-seasonal-variation" class="section level4" number="3.1.1.2">
-<h4><span class="header-section-number">3.1.1.2</span> Quadratic trend in time but no seasonal variation:</h4>
-<p><img src="chpt2_plot3.png" />
-Trend can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2t^2+e_t\)</span></p>
-</div>
-<div id="seasonal-pattern-in-time-and-a-linear-trend-with-365-data-points" class="section level4" number="3.1.1.3">
-<h4><span class="header-section-number">3.1.1.3</span> Seasonal pattern in time and a linear trend with 365 data points:</h4>
-<p><img src="chpt2_plot5.png" />
-Trend and Seasonality can be modeled by <span class="math inline">\(X_t=\beta_0+\beta_1t+\beta_2sin(8\pi t/365)+e_t\)</span></p>
-</div>
-</div>
-<div id="other-common-models" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Other common models</h3>
-<div id="other-covariates" class="section level4" number="3.1.2.1">
-<h4><span class="header-section-number">3.1.2.1</span> Other Covariates</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1\alpha_t\]</span></p>
-</div>
-<div id="polynomials" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> Polynomials</h4>
-<p><span class="math display">\[m_t=\beta+0+\beta_1t+\beta_qt^q\]</span>
-Higher <span class="math inline">\(q\)</span>, more flexible the trend</p>
-</div>
-<div id="harmonics" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Harmonics</h4>
-<p><span class="math display">\[s_t=\beta_0+\sum_{i=1}^q\beta_{1i}sin(w_it)+\beta_{2i}cos(w_it)\]</span>
-Harmonics assume the seasonal pattern has a regular shape, i.e. the height of the peaks is the same as the depth of the troughs.</p>
-</div>
-<div id="seasonal-factors" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Seasonal Factors</h4>
-<p>Assuming the seasonal pattern repeats itself every d time points, a less restrictive approach is to model it as:</p>
-<p><span class="math display">\[s_{t}=\left\{\begin{array}{cc}0&amp;\mbox{if}~t=1, d+1, 2d+2,\ldots\\
-  s_{2}&amp;\mbox{if}~t=2, d+2, 2d+2,\ldots\\
-  \vdots&amp;\vdots\\
-  s_{d}&amp;\mbox{if}~t=d, 2d, 3d,\ldots\\\end{array}\right.\]</span></p>
-<p>This model can be fitted by creating <span class="math inline">\(d - 1\)</span> dummy variables in the design matrix, that contain 1’s and 0’s.</p>
-</div>
-<div id="natural-cubic-splines-more-flexible" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Natural cubic splines (More flexible)</h4>
-<p><span class="math display">\[m_{t}+s_{t}=\beta_{0}+\sum_{i=1}^{q}\beta_{i}B_{i}(t)\]</span>
-<img src="chpt2_plot6d.png" /></p>
-</div>
-</div>
-</div>
-<div id="method-2-moving-average-smoothing" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Method 2: Moving Average Smoothing</h2>
-<p>A Moving average smoother estimates the trend and seasonal variation at time t by averaging the current observation and the q either side</p>
-<p><span class="math display">\[\hat{m}_{t}+\hat{s}_{t}=\frac{1}{2q+1}\sum_{j=-q}^{q}x_{t-j}\]</span>
-Note: Shorten length of time series by <span class="math inline">\(2q\)</span>, therefore if the trend is smooth and <span class="math inline">\(q\)</span> is large, the series shortens significantly.</p>
-</div>
-<div id="method-3-differencing" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Method 3: Differencing</h2>
-<div id="remove-trends" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Remove Trends</h3>
-<div id="first-order-difference-operator-nabla" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span> First order difference operator <span class="math inline">\(\nabla\)</span>:</h4>
-<p><span class="math display">\[\nabla X_{t}=X_{t}-X_{t-1}=(1-B)X_{t}\]</span></p>
-<p>where <span class="math inline">\(B\)</span> is the Backshift operator defined as <span class="math inline">\(BX_{t}=X_{t-1}\)</span></p>
-</div>
-<div id="general-order-difference-operator-nablaq" class="section level4" number="3.3.1.2">
-<h4><span class="header-section-number">3.3.1.2</span> General order difference operator <span class="math inline">\(\nabla^q\)</span></h4>
-<p><span class="math display">\[\nabla^{q} X_{t}=\nabla[\nabla^{q-1}X_{t}]\]</span>
-<span class="math display">\[B^{q}X_{t}=X_{t-q}\]</span>
-Notes:
-1. A polynomial trend of order <span class="math inline">\(q\)</span> can be removed by <span class="math inline">\(q^{th}\)</span> order differencing
-2. Typically only first or second order differencing is required
-3. Shortens length by <span class="math inline">\(q\)</span>
-4. Differencing won’t allow to estimate the trend but only to remove it.</p>
+<div id="another-example" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Another example</h3>
+<p>Consider the MA(2) process <span class="math inline">\(X_t = Z_t +0.9Z_{t-1}+0.5Z_{t-2}\)</span>. Its variance is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[X_{t}]&amp;=&amp;\mathrm{Var}[Z_{t}+0.9 Z_{t-1} + 0.5Z_{t-2}]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}(1+0.81 + 0.25)\nonumber\\
+&amp;=&amp;2.06\sigma^{2}_{z}.\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Its lag one autocovariance is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Cov}[X_{t},X_{t+1}]&amp;=&amp;\mathrm{Cov}[Z_{t}+0.9 Z_{t-1}+0.5Z_{t-2},~Z_{t+1}+0.9 Z_{t} +0.5Z_{t-1}]\nonumber\\
+&amp;=&amp;0.9 \mathrm{Cov}[Z_{t},~Z_{t}]+0.45 \mathrm{Cov}[Z_{t-1},~Z_{t-1}]\nonumber\\
+&amp;=&amp;1.35\sigma_{z}^{2}\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Its lag 2 autocovariance is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Cov}[X_{t},X_{t+2}]&amp;=&amp;\mathrm{Cov}[Z_{t}+0.9 Z_{t-1}+ 0.5Z_{t-2},~Z_{t+2}+0.9 Z_{t+1}+ 0.5Z_{t}]\nonumber\\
+&amp;=&amp;0.5\mathrm{Cov}[Z_{t},~Z_{t}]\nonumber\\
+&amp;=&amp;0.5\sigma^{2}_{z}.\nonumber
+\end{eqnarray}
+\]</span>
+Therefore the autocovariance function is given by</p>
+<p><span class="math display">\[\gamma_{\tau}=\left\{\begin{array}{cc}2.06\sigma^{2}_{z}&amp;\mbox{if}~\tau=0\\
+1.35\sigma^{2}_{z}&amp;\mbox{if}~\tau=1\\
+0.5\sigma^{2}_{z}&amp;\mbox{if}~\tau=2\\
+0&amp;\tau&gt;2\\
+\end{array}\right.
+\]</span></p>
+<p>while the autocorrelation function is given by</p>
+<p><span class="math display">\[\rho_{\tau}=\left\{\begin{array}{cc}1&amp;\mbox{if}~\tau=0\\
+0.655&amp;\mbox{if}~\tau=1\\
+0.243&amp;\mbox{if}~\tau=2\\
+0&amp;\tau&gt;2\\
+\end{array}\right.
+\]</span></p>
 </div>
 </div>
-<div id="remove-seasonality" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Remove Seasonality</h3>
-<p>The seasonal difference of order <span class="math inline">\(d\)</span> is the operator <span class="math inline">\(\nabla_d\)</span> given by
-<span class="math display">\[\nabla_{d} X_{t}=X_{t}-X_{t-d}=(1-B^{d})X_{t}\]</span>
-Notes:
-1. Trial and Error approach
-2. No point differencing twice if once is adequate
-3. Differencing increases the variance</p>
+<div id="invertibility" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Invertibility</h2>
+<p>Therefore, given a set of sample autocorrelation functions <span class="math inline">\(\hat{\boldsymbol{\rho}}_p\)</span> calculated from a time series, there is a unique set of parameters $that best fit the data within the class of stationary AR(p) processes. For an MA(q) process the corresponding relationship is given by</p>
+<p><span class="math display">\[\rho_{\tau}=\mathrm{Corr}[X_{t},X_{t+\tau}]=\left\{\begin{array}{cc}1&amp;\mbox{if}~\tau=0\\
+\frac{\sum_{j=0}^{q-\tau}\lambda_{j}\lambda_{j+\tau}}{\sum_{j=0}^{q}\lambda_{j}^{2}}&amp;\mbox{if}~\tau=1,\ldots,q\\
+0&amp;\tau&gt;q\\
+\end{array}\right.
+\]</span></p>
+<p>which is a set of non-linear equations in <span class="math inline">\(\boldsymbol{\lambda}=(\lambda_{1},\ldots,\lambda_{q})\)</span>. Therefore for a given autocorrelation function <span class="math inline">\(\boldsymbol{\rho}_{q}\)</span> there may exist more than one set of parameters <span class="math inline">\(\lambda\)</span> that satisfy the above equation.</p>
+<div id="inveritibility-theorem" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Inveritibility Theorem</h3>
+<p>The MA(q) process</p>
+<p><span class="math display">\[\begin{eqnarray}
+X_{t}&amp;=&amp;Z_{t}+\lambda_{1}Z_{t-1}+\ldots+\lambda_{q}Z_{t-q}\nonumber\\
+&amp;=&amp;(1+\lambda_{1}B+\ldots+\lambda_{q}B^{q})Z_{t}\nonumber\nonumber\\
+&amp;=&amp;\theta(B)Z_{t}\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>is invertible if and only if the roots of the characteristic polynomial <span class="math inline">\(\theta (B)\)</span> have modulus greater than one and hence lie outside the unit circle.</p>
+<div id="example-of-invertibility" class="section level4" number="7.4.1.1">
+<h4><span class="header-section-number">7.4.1.1</span> Example of invertibility</h4>
+<p><span class="math display">\[X_{t}=Z_{t} + 4.25Z_{t-1} + Z_{t-2}\]</span></p>
+<p>Characteristic polynomial is given by <span class="math inline">\(\theta(B)~=~1 + 4.25B + B^{2}\)</span></p>
+<p>Solving <span class="math inline">\(1 + 4.25B + B^{2}=0\)</span> gives:</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mbox{roots}&amp;=&amp;\frac{-4.25\pm\sqrt{(4.25)^2-4\times1\times1}}{2\times 1}\nonumber\\
+\mbox{roots}&amp;=&amp;\frac{-4.25\pm3.75}{2}\nonumber\\
+\mbox{roots}&amp;=&amp;-0.25\mbox{ and }-4\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Therefore as one of the routes has modulus less than one the process is not invertible.</p>
 </div>
 </div>
-<div id="choosing-a-smoothing-parameter" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Choosing a smoothing parameter</h2>
-<div id="simplicity" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Simplicity</h3>
-<p>Simple statistical models are preferred since they are easier to make inferences from.</p>
 </div>
-<div id="objective-criteria-aic-bic" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Objective criteria (AIC &amp; BIC)</h3>
-<p>Assumptions:
-1. Normally distributed observations
-2. <span class="math inline">\(m_{t}+s_{t}=\textbf{z}_{t}^\top \boldsymbol{\beta}\)</span></p>
-<p>where <span class="math inline">\(\textbf{z}_{t}^\top\)</span> is a vector of <span class="math inline">\(q-1\)</span> known covariates and a one to represent the intercept term</p>
-<div id="akaikes-information-criterion-aic" class="section level4" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Akaike’s Information Criterion (AIC)</h4>
-<p><span class="math display">\[\mbox{AIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + 2q\]</span></p>
-</div>
-<div id="bayesian-information-criterion-bic" class="section level4" number="3.4.2.2">
-<h4><span class="header-section-number">3.4.2.2</span> Bayesian Information Criterion (BIC)</h4>
-<p><span class="math display">\[\mbox{BIC}(q)=-2\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}}) + \ln(n)q\]</span></p>
-<p>where <span class="math inline">\(\mathcal{L}(\mathbf{x}|\hat{\boldsymbol{\beta}})\)</span> is the maximised log likelihood function of <span class="math inline">\(\mathbf{x}\)</span></p>
-<p>Both criteria tradeoff the fit to the data against simplicity (i.e. few parameters), and small values suggest a good fit to the data.</p>
+<div id="ma-model-identification" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> MA Model Identification</h2>
+<p>Determine if a MA model is appropriate and which order process should we use using the autocorrelation function ACF:</p>
+<p><span class="math display">\[\rho_{\tau}=\mathrm{Corr}[X_{t},X_{t+\tau}]=\left\{\begin{array}{cc}1&amp;\mbox{if}~\tau=0\\
+\frac{\sum_{j=0}^{q-\tau}\lambda_{j}\lambda_{j+\tau}}{\sum_{j=0}^{q}\lambda_{j}^{2}}&amp;\mbox{if}~\tau=1,\ldots,q\\
+0&amp;\tau&gt;q\\
+\end{array}\right.
+\]</span></p>
+<p>This function is non-zero for <span class="math inline">\(\tau \le q\)</span> and zero for <span class="math inline">\(\tau &gt;q\)</span></p>
+<p>Note
+The autocorrelation function (ACF) tells us whether an MA(q) process is appropriate while the partial autocorrelation function (PACF) suggests whether an AR(p) process is appropriate. Therefore for a given time series, both should be plotted to show which process would be a good model.</p>
+<div id="example" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Example</h3>
+<p>Looking at ACF, Data 1 uses MA(1) process, Data 2 uses MA(2), Data 3 uses MA(3), Data 4 uses MA(12)</p>
+<p><img src="chpt4_plot1.png" /></p>
 </div>
 </div>
+<div id="ma-parameter-estimation" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> MA parameter estimation</h2>
+<p>Conditional least squares: Consider the MA(1) model <span class="math inline">\(X_{t}=\mu+Z_{t}+\lambda Z_{t-1}\)</span>, where <span class="math inline">\(\mathrm{Var}[Z_{t}]=\sigma^{2}_{z}\)</span>. The conditional least squares algorithm works as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Select starting values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\lambda\)</span>,</li>
+</ol>
+<p><span class="math display">\[\tilde{\mu}=\frac{1}{n}\sum_{t=1}^{n}x_{t}\hspace{1cm}\mbox{and by solving}\hspace{1cm}\hat{\rho}_{1}=\frac{\tilde{\lambda}}{1+\tilde{\lambda}^{2}}
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculate the conditional residual sum of squares</li>
+</ol>
+<p><span class="math display">\[S(\tilde{\mu},\tilde{\lambda})=\sum_{t=1}^{n}[x_{t}-\tilde{\mu}-\tilde{\lambda}Z_{t-1}]^{2}
+\]</span></p>
+<p>Where <span class="math inline">\(Z_0=0\)</span> and <span class="math inline">\(_Z_t\)</span> is calculated recursively using</p>
+<p><span class="math display">\[Z_{t}=x_{t}-\tilde{\mu}-\tilde{\lambda}Z_{t-1}
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Repeat step 2 for a range of values of <span class="math inline">\((\mu, \lambda)\)</span> that are close to the initial estimates in step 1. Then determine the estimates <span class="math inline">\((\hat{\mu},\hat{\lambda})\)</span> as the values that mimimize <span class="math inline">\(S(\tilde{\mu},\tilde{\lambda})\)</span> over all those values considered</p></li>
+<li><p>Using the fact that the variance of an MA(1) process is <span class="math inline">\(\mathrm{Var}[X_{t}]=\sigma^{2}_{z}(1+\lambda^{2})\)</span>, we obtain that</p></li>
+</ol>
+<p><span class="math display">\[\hat{\sigma}^{2}_{z}=\frac{\hat{\sigma}^{2}}{(1+\hat{\lambda}^{2})}
+\]</span></p>
+<p>where <span class="math inline">\(\hat \sigma^2\)</span> is the overall variance of the process.</p>
+</div>
+<div id="ma-example" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> MA Example</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter-4-moving-average-processes.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA(3) data with a quadratic trend</span></span>
+<span id="cb20-2"><a href="chapter-4-moving-average-processes.html#cb20-2" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span></span>
+<span id="cb20-3"><a href="chapter-4-moving-average-processes.html#cb20-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb20-4"><a href="chapter-4-moving-average-processes.html#cb20-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb20-5"><a href="chapter-4-moving-average-processes.html#cb20-5" aria-hidden="true" tabindex="-1"></a>data.ar <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
+<span id="cb20-6"><a href="chapter-4-moving-average-processes.html#cb20-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data.ar <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.05</span> <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.004</span><span class="sc">*</span>time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-7"><a href="chapter-4-moving-average-processes.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb20-8"><a href="chapter-4-moving-average-processes.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time, data, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Raw data plot&quot;</span>)</span>
+<span id="cb20-9"><a href="chapter-4-moving-average-processes.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(data, <span class="at">main =</span> <span class="st">&quot;Sample autocorrelation function&quot;</span>)</span></code></pre></div>
+<p><img src="Chapter4_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>From looking at the time plot and correlogram the data appear to have a quadratic trend, which we remove before trying to model the correlation. Fitting <span class="math inline">\(m_{t}=\beta_{0}+\beta_{1}t+\beta_{2}t^{2}\)</span> gives the follwing residual series:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter-4-moving-average-processes.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the trend</span></span>
+<span id="cb21-2"><a href="chapter-4-moving-average-processes.html#cb21-2" aria-hidden="true" tabindex="-1"></a>time2 <span class="ot">&lt;-</span> time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb21-3"><a href="chapter-4-moving-average-processes.html#cb21-3" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(data <span class="sc">~</span> time<span class="sc">+</span>time2)</span>
+<span id="cb21-4"><a href="chapter-4-moving-average-processes.html#cb21-4" aria-hidden="true" tabindex="-1"></a>residual.series <span class="ot">&lt;-</span> data <span class="sc">-</span> linear.model<span class="sc">$</span>fitted.values</span>
+<span id="cb21-5"><a href="chapter-4-moving-average-processes.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb21-6"><a href="chapter-4-moving-average-processes.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;Residual series&quot;</span>)</span>
+<span id="cb21-7"><a href="chapter-4-moving-average-processes.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;ACF of Residual series&quot;</span>)</span>
+<span id="cb21-8"><a href="chapter-4-moving-average-processes.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;PACF of Residual series&quot;</span>)</span></code></pre></div>
+<p><img src="Chapter4_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Time plot suggests stationary while ACF suggest an MA(3) process is appropriate. Note that the PACF doesn’t tell us a lot here.</p>
+<p>Finally we fit a MA(3) model using function arima() in R</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter-4-moving-average-processes.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(3) model to the data</span></span>
+<span id="cb22-2"><a href="chapter-4-moving-average-processes.html#cb22-2" aria-hidden="true" tabindex="-1"></a>model.ma <span class="ot">&lt;-</span> <span class="fu">arima</span>(residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb22-3"><a href="chapter-4-moving-average-processes.html#cb22-3" aria-hidden="true" tabindex="-1"></a>model.ma</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = residual.series, order = c(0, 0, 3))
+## 
+## Coefficients:
+##          ma1     ma2     ma3  intercept
+##       0.6091  0.3694  0.6603     0.1269
+## s.e.  0.0549  0.0689  0.0540     1.8975
+## 
+## sigma^2 estimated as 104.7:  log likelihood = -750.09,  aic = 1510.19</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter-4-moving-average-processes.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arima</span>(<span class="at">x =</span> residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = residual.series, order = c(0, 0, 3))
+## 
+## Coefficients:
+##          ma1     ma2     ma3  intercept
+##       0.6091  0.3694  0.6603     0.1269
+## s.e.  0.0549  0.0689  0.0540     1.8975
+## 
+## sigma^2 estimated as 104.7:  log likelihood = -750.09,  aic = 1510.19</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter-4-moving-average-processes.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb26-2"><a href="chapter-4-moving-average-processes.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) Residual series&quot;</span>)</span>
+<span id="cb26-3"><a href="chapter-4-moving-average-processes.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) ACF of Residual series&quot;</span>)</span>
+<span id="cb26-4"><a href="chapter-4-moving-average-processes.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) PACF of Residual series&quot;</span>)</span></code></pre></div>
+<p><img src="Chapter4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Residuals look independent (resemble white noise), so the model below is appropriate</p>
+<p><span class="math display">\[X_{t}=\beta_{0}+\beta_{1}t+\beta_{2}t^{2}+\lambda_{1}Z_{t-1}+\lambda_{2}Z_{t-2}+\lambda_{3}Z_{t-3}+Z_{t}.
+\]</span></p>
 </div>
 </div>
             </section>
@@ -405,8 +507,8 @@ Notes:
           </div>
         </div>
       </div>
-<a href="chapter-1-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-2-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-3-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-4-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -437,15 +539,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter4.Rmd",
 "text": "Edit"
 },
 "history": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter4.Rmd",
 "text": null
 },
 "view": {
-"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter2.Rmd",
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter4.Rmd",
 "text": null
 },
 "download": null,
