@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Chapter 2 Lab | Final Report</title>
-  <meta name="description" content="4 Chapter 2 Lab | Final Report" />
+  <title>4 Chapter 2 Lab | Time Series</title>
+  <meta name="description" content="4 Chapter 2 Lab | Time Series" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Chapter 2 Lab | Final Report" />
+  <meta property="og:title" content="4 Chapter 2 Lab | Time Series" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Chapter 2 Lab | Final Report" />
+  <meta name="twitter:title" content="4 Chapter 2 Lab | Time Series" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Luke Le" />
 
 
-<meta name="date" content="2021-11-12" />
+<meta name="date" content="2021-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -155,7 +155,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#white-noise-wn"><i class="fa fa-check"></i><b>2.1</b> White Noise (WN)</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#random-walk-rw"><i class="fa fa-check"></i><b>2.2</b> Random Walk (RW)</a></li>
-<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#examples-cpi-data"><i class="fa fa-check"></i><b>2.3.1</b> Examples: CPI Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#acf-to-time-series-plot"><i class="fa fa-check"></i><b>2.4</b> ACF to Time Series Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Modelling trends and seasonal patterns</a>
 <ul>
@@ -179,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html"><i class="fa fa-check"></i><b>4</b> Chapter 2 Lab</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#model-choice-and-residual-analysis"><i class="fa fa-check"></i><b>4.1</b> Model choice and Residual analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#data-example-annual-varve-series"><i class="fa fa-check"></i><b>4.2</b> Data Example: Annual Varve Series</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html"><i class="fa fa-check"></i><b>5</b> Chapter 3: Autoregressive processes</a>
 <ul>
@@ -204,6 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html"><i class="fa fa-check"></i><b>6</b> Chapter 3 Lab</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#autoregressive-model-ar"><i class="fa fa-check"></i><b>6.1</b> Autoregressive model (AR)</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price"><i class="fa fa-check"></i><b>6.2</b> Chicken Price</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price-1"><i class="fa fa-check"></i><b>6.3</b> Chicken price</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#unemployment"><i class="fa fa-check"></i><b>6.4</b> Unemployment</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html"><i class="fa fa-check"></i><b>7</b> Chapter 4: Moving Average processes</a>
 <ul>
@@ -238,23 +246,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#stationarity-and-invertibility"><i class="fa fa-check"></i><b>9.1.3</b> Stationarity and Invertibility</a></li>
 <li class="chapter" data-level="9.1.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-model-identification"><i class="fa fa-check"></i><b>9.1.4</b> ARMA model identification</a></li>
 <li class="chapter" data-level="9.1.5" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-parameter-estimation"><i class="fa fa-check"></i><b>9.1.5</b> ARMA parameter estimation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-simulation-example"><i class="fa fa-check"></i><b>9.1.6</b> ARMA simulation example</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a></li>
-<li class="chapter" data-level="11" data-path="final-report.html"><a href="final-report.html"><i class="fa fa-check"></i><b>11</b> Final Report</a>
+<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="final-report.html"><a href="final-report.html#basics-of-time-series-when-and-why-we-use-them-basic-terminology-1-2-pages"><i class="fa fa-check"></i><b>11.1</b> Basics of time series (when and why we use them, basic terminology) (1-2 pages)</a></li>
-<li class="chapter" data-level="11.2" data-path="final-report.html"><a href="final-report.html#autoregressive-models-1-2-pages"><i class="fa fa-check"></i><b>11.2</b> Autoregressive models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.3" data-path="final-report.html"><a href="final-report.html#moving-average-models-1-2-pages"><i class="fa fa-check"></i><b>11.3</b> Moving average models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.4" data-path="final-report.html"><a href="final-report.html#real-world-application-using-one-of-the-above-techniques-8-pages"><i class="fa fa-check"></i><b>11.4</b> Real-world Application using one of the above techniques (8 pages)</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="final-report.html"><a href="final-report.html#an-overview-of-dataset-why-a-time-series-model-is-appropriate"><i class="fa fa-check"></i><b>11.4.1</b> An overview of dataset, why a time series model is appropriate</a></li>
-<li class="chapter" data-level="11.4.2" data-path="final-report.html"><a href="final-report.html#fitting-ar-and-mr-models-to-the-data-explaining-the-parameters-and-why-i-choose-them"><i class="fa fa-check"></i><b>11.4.2</b> Fitting AR and MR models to the data, explaining the parameters and why I choose them</a></li>
-<li class="chapter" data-level="11.4.3" data-path="final-report.html"><a href="final-report.html#discussion-conclusion"><i class="fa fa-check"></i><b>11.4.3</b> Discussion &amp; Conclusion</a></li>
+<li class="chapter" data-level="9.2.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>9.2.1</b> Definition</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model-identification"><i class="fa fa-check"></i><b>9.2.2</b> ARIMA model identification</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>9.2.3</b> Example 1</a></li>
+<li class="chapter" data-level="9.2.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>9.2.4</b> Example 2</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="final-report.html"><a href="final-report.html#forecasting.-key-concepts-and-applying-on-dataset-2-3-pages"><i class="fa fa-check"></i><b>11.5</b> Forecasting. Key concepts and applying on dataset (2-3 pages)</a></li>
-<li class="chapter" data-level="11.6" data-path="final-report.html"><a href="final-report.html#conclusion-and-looking-into-the-future-1-page"><i class="fa fa-check"></i><b>11.6</b> Conclusion and looking into the future (1 page)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#oil-return"><i class="fa fa-check"></i><b>10.1</b> Oil Return</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#air-passengers"><i class="fa fa-check"></i><b>10.2</b> Air Passengers</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#birth-rate"><i class="fa fa-check"></i><b>10.3</b> Birth Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html"><i class="fa fa-check"></i><b>11</b> Chapter 6: Forecasting</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#general-problem"><i class="fa fa-check"></i><b>11.1</b> General problem</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#regression"><i class="fa fa-check"></i><b>11.2</b> Regression</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>11.2.1</b> Example 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>11.2.2</b> Example 2</a></li>
+<li class="chapter" data-level="11.2.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3"><i class="fa fa-check"></i><b>11.2.3</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#exponential-smoothing"><i class="fa fa-check"></i><b>11.3</b> Exponential smoothing</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>11.3.1</b> Definition</a></li>
+<li class="chapter" data-level="11.3.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#choosing-alpha"><i class="fa fa-check"></i><b>11.3.2</b> Choosing <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#measure-uncertainty"><i class="fa fa-check"></i><b>11.3.3</b> Measure uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-arp-models"><i class="fa fa-check"></i><b>11.4</b> Forecasting from AR(p) models</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ar1-forecasting"><i class="fa fa-check"></i><b>11.4.1</b> AR(1) forecasting</a></li>
+<li class="chapter" data-level="11.4.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#arp-forecasting"><i class="fa fa-check"></i><b>11.4.2</b> AR(p) forecasting</a></li>
+<li class="chapter" data-level="11.4.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-1-simulated-data"><i class="fa fa-check"></i><b>11.4.3</b> Example 1: Simulated data</a></li>
+<li class="chapter" data-level="11.4.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-2-1"><i class="fa fa-check"></i><b>11.4.4</b> Example 2</a></li>
+<li class="chapter" data-level="11.4.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3-1"><i class="fa fa-check"></i><b>11.4.5</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-maq-models"><i class="fa fa-check"></i><b>11.5</b> Forecasting from MA(q) models</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ma1-forecast"><i class="fa fa-check"></i><b>11.5.1</b> MA(1) forecast</a></li>
+<li class="chapter" data-level="11.5.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#maq-forecasts"><i class="fa fa-check"></i><b>11.5.2</b> MA(q) forecasts</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-time-series-with-trend-seasonality-and-correlation"><i class="fa fa-check"></i><b>11.6</b> Forecasting time series with trend, seasonality and correlation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-4"><i class="fa fa-check"></i><b>11.6.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html"><i class="fa fa-check"></i><b>12</b> Chapter 6 Lab</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#forecasting-with-arima"><i class="fa fa-check"></i><b>12.1</b> Forecasting with ARIMA</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#global-temp-data"><i class="fa fa-check"></i><b>12.2</b> Global Temp data</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#exponential-smoothing-1"><i class="fa fa-check"></i><b>12.3</b> Exponential smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -266,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Final Report</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series</a>
           </h1>
         </div>
 
@@ -281,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>AIC and BIC are great measures for fit of models:</p>
 <p><span class="math display">\[ average(observed-predicted)^2+k(p+q)\]</span>
 The smaller these measures are, the better the prediction.</p>
-<p>As mentioned, sarima() returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:</p>
+<p>sarima() fucntion returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:</p>
 <ol style="list-style-type: decimal">
 <li>Standardized residuals: does it look like white noise?</li>
 <li>Sample ACF of residuals: no statistically significant ACF (everything within the blue lines)</li>
@@ -289,12 +334,43 @@ The smaller these measures are, the better the prediction.</p>
 <li>Q-statistic p-values: all p-values should be above the line</li>
 </ol>
 <p>Finding the right model most of the time are through trials and errors starting with some ideas based off what we know about the data.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter-2-lab.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(astsa)</span>
-<span id="cb8-2"><a href="chapter-2-lab.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="chapter-2-lab.html#cb8-3" aria-hidden="true" tabindex="-1"></a>dl_varve <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(varve))</span>
-<span id="cb8-4"><a href="chapter-2-lab.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="chapter-2-lab.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(1) to dl_varve.   </span></span>
-<span id="cb8-6"><a href="chapter-2-lab.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="data-example-annual-varve-series" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data Example: Annual Varve Series</h2>
+<p>Sedimentary deposits from one location in Massachusetts for 634 years, beginning nearly 12,000 years ago. Loaded from library astsa</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chapter-2-lab.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(astsa)</span>
+<span id="cb13-2"><a href="chapter-2-lab.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(varve)</span></code></pre></div>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter-2-lab.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dl_varve <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(varve))</span>
+<span id="cb14-2"><a href="chapter-2-lab.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(dl_varve)</span></code></pre></div>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p>From the time series plot, it does not look like the data has a obvious linear trend, therefore first order differencing is most appropriate to tranform the data into a stationary process. It looks like it has a constant mean but moving average, suggesting MA(q) models might be appropriate. We will take a look at the ACF and PACF plots to further access:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter-2-lab.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf2</span>(varve)</span></code></pre></div>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
+## ACF  0.59 0.52 0.44 0.42 0.39 0.40 0.36 0.34 0.32  0.29  0.30  0.30  0.27  0.33
+## PACF 0.59 0.25 0.11 0.11 0.07 0.11 0.03 0.02 0.02  0.01  0.06  0.04 -0.01  0.14
+##      [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25] [,26]
+## ACF   0.32  0.28  0.27  0.26  0.24  0.28  0.31  0.30  0.31  0.28  0.27  0.25
+## PACF  0.05 -0.04  0.00  0.00  0.00  0.08  0.08  0.03  0.04  0.00  0.00 -0.04
+##      [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34] [,35] [,36]
+## ACF   0.26  0.24  0.23  0.20   0.2  0.24  0.21  0.22  0.23  0.19
+## PACF  0.03 -0.02 -0.02 -0.02   0.0  0.09  0.00  0.02  0.02 -0.07</code></pre>
+<p>The correlograms on the time plot of varve did not tell us a great deal here, which is expected. Now we will look at the ACF and PACF of the first order difference series:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter-2-lab.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf2</span>(dl_varve)</span></code></pre></div>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>##      [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]
+## ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 -0.05  0.06 -0.06
+## PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 -0.07  0.02 -0.05
+##      [,13] [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24]
+## ACF  -0.04  0.08 -0.02  0.01  0.00  0.03 -0.05 -0.06  0.07  0.04 -0.06  0.05
+## PACF -0.12 -0.03 -0.05 -0.04 -0.03  0.03 -0.03 -0.13 -0.04  0.01 -0.06  0.01
+##      [,25] [,26] [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34] [,35] [,36]
+## ACF  -0.01 -0.04  0.05 -0.05  0.03 -0.02  0.00  0.06 -0.05 -0.03  0.04 -0.05
+## PACF  0.02 -0.04  0.03 -0.02  0.00 -0.03 -0.02  0.04 -0.02 -0.02  0.01 -0.07</code></pre>
+<p>Based on ACF, MA(1) model might be appropriate. Based on PACF, AR(5) might be appropriate, however, I would start with smallest value of p for simplicity of the model</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter-2-lab.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(1) to dl_varve.   </span></span>
+<span id="cb19-2"><a href="chapter-2-lab.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## initial  value -0.551780 
 ## iter   2 value -0.671633
 ## iter   3 value -0.706234
@@ -319,7 +395,7 @@ The smaller these measures are, the better the prediction.</p>
 ## iter   4 value -0.722765
 ## final  value -0.722765 
 ## converged</code></pre>
-<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre><code>## $fit
 ## 
 ## Call:
@@ -350,8 +426,13 @@ The smaller these measures are, the better the prediction.</p>
 ## 
 ## $BIC
 ## [1] 1.422918</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chapter-2-lab.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(2) to dl_varve. Improvement?</span></span>
-<span id="cb11-2"><a href="chapter-2-lab.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter-2-lab.html#cb22-1" aria-hidden="true" tabindex="-1"></a>model_ma1 <span class="ot">&lt;-</span> <span class="fu">arima</span>(dl_varve, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb22-2"><a href="chapter-2-lab.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model_ma1)</span></code></pre></div>
+<pre><code>## [1] 887.3557</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter-2-lab.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(model_ma1)</span></code></pre></div>
+<pre><code>## [1] 900.7071</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter-2-lab.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(2) to dl_varve. Improvement?</span></span>
+<span id="cb26-2"><a href="chapter-2-lab.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">0</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## initial  value -0.551780 
 ## iter   2 value -0.679736
 ## iter   3 value -0.728605
@@ -376,7 +457,7 @@ The smaller these measures are, the better the prediction.</p>
 ## iter   4 value -0.735379
 ## final  value -0.735379 
 ## converged</code></pre>
-<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre><code>## $fit
 ## 
 ## Call:
@@ -408,8 +489,13 @@ The smaller these measures are, the better the prediction.</p>
 ## 
 ## $BIC
 ## [1] 1.40788</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter-2-lab.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an ARMA(1,1) to dl_varve. Improvement?</span></span>
-<span id="cb14-2"><a href="chapter-2-lab.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">1</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter-2-lab.html#cb29-1" aria-hidden="true" tabindex="-1"></a>model_ma2 <span class="ot">&lt;-</span> <span class="fu">arima</span>(dl_varve, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb29-2"><a href="chapter-2-lab.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model_ma2)</span></code></pre></div>
+<pre><code>## [1] 873.3861</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chapter-2-lab.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(model_ma2)</span></code></pre></div>
+<pre><code>## [1] 891.188</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter-2-lab.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an ARMA(1,1) to dl_varve. Improvement?</span></span>
+<span id="cb33-2"><a href="chapter-2-lab.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">1</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## initial  value -0.550994 
 ## iter   2 value -0.648962
 ## iter   3 value -0.676965
@@ -441,7 +527,7 @@ The smaller these measures are, the better the prediction.</p>
 ## iter   5 value -0.737530
 ## final  value -0.737530 
 ## converged</code></pre>
-<p><img src="Chapter2_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre><code>## $fit
 ## 
 ## Call:
@@ -473,6 +559,83 @@ The smaller these measures are, the better the prediction.</p>
 ## 
 ## $BIC
 ## [1] 1.403579</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="chapter-2-lab.html#cb36-1" aria-hidden="true" tabindex="-1"></a>model_arma11 <span class="ot">&lt;-</span> <span class="fu">arima</span>(dl_varve, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb36-2"><a href="chapter-2-lab.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model_arma11)</span></code></pre></div>
+<pre><code>## [1] 870.6638</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="chapter-2-lab.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(model_arma11)</span></code></pre></div>
+<pre><code>## [1] 888.4657</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="chapter-2-lab.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an ARMA(2,1) to dl_varve. Improvement?</span></span>
+<span id="cb40-2"><a href="chapter-2-lab.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sarima</span>(dl_varve, <span class="at">p =</span> <span class="dv">2</span>, <span class="at">d =</span> <span class="dv">0</span>, <span class="at">q =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## initial  value -0.550651 
+## iter   2 value -0.656533
+## iter   3 value -0.691671
+## iter   4 value -0.699615
+## iter   5 value -0.714090
+## iter   6 value -0.721637
+## iter   7 value -0.724629
+## iter   8 value -0.731357
+## iter   9 value -0.733142
+## iter  10 value -0.733786
+## iter  11 value -0.734198
+## iter  12 value -0.734623
+## iter  13 value -0.735038
+## iter  14 value -0.735325
+## iter  15 value -0.735348
+## iter  16 value -0.735350
+## iter  17 value -0.735350
+## iter  17 value -0.735350
+## iter  17 value -0.735350
+## final  value -0.735350 
+## converged
+## initial  value -0.737984 
+## iter   2 value -0.738073
+## iter   3 value -0.738128
+## iter   4 value -0.738306
+## iter   5 value -0.738336
+## iter   6 value -0.738337
+## iter   6 value -0.738337
+## iter   6 value -0.738337
+## final  value -0.738337 
+## converged</code></pre>
+<p><img src="Chapter2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code>## $fit
+## 
+## Call:
+## stats::arima(x = xdata, order = c(p, d, q), seasonal = list(order = c(P, D, 
+##     Q), period = S), xreg = xmean, include.mean = FALSE, transform.pars = trans, 
+##     fixed = fixed, optim.control = list(trace = trc, REPORT = 1, reltol = tol))
+## 
+## Coefficients:
+##          ar1     ar2      ma1    xmean
+##       0.2447  0.0483  -0.9055  -0.0013
+## s.e.  0.0501  0.0473   0.0298   0.0026
+## 
+## sigma^2 estimated as 0.228:  log likelihood = -430.82,  aic = 871.64
+## 
+## $degrees_of_freedom
+## [1] 629
+## 
+## $ttable
+##       Estimate     SE  t.value p.value
+## ar1     0.2447 0.0501   4.8837  0.0000
+## ar2     0.0483 0.0473   1.0192  0.3085
+## ma1    -0.9055 0.0298 -30.3958  0.0000
+## xmean  -0.0013 0.0026  -0.5044  0.6141
+## 
+## $AIC
+## [1] 1.377002
+## 
+## $AICc
+## [1] 1.377102
+## 
+## $BIC
+## [1] 1.412156</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter-2-lab.html#cb43-1" aria-hidden="true" tabindex="-1"></a>model_arma21 <span class="ot">&lt;-</span> <span class="fu">arima</span>(dl_varve, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb43-2"><a href="chapter-2-lab.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model_arma21)</span></code></pre></div>
+<pre><code>## [1] 871.6421</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chapter-2-lab.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(model_arma21)</span></code></pre></div>
+<pre><code>## [1] 893.8945</code></pre>
+<p>Here we tried fitting ARIMA(0,0,1), ARIMA(0,0,2), ARIMA(1,0,1), and ARIMA(2,0,1), which are MA(1), MA(2), ARMA(1,1), and ARMA(2,1), respectively. ARMA(1,1) and ARMA(2,1) are better options than MA(1) and MA(2) based on the AIC and BIC and other statistics tell that the residuals resemble more of white noise.</p>
 
 </div>
 </div>

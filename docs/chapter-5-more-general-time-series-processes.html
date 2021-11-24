@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Chapter 5: More general time series processes | Final Report</title>
-  <meta name="description" content="9 Chapter 5: More general time series processes | Final Report" />
+  <title>9 Chapter 5: More general time series processes | Time Series</title>
+  <meta name="description" content="9 Chapter 5: More general time series processes | Time Series" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Chapter 5: More general time series processes | Final Report" />
+  <meta property="og:title" content="9 Chapter 5: More general time series processes | Time Series" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Chapter 5: More general time series processes | Final Report" />
+  <meta name="twitter:title" content="9 Chapter 5: More general time series processes | Time Series" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Luke Le" />
 
 
-<meta name="date" content="2021-11-12" />
+<meta name="date" content="2021-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -155,7 +155,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#white-noise-wn"><i class="fa fa-check"></i><b>2.1</b> White Noise (WN)</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#random-walk-rw"><i class="fa fa-check"></i><b>2.2</b> Random Walk (RW)</a></li>
-<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#examples-cpi-data"><i class="fa fa-check"></i><b>2.3.1</b> Examples: CPI Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#acf-to-time-series-plot"><i class="fa fa-check"></i><b>2.4</b> ACF to Time Series Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Modelling trends and seasonal patterns</a>
 <ul>
@@ -179,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html"><i class="fa fa-check"></i><b>4</b> Chapter 2 Lab</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#model-choice-and-residual-analysis"><i class="fa fa-check"></i><b>4.1</b> Model choice and Residual analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#data-example-annual-varve-series"><i class="fa fa-check"></i><b>4.2</b> Data Example: Annual Varve Series</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html"><i class="fa fa-check"></i><b>5</b> Chapter 3: Autoregressive processes</a>
 <ul>
@@ -204,6 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html"><i class="fa fa-check"></i><b>6</b> Chapter 3 Lab</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#autoregressive-model-ar"><i class="fa fa-check"></i><b>6.1</b> Autoregressive model (AR)</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price"><i class="fa fa-check"></i><b>6.2</b> Chicken Price</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price-1"><i class="fa fa-check"></i><b>6.3</b> Chicken price</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#unemployment"><i class="fa fa-check"></i><b>6.4</b> Unemployment</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html"><i class="fa fa-check"></i><b>7</b> Chapter 4: Moving Average processes</a>
 <ul>
@@ -238,23 +246,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#stationarity-and-invertibility"><i class="fa fa-check"></i><b>9.1.3</b> Stationarity and Invertibility</a></li>
 <li class="chapter" data-level="9.1.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-model-identification"><i class="fa fa-check"></i><b>9.1.4</b> ARMA model identification</a></li>
 <li class="chapter" data-level="9.1.5" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-parameter-estimation"><i class="fa fa-check"></i><b>9.1.5</b> ARMA parameter estimation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-simulation-example"><i class="fa fa-check"></i><b>9.1.6</b> ARMA simulation example</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a></li>
-<li class="chapter" data-level="11" data-path="final-report.html"><a href="final-report.html"><i class="fa fa-check"></i><b>11</b> Final Report</a>
+<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="final-report.html"><a href="final-report.html#basics-of-time-series-when-and-why-we-use-them-basic-terminology-1-2-pages"><i class="fa fa-check"></i><b>11.1</b> Basics of time series (when and why we use them, basic terminology) (1-2 pages)</a></li>
-<li class="chapter" data-level="11.2" data-path="final-report.html"><a href="final-report.html#autoregressive-models-1-2-pages"><i class="fa fa-check"></i><b>11.2</b> Autoregressive models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.3" data-path="final-report.html"><a href="final-report.html#moving-average-models-1-2-pages"><i class="fa fa-check"></i><b>11.3</b> Moving average models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.4" data-path="final-report.html"><a href="final-report.html#real-world-application-using-one-of-the-above-techniques-8-pages"><i class="fa fa-check"></i><b>11.4</b> Real-world Application using one of the above techniques (8 pages)</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="final-report.html"><a href="final-report.html#an-overview-of-dataset-why-a-time-series-model-is-appropriate"><i class="fa fa-check"></i><b>11.4.1</b> An overview of dataset, why a time series model is appropriate</a></li>
-<li class="chapter" data-level="11.4.2" data-path="final-report.html"><a href="final-report.html#fitting-ar-and-mr-models-to-the-data-explaining-the-parameters-and-why-i-choose-them"><i class="fa fa-check"></i><b>11.4.2</b> Fitting AR and MR models to the data, explaining the parameters and why I choose them</a></li>
-<li class="chapter" data-level="11.4.3" data-path="final-report.html"><a href="final-report.html#discussion-conclusion"><i class="fa fa-check"></i><b>11.4.3</b> Discussion &amp; Conclusion</a></li>
+<li class="chapter" data-level="9.2.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>9.2.1</b> Definition</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model-identification"><i class="fa fa-check"></i><b>9.2.2</b> ARIMA model identification</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>9.2.3</b> Example 1</a></li>
+<li class="chapter" data-level="9.2.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>9.2.4</b> Example 2</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="final-report.html"><a href="final-report.html#forecasting.-key-concepts-and-applying-on-dataset-2-3-pages"><i class="fa fa-check"></i><b>11.5</b> Forecasting. Key concepts and applying on dataset (2-3 pages)</a></li>
-<li class="chapter" data-level="11.6" data-path="final-report.html"><a href="final-report.html#conclusion-and-looking-into-the-future-1-page"><i class="fa fa-check"></i><b>11.6</b> Conclusion and looking into the future (1 page)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#oil-return"><i class="fa fa-check"></i><b>10.1</b> Oil Return</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#air-passengers"><i class="fa fa-check"></i><b>10.2</b> Air Passengers</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#birth-rate"><i class="fa fa-check"></i><b>10.3</b> Birth Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html"><i class="fa fa-check"></i><b>11</b> Chapter 6: Forecasting</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#general-problem"><i class="fa fa-check"></i><b>11.1</b> General problem</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#regression"><i class="fa fa-check"></i><b>11.2</b> Regression</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>11.2.1</b> Example 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>11.2.2</b> Example 2</a></li>
+<li class="chapter" data-level="11.2.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3"><i class="fa fa-check"></i><b>11.2.3</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#exponential-smoothing"><i class="fa fa-check"></i><b>11.3</b> Exponential smoothing</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>11.3.1</b> Definition</a></li>
+<li class="chapter" data-level="11.3.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#choosing-alpha"><i class="fa fa-check"></i><b>11.3.2</b> Choosing <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#measure-uncertainty"><i class="fa fa-check"></i><b>11.3.3</b> Measure uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-arp-models"><i class="fa fa-check"></i><b>11.4</b> Forecasting from AR(p) models</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ar1-forecasting"><i class="fa fa-check"></i><b>11.4.1</b> AR(1) forecasting</a></li>
+<li class="chapter" data-level="11.4.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#arp-forecasting"><i class="fa fa-check"></i><b>11.4.2</b> AR(p) forecasting</a></li>
+<li class="chapter" data-level="11.4.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-1-simulated-data"><i class="fa fa-check"></i><b>11.4.3</b> Example 1: Simulated data</a></li>
+<li class="chapter" data-level="11.4.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-2-1"><i class="fa fa-check"></i><b>11.4.4</b> Example 2</a></li>
+<li class="chapter" data-level="11.4.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3-1"><i class="fa fa-check"></i><b>11.4.5</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-maq-models"><i class="fa fa-check"></i><b>11.5</b> Forecasting from MA(q) models</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ma1-forecast"><i class="fa fa-check"></i><b>11.5.1</b> MA(1) forecast</a></li>
+<li class="chapter" data-level="11.5.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#maq-forecasts"><i class="fa fa-check"></i><b>11.5.2</b> MA(q) forecasts</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-time-series-with-trend-seasonality-and-correlation"><i class="fa fa-check"></i><b>11.6</b> Forecasting time series with trend, seasonality and correlation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-4"><i class="fa fa-check"></i><b>11.6.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html"><i class="fa fa-check"></i><b>12</b> Chapter 6 Lab</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#forecasting-with-arima"><i class="fa fa-check"></i><b>12.1</b> Forecasting with ARIMA</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#global-temp-data"><i class="fa fa-check"></i><b>12.2</b> Global Temp data</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#exponential-smoothing-1"><i class="fa fa-check"></i><b>12.3</b> Exponential smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -266,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Final Report</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series</a>
           </h1>
         </div>
 
@@ -352,9 +397,157 @@ X_{t}&amp;=&amp;\alpha_{1}X_{t-1}+\ldots+\alpha_{p}X_{t-p} + Z_{t} + \lambda_{1}
 <h3><span class="header-section-number">9.1.5</span> ARMA parameter estimation</h3>
 <p>Not in this course.</p>
 </div>
+<div id="arma-simulation-example" class="section level3" number="9.1.6">
+<h3><span class="header-section-number">9.1.6</span> ARMA simulation example</h3>
+<p>Chapter 2 discussed methods of removing trends and seasonal variation from time series data, while chapters 3 to 5 have described how to model short-term correlation in a stationary time series. But is modelling correlation important or can we simply ignore it?</p>
+<p>We look at the consequences of ignoring correlation using simulation. Consider the simple linear trend model</p>
+<p><span class="math display">\[X_{t}=\beta_{0}+\beta_{1}t+e_{t}\]</span></p>
+<p>where <span class="math inline">\(e_t\)</span> could be independent errors or correlated. The aim is to estimate the slope coefficient <span class="math inline">\(\beta_1\)</span> and produce a 95% confidence interval. Two natural questions you could ask:</p>
+<ol style="list-style-type: decimal">
+<li><p>Effect of correlation structure of <span class="math inline">\(e_t\)</span> on the estimate and CI of <span class="math inline">\(\beta_1\)</span></p></li>
+<li><p>If <span class="math inline">\(e_t\)</span> is correlated, can we allow for this correlation when we estimate <span class="math inline">\(\beta_1\)</span>?</p></li>
+</ol>
+<div id="generate-data" class="section level4" number="9.1.6.1">
+<h4><span class="header-section-number">9.1.6.1</span> Generate data:</h4>
+<p>Time series of length 1000 from 2 models:</p>
+<p>A: <span class="math inline">\(X_t=30+0.1t+Z_t\)</span>
+B: <span class="math inline">\(X_t=30+0.1t+Y_t\)</span></p>
+<p>where the regression parameter <span class="math inline">\(\beta=0.1\)</span></p>
+<ul>
+<li><p><span class="math inline">\(Z_t\)</span> is a purely random process (white noise), meaning that model A is a linear trend with independent errors</p></li>
+<li><p><span class="math inline">\(Y_t\)</span> is an AR(1) process with lag one autocorrelation coefficient equal to 0.9, meaning that model is a linear trend with correlated errors</p></li>
+</ul>
+<p>We simulate 1000 sets of data from models A and B:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="chapter-5-more-general-time-series-processes.html#cb78-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb78-2"><a href="chapter-5-more-general-time-series-processes.html#cb78-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb78-3"><a href="chapter-5-more-general-time-series-processes.html#cb78-3" aria-hidden="true" tabindex="-1"></a>corr.ar1 <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ar =</span> <span class="fu">c</span>(<span class="fl">0.9</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
+<span id="cb78-4"><a href="chapter-5-more-general-time-series-processes.html#cb78-4" aria-hidden="true" tabindex="-1"></a>corr.indep <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(),  <span class="at">n =</span> n, <span class="at">sd =</span> sd)[<span class="dv">1</span><span class="sc">:</span>n]</span>
+<span id="cb78-5"><a href="chapter-5-more-general-time-series-processes.html#cb78-5" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb78-6"><a href="chapter-5-more-general-time-series-processes.html#cb78-6" aria-hidden="true" tabindex="-1"></a>data.ar1 <span class="ot">&lt;-</span> corr.ar1 <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.1</span><span class="sc">*</span>time</span>
+<span id="cb78-7"><a href="chapter-5-more-general-time-series-processes.html#cb78-7" aria-hidden="true" tabindex="-1"></a>data.indep <span class="ot">&lt;-</span> corr.indep <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.1</span><span class="sc">*</span>time</span></code></pre></div>
+</div>
+<div id="measure-model-quality" class="section level4" number="9.1.6.2">
+<h4><span class="header-section-number">9.1.6.2</span> Measure model quality</h4>
+<p>From 1000 simulated data points we get 1000 estimates of <span class="math inline">\(\beta, \hat \beta_1,...,\hat\beta_{1000}\)</span>. Using 3 standard metrics to determine how good they are:</p>
+<ol style="list-style-type: decimal">
+<li>Bias - On average how different is <span class="math inline">\(\beta\)</span> from the estimates, which is calculated as</li>
+</ol>
+<p><span class="math display">\[\mbox{Bias}(\beta)=\mathbb{E}[\hat{\beta}]-\beta~=~\frac{1}{1000}\sum_{j=1}^{1000}\hat{\beta}_{j} - \beta.
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Root mean square error (RMSE) - How much variation is there between 1000 estimates:</li>
+</ol>
+<p><span class="math display">\[\mbox{RMSE}(\beta)=\sqrt{\mathbb{E}[(\hat{\beta}-\beta)^{2}]}~=~\sqrt{\frac{1}{1000}\sum_{j=1}^{1000}(\hat{\beta}_{j} - \beta)^{2}}.
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Coverage probability - Each data set produces an estimate and 95% CI for <span class="math inline">\(\beta\)</span>. What percentage of the 95% CI contain the true value <span class="math inline">\(\beta\)</span></li>
+</ol>
+</div>
+<div id="conduct-the-simulation-study" class="section level4" number="9.1.6.3">
+<h4><span class="header-section-number">9.1.6.3</span> Conduct the simulation study</h4>
+<p>We answer the questions listed above:</p>
+<ol style="list-style-type: decimal">
+<li>Effect of correlation structure of <span class="math inline">\(e_t\)</span> on the estimate and CI of <span class="math inline">\(\beta_1\)</span>?</li>
+</ol>
+<p>Naively assume that both data sets are independent, and estimate <span class="math inline">\(\beta_1\)</span> and its 95% confidence interval using the lm() function. Save the estimates and 95% CI from each data set and calculate the bias, RMSE, and coverage probability.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>If <span class="math inline">\(e_t\)</span> is correlated, can we allow for this correlation when we estimate <span class="math inline">\(\beta_1\)</span>?</li>
+</ol>
+<p>Simultaneously estimate the linear trend and model the correlation using the arima() function. The R code to do this is as follows:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="chapter-5-more-general-time-series-processes.html#cb79-1" aria-hidden="true" tabindex="-1"></a>model.ar1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(data.ar1 <span class="sc">~</span> time)</span>
+<span id="cb79-2"><a href="chapter-5-more-general-time-series-processes.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arima</span>(data.ar1, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">xreg =</span> time)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = data.ar1, order = c(1, 0, 0), xreg = time)
+## 
+## Coefficients:
+##          ar1  intercept    time
+##       0.8745    29.0048  0.1034
+## s.e.  0.0154     4.9940  0.0086
+## 
+## sigma^2 estimated as 101.4:  log likelihood = -3729.39,  aic = 7466.78</code></pre>
+<p>The following strategy is appropriate for modelling trend and correlation in time series data using regression methods:</p>
+<ol style="list-style-type: decimal">
+<li><p>First remove any trend and seasonal variation assuming the observation are independent using the lm() function, since at this stage we do not know if there is any correlation</p></li>
+<li><p>Determine whether the residuals have any short-term correlation, if so what type of stationary time series model is appropriate</p></li>
+<li><p>Finally, simultaneously estimate the correlation and trend using the arima() function</p></li>
+</ol>
+</div>
+</div>
 </div>
 <div id="arima-model" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> ARIMA model</h2>
+<p>An alternative approach to model trend, seasonal variation, and correlation simultaneously (instead of modelling trend and seasonality first, then model the residuals with a short-term correlation model of AR(p) or MA(q)) is ARIMA(p,d,q). This model is not appropriate if the goal is to capture the shape of the trend or seasonal variation.</p>
+<p>ARIMA(p,d,q) combines ARMA(p,q) and differencing by order differences of d (difference d times)</p>
+<div id="definition" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Definition</h3>
+<p><span class="math inline">\(\{X_t\}\)</span> is an Autoregressive Integrated Moving Average model of order (p,d,q), denoted ARIMA(p,d,q) if the <span class="math inline">\(d^{th}\)</span> order differenced process
+<span class="math display">\[Y_t = \nabla^d X_t =(1-B)^d X_t
+\]</span>
+is an ARMA(p,q) process. An ARIMA(p,d,q) process can be written most easily in terms of characteristic polynomials. If we write the ARMA(p,q) process for <span class="math inline">\(Y_t\)</span> as <span class="math inline">\(\phi(B)Y_t=\theta(B)Z_t\)</span> then as <span class="math inline">\(Y_{t}=(1-B)^d X_t\)</span>, an ARIMA(p,d,q) can be written as</p>
+<p><span class="math display">\[\phi(B) (1-B)^d X_t = \theta(B) Z_t\]</span>
+Notes:</p>
+<ol style="list-style-type: decimal">
+<li><p>The characteristic polynomial for the AR part of the ARIMA model is equal to <span class="math inline">\(\phi^*(B) = \phi(B) (1-B)^d\)</span> which has d roots equal 1. Thus an ARIMA process cannot be stationary unless d = 0</p></li>
+<li><p>ARIMA(p,0,q) = ARMA(p,q)</p></li>
+</ol>
+<p>Examples:</p>
+<p>ARIMA(0,1,0) is a random walk process. Note that AR(1) is also a random walk process if <span class="math inline">\(\alpha=1\)</span>:</p>
+<p><span class="math display">\[\begin{eqnarray}
+(1-B)X_{t}&amp;=&amp;Z_{t}\nonumber\\
+X_{t}-X_{t-1}&amp;=&amp;Z_{t}\nonumber\\
+X_{t}&amp;=&amp;X_{t-1}+Z_{t}\nonumber
+\end{eqnarray}\]</span></p>
+<p>ARIMA(0,0,0) is a purely random process:</p>
+<p><span class="math display">\[\begin{eqnarray}
+(1-B)^{0}X_{t}&amp;=&amp;Z_{t}\nonumber\\
+X_{t}&amp;=&amp;Z_{t}\nonumber
+\end{eqnarray}\]</span></p>
+<p>ARIMA(1,1,1) process has characteristic polynomials <span class="math inline">\(\phi(B)=1-\alpha B\)</span> and <span class="math inline">\(\theta(B)=1+\lambda B\)</span>, meaning the full model is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+(1-\alpha B)(1-B)X_{t}&amp;=&amp;(1+\lambda B)Z_{t}\nonumber\\
+(1-B-\alpha B + \alpha B^{2})X_{t}&amp;=&amp;\lambda Z_{t-1}+Z_{t}\nonumber\\
+X_{t}&amp;=&amp;(1+\alpha)X_{t-1}-\alpha X_{t-2} +\lambda Z_{t-1}+Z_{t}.\nonumber
+\end{eqnarray}\]</span></p>
+<p>So ARIMA(1,1,1) model is essentially a non-stationary ARMA(2,1) model</p>
+</div>
+<div id="arima-model-identification" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> ARIMA model identification</h3>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(d\)</span> - Plot the time series and its correlogram and determine whether data contain a trend. If there is no trend then <span class="math inline">\(d=0\)</span>, otherwise increase <span class="math inline">\(d\)</span> by 1 and repeat this step until the process is stationary</p></li>
+<li><p>Choose <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> - Plot the ACF and PACF of the <span class="math inline">\(d^{th}\)</span> order differences, and determine the apporiate ARMA(p,q) model</p></li>
+<li><p>Estimate the parameters - Use the ARIMA() function in R to estimate the parameters of the ARIMA process.</p></li>
+<li><p>Residual diagnosis - Plot the timeplot, ACF and PACF of the residuals and determine whether they contain any remaining trend, seasonal variation or short-term correlation. A test for correlation such as the one based on the Ljung-Box statistic could also be used. If the residuals resemble a purely random process (white noise) then stop, otherwise return to stage one and change either p, d, or q.</p></li>
+</ol>
+</div>
+<div id="example-1" class="section level3" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Example 1</h3>
+<p>Below are the realisations of an ARIMA(1,1,0) (left) and ARIMA(0,1,1) (right) processes. Data are non-stationary and have a trend, there fore the ACF is not informative regarding the presence of absence of short-term correlation.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="chapter-5-more-general-time-series-processes.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate ARIMA(1,1,0) and ARIMA(0,1,1) data</span></span>
+<span id="cb81-2"><a href="chapter-5-more-general-time-series-processes.html#cb81-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb81-3"><a href="chapter-5-more-general-time-series-processes.html#cb81-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb81-4"><a href="chapter-5-more-general-time-series-processes.html#cb81-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ar =</span> <span class="fu">c</span>(<span class="fl">0.7</span>), <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
+<span id="cb81-5"><a href="chapter-5-more-general-time-series-processes.html#cb81-5" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fu">c</span>(<span class="fl">0.7</span>), <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
+<span id="cb81-6"><a href="chapter-5-more-general-time-series-processes.html#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="chapter-5-more-general-time-series-processes.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb81-8"><a href="chapter-5-more-general-time-series-processes.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data1, <span class="at">main =</span> <span class="st">&quot;ARIMA(1,1,0) data&quot;</span>)</span>
+<span id="cb81-9"><a href="chapter-5-more-general-time-series-processes.html#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data2, <span class="at">main =</span> <span class="st">&quot;ARIMA(0,1,1) data&quot;</span>)</span>
+<span id="cb81-10"><a href="chapter-5-more-general-time-series-processes.html#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(data1, <span class="at">main =</span> <span class="st">&quot;ARIMA(1,1,0) ACF&quot;</span>)</span>
+<span id="cb81-11"><a href="chapter-5-more-general-time-series-processes.html#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(data2, <span class="at">main =</span> <span class="st">&quot;ARIMA(0,1,1) ACF&quot;</span>)</span>
+<span id="cb81-12"><a href="chapter-5-more-general-time-series-processes.html#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(data1, <span class="at">main =</span> <span class="st">&quot;ARIMA(1,1,0) PACF&quot;</span>)</span>
+<span id="cb81-13"><a href="chapter-5-more-general-time-series-processes.html#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(data2, <span class="at">main =</span> <span class="st">&quot;ARIMA(0,1,1) PACF&quot;</span>)</span></code></pre></div>
+<p><img src="Chapter5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="example-2" class="section level3" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Example 2</h3>
+<p>Daily respiratory admissions data for Glasgow between 2000 and 2007. Here we model the trend and correlation using ARIMA(p,d,q) model.</p>
+<p><img src="chpt5_plot6.png" /></p>
+<p>First order difference plot appear to be stationary with mean of zero, meaning that d = 1 is adequate. The ACF and PACF of the first order differences show that the differencing process has induced negative correlation into the data.</p>
+<p><img src="chpt5_plot7.png" />
+An MA(1) process appears to be an appropriate model so we fit an ARIMA(0,1,1) to the original data. This provides the following residuals shown below</p>
+<p><img src="chpt5_plot8.png" /></p>
+<p>These residuals appear to resemble a purely random process with no correlation, so the ARIMA(0,1,1) model appears to be appropriate.</p>
+</div>
 </div>
 </div>
             </section>

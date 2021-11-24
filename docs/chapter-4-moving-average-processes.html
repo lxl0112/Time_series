@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Chapter 4: Moving Average processes | Final Report</title>
-  <meta name="description" content="7 Chapter 4: Moving Average processes | Final Report" />
+  <title>7 Chapter 4: Moving Average processes | Time Series</title>
+  <meta name="description" content="7 Chapter 4: Moving Average processes | Time Series" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Chapter 4: Moving Average processes | Final Report" />
+  <meta property="og:title" content="7 Chapter 4: Moving Average processes | Time Series" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Chapter 4: Moving Average processes | Final Report" />
+  <meta name="twitter:title" content="7 Chapter 4: Moving Average processes | Time Series" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Luke Le" />
 
 
-<meta name="date" content="2021-11-12" />
+<meta name="date" content="2021-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -155,7 +155,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#white-noise-wn"><i class="fa fa-check"></i><b>2.1</b> White Noise (WN)</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#random-walk-rw"><i class="fa fa-check"></i><b>2.2</b> Random Walk (RW)</a></li>
-<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#examples-cpi-data"><i class="fa fa-check"></i><b>2.3.1</b> Examples: CPI Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#acf-to-time-series-plot"><i class="fa fa-check"></i><b>2.4</b> ACF to Time Series Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Modelling trends and seasonal patterns</a>
 <ul>
@@ -179,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html"><i class="fa fa-check"></i><b>4</b> Chapter 2 Lab</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#model-choice-and-residual-analysis"><i class="fa fa-check"></i><b>4.1</b> Model choice and Residual analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#data-example-annual-varve-series"><i class="fa fa-check"></i><b>4.2</b> Data Example: Annual Varve Series</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html"><i class="fa fa-check"></i><b>5</b> Chapter 3: Autoregressive processes</a>
 <ul>
@@ -204,6 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html"><i class="fa fa-check"></i><b>6</b> Chapter 3 Lab</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#autoregressive-model-ar"><i class="fa fa-check"></i><b>6.1</b> Autoregressive model (AR)</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price"><i class="fa fa-check"></i><b>6.2</b> Chicken Price</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price-1"><i class="fa fa-check"></i><b>6.3</b> Chicken price</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#unemployment"><i class="fa fa-check"></i><b>6.4</b> Unemployment</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html"><i class="fa fa-check"></i><b>7</b> Chapter 4: Moving Average processes</a>
 <ul>
@@ -238,23 +246,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#stationarity-and-invertibility"><i class="fa fa-check"></i><b>9.1.3</b> Stationarity and Invertibility</a></li>
 <li class="chapter" data-level="9.1.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-model-identification"><i class="fa fa-check"></i><b>9.1.4</b> ARMA model identification</a></li>
 <li class="chapter" data-level="9.1.5" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-parameter-estimation"><i class="fa fa-check"></i><b>9.1.5</b> ARMA parameter estimation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-simulation-example"><i class="fa fa-check"></i><b>9.1.6</b> ARMA simulation example</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a></li>
-<li class="chapter" data-level="11" data-path="final-report.html"><a href="final-report.html"><i class="fa fa-check"></i><b>11</b> Final Report</a>
+<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="final-report.html"><a href="final-report.html#basics-of-time-series-when-and-why-we-use-them-basic-terminology-1-2-pages"><i class="fa fa-check"></i><b>11.1</b> Basics of time series (when and why we use them, basic terminology) (1-2 pages)</a></li>
-<li class="chapter" data-level="11.2" data-path="final-report.html"><a href="final-report.html#autoregressive-models-1-2-pages"><i class="fa fa-check"></i><b>11.2</b> Autoregressive models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.3" data-path="final-report.html"><a href="final-report.html#moving-average-models-1-2-pages"><i class="fa fa-check"></i><b>11.3</b> Moving average models (1-2 pages)</a></li>
-<li class="chapter" data-level="11.4" data-path="final-report.html"><a href="final-report.html#real-world-application-using-one-of-the-above-techniques-8-pages"><i class="fa fa-check"></i><b>11.4</b> Real-world Application using one of the above techniques (8 pages)</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="final-report.html"><a href="final-report.html#an-overview-of-dataset-why-a-time-series-model-is-appropriate"><i class="fa fa-check"></i><b>11.4.1</b> An overview of dataset, why a time series model is appropriate</a></li>
-<li class="chapter" data-level="11.4.2" data-path="final-report.html"><a href="final-report.html#fitting-ar-and-mr-models-to-the-data-explaining-the-parameters-and-why-i-choose-them"><i class="fa fa-check"></i><b>11.4.2</b> Fitting AR and MR models to the data, explaining the parameters and why I choose them</a></li>
-<li class="chapter" data-level="11.4.3" data-path="final-report.html"><a href="final-report.html#discussion-conclusion"><i class="fa fa-check"></i><b>11.4.3</b> Discussion &amp; Conclusion</a></li>
+<li class="chapter" data-level="9.2.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>9.2.1</b> Definition</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model-identification"><i class="fa fa-check"></i><b>9.2.2</b> ARIMA model identification</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>9.2.3</b> Example 1</a></li>
+<li class="chapter" data-level="9.2.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>9.2.4</b> Example 2</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="final-report.html"><a href="final-report.html#forecasting.-key-concepts-and-applying-on-dataset-2-3-pages"><i class="fa fa-check"></i><b>11.5</b> Forecasting. Key concepts and applying on dataset (2-3 pages)</a></li>
-<li class="chapter" data-level="11.6" data-path="final-report.html"><a href="final-report.html#conclusion-and-looking-into-the-future-1-page"><i class="fa fa-check"></i><b>11.6</b> Conclusion and looking into the future (1 page)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#oil-return"><i class="fa fa-check"></i><b>10.1</b> Oil Return</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#air-passengers"><i class="fa fa-check"></i><b>10.2</b> Air Passengers</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#birth-rate"><i class="fa fa-check"></i><b>10.3</b> Birth Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html"><i class="fa fa-check"></i><b>11</b> Chapter 6: Forecasting</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#general-problem"><i class="fa fa-check"></i><b>11.1</b> General problem</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#regression"><i class="fa fa-check"></i><b>11.2</b> Regression</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>11.2.1</b> Example 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>11.2.2</b> Example 2</a></li>
+<li class="chapter" data-level="11.2.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3"><i class="fa fa-check"></i><b>11.2.3</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#exponential-smoothing"><i class="fa fa-check"></i><b>11.3</b> Exponential smoothing</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>11.3.1</b> Definition</a></li>
+<li class="chapter" data-level="11.3.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#choosing-alpha"><i class="fa fa-check"></i><b>11.3.2</b> Choosing <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#measure-uncertainty"><i class="fa fa-check"></i><b>11.3.3</b> Measure uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-arp-models"><i class="fa fa-check"></i><b>11.4</b> Forecasting from AR(p) models</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ar1-forecasting"><i class="fa fa-check"></i><b>11.4.1</b> AR(1) forecasting</a></li>
+<li class="chapter" data-level="11.4.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#arp-forecasting"><i class="fa fa-check"></i><b>11.4.2</b> AR(p) forecasting</a></li>
+<li class="chapter" data-level="11.4.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-1-simulated-data"><i class="fa fa-check"></i><b>11.4.3</b> Example 1: Simulated data</a></li>
+<li class="chapter" data-level="11.4.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-2-1"><i class="fa fa-check"></i><b>11.4.4</b> Example 2</a></li>
+<li class="chapter" data-level="11.4.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3-1"><i class="fa fa-check"></i><b>11.4.5</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-maq-models"><i class="fa fa-check"></i><b>11.5</b> Forecasting from MA(q) models</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ma1-forecast"><i class="fa fa-check"></i><b>11.5.1</b> MA(1) forecast</a></li>
+<li class="chapter" data-level="11.5.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#maq-forecasts"><i class="fa fa-check"></i><b>11.5.2</b> MA(q) forecasts</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-time-series-with-trend-seasonality-and-correlation"><i class="fa fa-check"></i><b>11.6</b> Forecasting time series with trend, seasonality and correlation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-4"><i class="fa fa-check"></i><b>11.6.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html"><i class="fa fa-check"></i><b>12</b> Chapter 6 Lab</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#forecasting-with-arima"><i class="fa fa-check"></i><b>12.1</b> Forecasting with ARIMA</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#global-temp-data"><i class="fa fa-check"></i><b>12.2</b> Global Temp data</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#exponential-smoothing-1"><i class="fa fa-check"></i><b>12.3</b> Exponential smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -266,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Final Report</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series</a>
           </h1>
         </div>
 
@@ -446,56 +491,56 @@ The autocorrelation function (ACF) tells us whether an MA(q) process is appropri
 </div>
 <div id="ma-example" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> MA Example</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter-4-moving-average-processes.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA(3) data with a quadratic trend</span></span>
-<span id="cb20-2"><a href="chapter-4-moving-average-processes.html#cb20-2" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span></span>
-<span id="cb20-3"><a href="chapter-4-moving-average-processes.html#cb20-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb20-4"><a href="chapter-4-moving-average-processes.html#cb20-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb20-5"><a href="chapter-4-moving-average-processes.html#cb20-5" aria-hidden="true" tabindex="-1"></a>data.ar <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
-<span id="cb20-6"><a href="chapter-4-moving-average-processes.html#cb20-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data.ar <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.05</span> <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.004</span><span class="sc">*</span>time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-7"><a href="chapter-4-moving-average-processes.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb20-8"><a href="chapter-4-moving-average-processes.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time, data, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Raw data plot&quot;</span>)</span>
-<span id="cb20-9"><a href="chapter-4-moving-average-processes.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(data, <span class="at">main =</span> <span class="st">&quot;Sample autocorrelation function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="chapter-4-moving-average-processes.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MA(3) data with a quadratic trend</span></span>
+<span id="cb68-2"><a href="chapter-4-moving-average-processes.html#cb68-2" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span></span>
+<span id="cb68-3"><a href="chapter-4-moving-average-processes.html#cb68-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb68-4"><a href="chapter-4-moving-average-processes.html#cb68-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb68-5"><a href="chapter-4-moving-average-processes.html#cb68-5" aria-hidden="true" tabindex="-1"></a>data.ar <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ma =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>)), <span class="at">n =</span> n, <span class="at">sd =</span> sd)</span>
+<span id="cb68-6"><a href="chapter-4-moving-average-processes.html#cb68-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data.ar <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.05</span> <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.004</span><span class="sc">*</span>time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb68-7"><a href="chapter-4-moving-average-processes.html#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb68-8"><a href="chapter-4-moving-average-processes.html#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time, data, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Raw data plot&quot;</span>)</span>
+<span id="cb68-9"><a href="chapter-4-moving-average-processes.html#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(data, <span class="at">main =</span> <span class="st">&quot;Sample autocorrelation function&quot;</span>)</span></code></pre></div>
 <p><img src="Chapter4_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>From looking at the time plot and correlogram the data appear to have a quadratic trend, which we remove before trying to model the correlation. Fitting <span class="math inline">\(m_{t}=\beta_{0}+\beta_{1}t+\beta_{2}t^{2}\)</span> gives the follwing residual series:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter-4-moving-average-processes.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the trend</span></span>
-<span id="cb21-2"><a href="chapter-4-moving-average-processes.html#cb21-2" aria-hidden="true" tabindex="-1"></a>time2 <span class="ot">&lt;-</span> time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb21-3"><a href="chapter-4-moving-average-processes.html#cb21-3" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(data <span class="sc">~</span> time<span class="sc">+</span>time2)</span>
-<span id="cb21-4"><a href="chapter-4-moving-average-processes.html#cb21-4" aria-hidden="true" tabindex="-1"></a>residual.series <span class="ot">&lt;-</span> data <span class="sc">-</span> linear.model<span class="sc">$</span>fitted.values</span>
-<span id="cb21-5"><a href="chapter-4-moving-average-processes.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
-<span id="cb21-6"><a href="chapter-4-moving-average-processes.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;Residual series&quot;</span>)</span>
-<span id="cb21-7"><a href="chapter-4-moving-average-processes.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;ACF of Residual series&quot;</span>)</span>
-<span id="cb21-8"><a href="chapter-4-moving-average-processes.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;PACF of Residual series&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="chapter-4-moving-average-processes.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the trend</span></span>
+<span id="cb69-2"><a href="chapter-4-moving-average-processes.html#cb69-2" aria-hidden="true" tabindex="-1"></a>time2 <span class="ot">&lt;-</span> time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb69-3"><a href="chapter-4-moving-average-processes.html#cb69-3" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(data <span class="sc">~</span> time<span class="sc">+</span>time2)</span>
+<span id="cb69-4"><a href="chapter-4-moving-average-processes.html#cb69-4" aria-hidden="true" tabindex="-1"></a>residual.series <span class="ot">&lt;-</span> data <span class="sc">-</span> linear.model<span class="sc">$</span>fitted.values</span>
+<span id="cb69-5"><a href="chapter-4-moving-average-processes.html#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb69-6"><a href="chapter-4-moving-average-processes.html#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;Residual series&quot;</span>)</span>
+<span id="cb69-7"><a href="chapter-4-moving-average-processes.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;ACF of Residual series&quot;</span>)</span>
+<span id="cb69-8"><a href="chapter-4-moving-average-processes.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(residual.series, <span class="at">main =</span> <span class="st">&quot;PACF of Residual series&quot;</span>)</span></code></pre></div>
 <p><img src="Chapter4_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Time plot suggests stationary while ACF suggest an MA(3) process is appropriate. Note that the PACF doesn’t tell us a lot here.</p>
 <p>Finally we fit a MA(3) model using function arima() in R</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter-4-moving-average-processes.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(3) model to the data</span></span>
-<span id="cb22-2"><a href="chapter-4-moving-average-processes.html#cb22-2" aria-hidden="true" tabindex="-1"></a>model.ma <span class="ot">&lt;-</span> <span class="fu">arima</span>(residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span>
-<span id="cb22-3"><a href="chapter-4-moving-average-processes.html#cb22-3" aria-hidden="true" tabindex="-1"></a>model.ma</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="chapter-4-moving-average-processes.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an MA(3) model to the data</span></span>
+<span id="cb70-2"><a href="chapter-4-moving-average-processes.html#cb70-2" aria-hidden="true" tabindex="-1"></a>model.ma <span class="ot">&lt;-</span> <span class="fu">arima</span>(residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb70-3"><a href="chapter-4-moving-average-processes.html#cb70-3" aria-hidden="true" tabindex="-1"></a>model.ma</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## arima(x = residual.series, order = c(0, 0, 3))
 ## 
 ## Coefficients:
 ##          ma1     ma2     ma3  intercept
-##       0.6091  0.3694  0.6603     0.1269
-## s.e.  0.0549  0.0689  0.0540     1.8975
+##       0.6409  0.4573  0.6248    -0.1172
+## s.e.  0.0544  0.0665  0.0561     1.7578
 ## 
-## sigma^2 estimated as 104.7:  log likelihood = -750.09,  aic = 1510.19</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter-4-moving-average-processes.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arima</span>(<span class="at">x =</span> residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
+## sigma^2 estimated as 84.39:  log likelihood = -728.25,  aic = 1466.51</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="chapter-4-moving-average-processes.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arima</span>(<span class="at">x =</span> residual.series, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## arima(x = residual.series, order = c(0, 0, 3))
 ## 
 ## Coefficients:
 ##          ma1     ma2     ma3  intercept
-##       0.6091  0.3694  0.6603     0.1269
-## s.e.  0.0549  0.0689  0.0540     1.8975
+##       0.6409  0.4573  0.6248    -0.1172
+## s.e.  0.0544  0.0665  0.0561     1.7578
 ## 
-## sigma^2 estimated as 104.7:  log likelihood = -750.09,  aic = 1510.19</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter-4-moving-average-processes.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
-<span id="cb26-2"><a href="chapter-4-moving-average-processes.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) Residual series&quot;</span>)</span>
-<span id="cb26-3"><a href="chapter-4-moving-average-processes.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) ACF of Residual series&quot;</span>)</span>
-<span id="cb26-4"><a href="chapter-4-moving-average-processes.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) PACF of Residual series&quot;</span>)</span></code></pre></div>
+## sigma^2 estimated as 84.39:  log likelihood = -728.25,  aic = 1466.51</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="chapter-4-moving-average-processes.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb74-2"><a href="chapter-4-moving-average-processes.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) Residual series&quot;</span>)</span>
+<span id="cb74-3"><a href="chapter-4-moving-average-processes.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) ACF of Residual series&quot;</span>)</span>
+<span id="cb74-4"><a href="chapter-4-moving-average-processes.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(model.ma<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">&quot;MA(3) PACF of Residual series&quot;</span>)</span></code></pre></div>
 <p><img src="Chapter4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Residuals look independent (resemble white noise), so the model below is appropriate</p>
 <p><span class="math display">\[X_{t}=\beta_{0}+\beta_{1}t+\beta_{2}t^{2}+\lambda_{1}Z_{t-1}+\lambda_{2}Z_{t-2}+\lambda_{3}Z_{t-3}+Z_{t}.

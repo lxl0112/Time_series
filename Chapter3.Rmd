@@ -158,7 +158,7 @@ Looking at PACF, Data 1 uses AR(1) process, Data 2 uses AR(2), Data 3 uses AR(3)
 
 AR(p) process is correlation with lagged values of the data itself. 
 
-$$ X_t-\mu = \phi \cdot (X_{t-1}-\mu)+Noise_t$$
+$$ X_t-\mu = \alpha \cdot (X_{t-1}-\mu)+Noise_t$$
 
 Some simulation examples down below. Note how the coefficent $\phi$ affects the look of the graph:
 
@@ -171,11 +171,76 @@ y <- arima.sim(model = list(ar = 0.9), n = 100)
 # Simulate an AR model with -0.75 slope
 z <- arima.sim(model = list(ar = -0.75), n = 100)
 
+plot.ts(cbind(x, y, z))
+```
+AR(1) model with slope $\alpha=0.9$ creates a obvious trend while the negative slope creates a zic-zac pattern.
+
+```{r echo=TRUE}
 par(mfrow = c(3,1))
 
 # Plot your simulated data
-plot.ts(cbind(x, y, z))
 acf(x)
 acf(y)
 acf(z)
+```
+The ACF plots tell a lot about each time plot:
+
+1. Strong short-term positive correlation in early lags (1 and 2)
+
+2. Strong short-term positive correlation in early lags up to lag of 5 
+
+3. Strong short-term negative correlation in early lags up to lag of 5
+
+The PACF will tell us what AR(p) model would be appropriate for fitting this data
+
+```{r echo=TRUE}
+par(mfrow = c(3,1))
+
+# Plot your simulated data
+pacf(x)
+pacf(y)
+pacf(z)
+```
+
+The PACF plots tell us that a AR(1) model would be appropriate for all 3 data. This is expected since we used AR(1) models to generate these data. 
+
+## Chicken Price
+
+## Chicken price
+
+```{r}
+library(astsa)
+
+# Plot differenced chicken
+plot(diff(chicken)) 
+
+# Plot P/ACF pair of differenced data to lag 60
+acf2(diff(chicken), max.lag = 60)
+
+# Fit ARIMA(2,1,0) to chicken - not so good
+sarima(chicken, p = 2, d = 1, q = 0)
+
+# Fit SARIMA(2,1,0,1,0,0,12) to chicken - that works
+sarima(chicken, p = 2, d = 1, q = 0, P = 1, D = 0, Q = 0, S = 12)
+
+```
+
+## Unemployment
+
+```{r}
+plot(unemp)
+d_unemp <- diff(unemp)
+
+plot(d_unemp)
+
+# Plot seasonal differenced diff_unemp
+dd_unemp <- diff(d_unemp, lag = 12)   
+plot(dd_unemp)
+
+# Plot P/ACF pair of the fully differenced data to lag 60
+dd_unemp <- diff(diff(unemp), lag = 12)
+acf2(dd_unemp, max.lag = 60)
+
+# Fit an appropriate model
+sarima(unemp, p = 2, d = 1, q = 0, P = 0, D = 1, Q = 1, S = 12)
 ```

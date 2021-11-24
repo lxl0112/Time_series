@@ -264,7 +264,7 @@ $$
 
 ## Moving Average model (MA)
 
-$$ X_t = \mu + Noise_t + \theta \cdot(Noise_{t-1})$$
+$$ X_t = \mu + Noise_t + \lambda \cdot(Noise_{t-1})$$
 Regression on today's data using yesterday's noise.
 
 ```{r echo=TRUE}
@@ -281,8 +281,19 @@ z <- arima.sim(model = list(ma = -0.5), n = 100)
 plot.ts(cbind(x, y, z))
 
 par(mfrow = c(3, 1))
+
 # Calculate the ACF 
 acf(x)
 acf(y)
 acf(z)
 ```
+
+The ACF plots tell that it is appropriate to use MA(1) model to fit this data. This is expected since we used MA(1) model with different values of $\lambda$ to simulate the data
+
+```{r}
+par(mfrow = c(3, 1))
+pacf(x)
+pacf(y)
+pacf(z)
+```
+

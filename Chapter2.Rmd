@@ -139,7 +139,7 @@ AIC and BIC are great measures for fit of models:
 $$ average(observed-predicted)^2+k(p+q)$$
 The smaller these measures are, the better the prediction. 
 
-As mentioned, sarima() returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:
+sarima() fucntion returns 4 graphs. Given we want the model to predict most of the observed data, and the residuals are just white noise, these 4 tools can help us identify whether residuals are just white noise:
 
 1. Standardized residuals: does it look like white noise?
 2. Sample ACF of residuals: no statistically significant ACF (everything within the blue lines)
@@ -148,18 +148,61 @@ As mentioned, sarima() returns 4 graphs. Given we want the model to predict most
 
 Finding the right model most of the time are through trials and errors starting with some ideas based off what we know about the data. 
 
-```{r echo=TRUE}
+## Data Example: Annual Varve Series
+
+Sedimentary deposits from one location in Massachusetts for 634 years, beginning nearly 12,000 years ago. Loaded from library astsa
+
+```{r}
 library(astsa)
-
+ts.plot(varve)
 dl_varve <- diff(log(varve))
+ts.plot(dl_varve)
+```
 
+From the time series plot, it does not look like the data has a obvious linear trend, therefore first order differencing is most appropriate to tranform the data into a stationary process. It looks like it has a constant mean but moving average, suggesting MA(q) models might be appropriate. We will take a look at the ACF and PACF plots to further access: 
+
+```{r, echo=TRUE}
+acf2(varve)
+```
+The correlograms on the time plot of varve did not tell us a great deal here, which is expected. Now we will look at the ACF and PACF of the first order difference series:
+
+```{r, echo=TRUE}
+acf2(dl_varve)
+```
+
+Based on ACF, MA(1) model might be appropriate. Based on PACF, AR(5) might be appropriate, however, I would start with smallest value of p for simplicity of the model
+
+
+```{r echo = TRUE}
 # Fit an MA(1) to dl_varve.   
 sarima(dl_varve, p = 0, d = 0, q = 1)
+model_ma1 <- arima(dl_varve, order = c(0,0,1))
+AIC(model_ma1)
+BIC(model_ma1)
+```
 
+```{r echo = TRUE}
 # Fit an MA(2) to dl_varve. Improvement?
 sarima(dl_varve, p = 0, d = 0, q = 2)
+model_ma2 <- arima(dl_varve, order = c(0,0,2))
+AIC(model_ma2)
+BIC(model_ma2)
+```
 
+```{r echo = TRUE}
 # Fit an ARMA(1,1) to dl_varve. Improvement?
 sarima(dl_varve, p = 1, d = 0, q = 1)
-
+model_arma11 <- arima(dl_varve, order = c(1,0,1))
+AIC(model_arma11)
+BIC(model_arma11)
 ```
+
+```{r echo = TRUE}
+# Fit an ARMA(2,1) to dl_varve. Improvement?
+sarima(dl_varve, p = 2, d = 0, q = 1)
+model_arma21 <- arima(dl_varve, order = c(2,0,1))
+AIC(model_arma21)
+BIC(model_arma21)
+```
+
+Here we tried fitting ARIMA(0,0,1), ARIMA(0,0,2), ARIMA(1,0,1), and ARIMA(2,0,1), which are MA(1), MA(2), ARMA(1,1), and ARMA(2,1), respectively. ARMA(1,1) and ARMA(2,1) are better options than MA(1) and MA(2) based on the AIC and BIC and other statistics tell that the residuals resemble more of white noise. 

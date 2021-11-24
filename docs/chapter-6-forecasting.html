@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Chapter 6: Forecasting | Time Series</title>
+  <meta name="description" content="11 Chapter 6: Forecasting | Time Series" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Chapter 6: Forecasting | Time Series" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Chapter 6: Forecasting | Time Series" />
+  
+  
+  
+
+<meta name="author" content="Luke Le" />
+
+
+<meta name="date" content="2021-11-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-5-lab.html"/>
+<link rel="next" href="chapter-6-lab.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html"><i class="fa fa-check"></i><b>1</b> Chapter 1: Time Series Fundamentals</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#white-noise-purely-random-process"><i class="fa fa-check"></i><b>1.2</b> White Noise: purely random process</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#random-walk-random-but-dependent"><i class="fa fa-check"></i><b>1.3</b> Random Walk: random but dependent</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#time-series-modelling"><i class="fa fa-check"></i><b>1.4</b> Time Series Modelling</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#log-transformation"><i class="fa fa-check"></i><b>1.4.1</b> Log Transformation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#box-cox-transformation"><i class="fa fa-check"></i><b>1.4.2</b> Box-Cox Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#time-series-properties"><i class="fa fa-check"></i><b>1.5</b> Time Series Properties</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#mean-function-if-mean-is-constant"><i class="fa fa-check"></i><b>1.5.1</b> Mean function (if mean is constant)</a></li>
+<li class="chapter" data-level="1.5.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#variance-function-if-variance-is-constant"><i class="fa fa-check"></i><b>1.5.2</b> Variance function (if variance is constant)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#autocovariance-function-acvf"><i class="fa fa-check"></i><b>1.5.3</b> Autocovariance function (ACVF):</a></li>
+<li class="chapter" data-level="1.5.4" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#autocorrelation-function-acf"><i class="fa fa-check"></i><b>1.5.4</b> Autocorrelation function (ACF):</a></li>
+<li class="chapter" data-level="1.5.5" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#properties"><i class="fa fa-check"></i><b>1.5.5</b> Properties</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#stationarity"><i class="fa fa-check"></i><b>1.6</b> Stationarity</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html"><i class="fa fa-check"></i><b>2</b> Chapter 1 Lab</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#white-noise-wn"><i class="fa fa-check"></i><b>2.1</b> White Noise (WN)</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#random-walk-rw"><i class="fa fa-check"></i><b>2.2</b> Random Walk (RW)</a></li>
+<li class="chapter" data-level="2.3" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#stationary"><i class="fa fa-check"></i><b>2.3</b> Stationary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#examples-cpi-data"><i class="fa fa-check"></i><b>2.3.1</b> Examples: CPI Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapter-1-lab.html"><a href="chapter-1-lab.html#acf-to-time-series-plot"><i class="fa fa-check"></i><b>2.4</b> ACF to Time Series Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Modelling trends and seasonal patterns</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-1-regression"><i class="fa fa-check"></i><b>3.1</b> Method 1: Regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#examples"><i class="fa fa-check"></i><b>3.1.1</b> Examples</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#other-common-models"><i class="fa fa-check"></i><b>3.1.2</b> Other common models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-2-moving-average-smoothing"><i class="fa fa-check"></i><b>3.2</b> Method 2: Moving Average Smoothing</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#method-3-differencing"><i class="fa fa-check"></i><b>3.3</b> Method 3: Differencing</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#remove-trends"><i class="fa fa-check"></i><b>3.3.1</b> Remove Trends</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#remove-seasonality"><i class="fa fa-check"></i><b>3.3.2</b> Remove Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#choosing-a-smoothing-parameter"><i class="fa fa-check"></i><b>3.4</b> Choosing a smoothing parameter</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#simplicity"><i class="fa fa-check"></i><b>3.4.1</b> Simplicity</a></li>
+<li class="chapter" data-level="3.4.2" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#objective-criteria-aic-bic"><i class="fa fa-check"></i><b>3.4.2</b> Objective criteria (AIC &amp; BIC)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html"><i class="fa fa-check"></i><b>4</b> Chapter 2 Lab</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#model-choice-and-residual-analysis"><i class="fa fa-check"></i><b>4.1</b> Model choice and Residual analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-2-lab.html"><a href="chapter-2-lab.html#data-example-annual-varve-series"><i class="fa fa-check"></i><b>4.2</b> Data Example: Annual Varve Series</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html"><i class="fa fa-check"></i><b>5</b> Chapter 3: Autoregressive processes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>5.1</b> Definition</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#first-order-autoregressive-process"><i class="fa fa-check"></i><b>5.2</b> First order Autoregressive process</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#mean"><i class="fa fa-check"></i><b>5.2.1</b> Mean</a></li>
+<li class="chapter" data-level="5.2.2" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#variance"><i class="fa fa-check"></i><b>5.2.2</b> Variance</a></li>
+<li class="chapter" data-level="5.2.3" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#examples"><i class="fa fa-check"></i><b>5.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#arp-process"><i class="fa fa-check"></i><b>5.3</b> <span class="math inline">\(AR(p)\)</span> process</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#mean-1"><i class="fa fa-check"></i><b>5.3.1</b> Mean</a></li>
+<li class="chapter" data-level="5.3.2" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#stationarity"><i class="fa fa-check"></i><b>5.3.2</b> Stationarity</a></li>
+<li class="chapter" data-level="5.3.3" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#variance-1"><i class="fa fa-check"></i><b>5.3.3</b> Variance</a></li>
+<li class="chapter" data-level="5.3.4" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#autocorrelation-function"><i class="fa fa-check"></i><b>5.3.4</b> Autocorrelation Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#when-and-how-to-use-arp-model"><i class="fa fa-check"></i><b>5.4</b> When and how to use AR(p) model</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#definition-of-pacf"><i class="fa fa-check"></i><b>5.4.1</b> Definition of PACF</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html"><i class="fa fa-check"></i><b>6</b> Chapter 3 Lab</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#autoregressive-model-ar"><i class="fa fa-check"></i><b>6.1</b> Autoregressive model (AR)</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price"><i class="fa fa-check"></i><b>6.2</b> Chicken Price</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#chicken-price-1"><i class="fa fa-check"></i><b>6.3</b> Chicken price</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-3-lab.html"><a href="chapter-3-lab.html#unemployment"><i class="fa fa-check"></i><b>6.4</b> Unemployment</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html"><i class="fa fa-check"></i><b>7</b> Chapter 4: Moving Average processes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>7.1</b> Definition</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#mean-and-variance"><i class="fa fa-check"></i><b>7.2</b> Mean and Variance</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#autocorrelation-functions"><i class="fa fa-check"></i><b>7.3</b> Autocorrelation functions</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="chapter-2-modelling-trends-and-seasonal-patterns.html"><a href="chapter-2-modelling-trends-and-seasonal-patterns.html#examples"><i class="fa fa-check"></i><b>7.3.1</b> Examples:</a></li>
+<li class="chapter" data-level="7.3.2" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#another-example"><i class="fa fa-check"></i><b>7.3.2</b> Another example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#invertibility"><i class="fa fa-check"></i><b>7.4</b> Invertibility</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#inveritibility-theorem"><i class="fa fa-check"></i><b>7.4.1</b> Inveritibility Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#ma-model-identification"><i class="fa fa-check"></i><b>7.5</b> MA Model Identification</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="chapter-3-autoregressive-processes.html"><a href="chapter-3-autoregressive-processes.html#example"><i class="fa fa-check"></i><b>7.5.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#ma-parameter-estimation"><i class="fa fa-check"></i><b>7.6</b> MA parameter estimation</a></li>
+<li class="chapter" data-level="7.7" data-path="chapter-4-moving-average-processes.html"><a href="chapter-4-moving-average-processes.html#ma-example"><i class="fa fa-check"></i><b>7.7</b> MA Example</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="chapter-4-lab.html"><a href="chapter-4-lab.html"><i class="fa fa-check"></i><b>8</b> Chapter 4 Lab</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter-4-lab.html"><a href="chapter-4-lab.html#moving-average-model-ma"><i class="fa fa-check"></i><b>8.1</b> Moving Average model (MA)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html"><i class="fa fa-check"></i><b>9</b> Chapter 5: More general time series processes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-model"><i class="fa fa-check"></i><b>9.1</b> ARMA model</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#mean-of-armapq-process"><i class="fa fa-check"></i><b>9.1.1</b> Mean of ARMA(p,q) process</a></li>
+<li class="chapter" data-level="9.1.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#variance-and-autocorrelation-function"><i class="fa fa-check"></i><b>9.1.2</b> Variance and autocorrelation function</a></li>
+<li class="chapter" data-level="9.1.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#stationarity-and-invertibility"><i class="fa fa-check"></i><b>9.1.3</b> Stationarity and Invertibility</a></li>
+<li class="chapter" data-level="9.1.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-model-identification"><i class="fa fa-check"></i><b>9.1.4</b> ARMA model identification</a></li>
+<li class="chapter" data-level="9.1.5" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-parameter-estimation"><i class="fa fa-check"></i><b>9.1.5</b> ARMA parameter estimation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arma-simulation-example"><i class="fa fa-check"></i><b>9.1.6</b> ARMA simulation example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model"><i class="fa fa-check"></i><b>9.2</b> ARIMA model</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>9.2.1</b> Definition</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#arima-model-identification"><i class="fa fa-check"></i><b>9.2.2</b> ARIMA model identification</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>9.2.3</b> Example 1</a></li>
+<li class="chapter" data-level="9.2.4" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>9.2.4</b> Example 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html"><i class="fa fa-check"></i><b>10</b> Chapter 5 Lab</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#oil-return"><i class="fa fa-check"></i><b>10.1</b> Oil Return</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#air-passengers"><i class="fa fa-check"></i><b>10.2</b> Air Passengers</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter-5-lab.html"><a href="chapter-5-lab.html#birth-rate"><i class="fa fa-check"></i><b>10.3</b> Birth Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html"><i class="fa fa-check"></i><b>11</b> Chapter 6: Forecasting</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#general-problem"><i class="fa fa-check"></i><b>11.1</b> General problem</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#regression"><i class="fa fa-check"></i><b>11.2</b> Regression</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-1"><i class="fa fa-check"></i><b>11.2.1</b> Example 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="chapter-5-more-general-time-series-processes.html"><a href="chapter-5-more-general-time-series-processes.html#example-2"><i class="fa fa-check"></i><b>11.2.2</b> Example 2</a></li>
+<li class="chapter" data-level="11.2.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3"><i class="fa fa-check"></i><b>11.2.3</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#exponential-smoothing"><i class="fa fa-check"></i><b>11.3</b> Exponential smoothing</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="chapter-1-time-series-fundamentals.html"><a href="chapter-1-time-series-fundamentals.html#definition"><i class="fa fa-check"></i><b>11.3.1</b> Definition</a></li>
+<li class="chapter" data-level="11.3.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#choosing-alpha"><i class="fa fa-check"></i><b>11.3.2</b> Choosing <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#measure-uncertainty"><i class="fa fa-check"></i><b>11.3.3</b> Measure uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-arp-models"><i class="fa fa-check"></i><b>11.4</b> Forecasting from AR(p) models</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ar1-forecasting"><i class="fa fa-check"></i><b>11.4.1</b> AR(1) forecasting</a></li>
+<li class="chapter" data-level="11.4.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#arp-forecasting"><i class="fa fa-check"></i><b>11.4.2</b> AR(p) forecasting</a></li>
+<li class="chapter" data-level="11.4.3" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-1-simulated-data"><i class="fa fa-check"></i><b>11.4.3</b> Example 1: Simulated data</a></li>
+<li class="chapter" data-level="11.4.4" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-2-1"><i class="fa fa-check"></i><b>11.4.4</b> Example 2</a></li>
+<li class="chapter" data-level="11.4.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-3-1"><i class="fa fa-check"></i><b>11.4.5</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-from-maq-models"><i class="fa fa-check"></i><b>11.5</b> Forecasting from MA(q) models</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#ma1-forecast"><i class="fa fa-check"></i><b>11.5.1</b> MA(1) forecast</a></li>
+<li class="chapter" data-level="11.5.2" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#maq-forecasts"><i class="fa fa-check"></i><b>11.5.2</b> MA(q) forecasts</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#forecasting-time-series-with-trend-seasonality-and-correlation"><i class="fa fa-check"></i><b>11.6</b> Forecasting time series with trend, seasonality and correlation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="chapter-6-forecasting.html"><a href="chapter-6-forecasting.html#example-4"><i class="fa fa-check"></i><b>11.6.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html"><i class="fa fa-check"></i><b>12</b> Chapter 6 Lab</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#forecasting-with-arima"><i class="fa fa-check"></i><b>12.1</b> Forecasting with ARIMA</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#global-temp-data"><i class="fa fa-check"></i><b>12.2</b> Global Temp data</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter-6-lab.html"><a href="chapter-6-lab.html#exponential-smoothing-1"><i class="fa fa-check"></i><b>12.3</b> Exponential smoothing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-6-forecasting" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Chapter 6: Forecasting</h1>
+<p>Predicting the value of a time series at future points in time. The majority of forecasting methods are based on a statistical model, so if the model is not appropriate, then the forecasts will be useless. Even if an appropriate model is fitted, it does not mean the forecasts will be reasonable. However, despite these reservations forecasting is vitally important, and is often the sole goal of a time series analysis.</p>
+<div id="general-problem" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> General problem</h2>
+<p>A time series has been observed at <span class="math inline">\(n\)</span> time points and predictions are required for the series at time <span class="math inline">\(n+1, n+2\)</span>, etc.</p>
+<p>We denote the <span class="math inline">\(k\)</span> steps ahead forecast of <span class="math inline">\(x_{n+k}\)</span> given data <span class="math inline">\((x_1,...,x_n)\)</span> by <span class="math inline">\(x_n(k)\)</span>, so that <span class="math inline">\(x_n(1)\)</span> is the prediction of <span class="math inline">\(x_{n+1}\)</span> based on data up to and including time <span class="math inline">\(n\)</span></p>
+<p>Forecast error is given by</p>
+<p><span class="math display">\[e_{n}(k)=x_{n+k}-x_{n}(k)\]</span></p>
+<p>and is the amount by which the forecast differs from the true observation (once it has become available). The amount of uncertainty in a forecast is measured by the size of its error variance, <span class="math inline">\(\mathrm{Var}[e_{n}(k)\)</span>, with larger values meaning the forecast is less reliable.</p>
+<p>To evaluate the performance of a forecasting method on a given data set, we calculate 1 step ahead forecasts <span class="math inline">\(x_{1}(1),\ldots, x_{n-1}(1)\)</span> and measure the discrepancy to the observed values <span class="math inline">\(x_{2},\ldots,x_{n}\)</span> using the root mean square prediction error</p>
+<p><span class="math display">\[\mbox{RMSPE}=\sqrt{\frac{1}{n-1}\sum_{k=1}^{n-1}e_{k}(1)^{2}}=\sqrt{\frac{1}{n-1}\sum_{k=1}^{n-1}(x_{k+1}-x_{k}(1))^{2}}\]</span></p>
+<p>We will compare three methods of forecasting: regression, exponential smoothing and ARIMA models.</p>
+</div>
+<div id="regression" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Regression</h2>
+<p>One approach is to ignore the temporal correlation in the observed data, and predict the next value of the time series based on linear regression methods. This method will only produce good forecasts if the time series being predicted has a strong trend and seasonal component compared to the amount of random variation and short-term correlation</p>
+<p>Additive time series model <span class="math inline">\(X_{t}=m_{t}+s_{t}+e_{t}\)</span> the trend and seasonal variation are represented by <span class="math inline">\(m_{t}+s_{t}=\textbf{z}_{t}^\top\boldsymbol{\beta};\)</span>.</p>
+<p>The 1 step ahead prediction is then given by
+<span class="math display">\[x_{n}(1)=\mathbf{z}_{n+1}^\top\hat{\boldsymbol{\beta}}\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is the cector of regression parameter estimates and <span class="math inline">\(\mathbf{z}_{n+1}^\top\)</span> are the covariate values at time <span class="math inline">\(n+1\)</span>. Approximate 95% prediction intervals can be calculated from linear model theory as</p>
+<p><span class="math display">\[\mathbf{z}_{n+1}^\top\hat{\boldsymbol{\beta}}\pm 1.96\sqrt{\hat{\sigma}^{2}
+(1+\mathbf{z}_{n+1}^\top(Z^\top Z)^{-1}\mathbf{z}_{n+1})}\]</span></p>
+<p>where <span class="math inline">\(\hat{\sigma}^{2}\)</span> is the estimated residual variance from the linear model, and <span class="math inline">\(Z\)</span> is the matrix of regression variables for all <span class="math inline">\(n\)</span> time points.</p>
+<div id="example-1" class="section level3" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Example 1</h3>
+<p>Consider the daily respiratory admissions data presented in Chapter 2. One of the trend models for these data was</p>
+<p><span class="math display">\[X_{t}=\beta_{0}+\beta_{1}t+\beta_{2}\sin(2\pi t/365)+\beta_{3}\cos(2\pi t /365) + e_{t}\]</span></p>
+<p>which modelled the regular seasonal pattern with a period of a year and a linear trend. Figure 6.1 shows the last year of these data, together with predictions for the first 100 days in 2008 using the model above. Note in this case how wide the prediction intervals are, because the seasonal pattern is overwhelmed by random variation. Thus the predictions are not likely to be very accurate.</p>
+<p><img src="chpt6_plot1.png" /></p>
+</div>
+<div id="example-2" class="section level3" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Example 2</h3>
+<p>Consider air traffic data, which can be modelled using a quarterly seasonal indicator variable and a linear trend.</p>
+<p><img src="chpt6_plot2.png" /></p>
+<p>Note that in this case the data are dominated by trend and seasonal variation, and have relatively little unexplained variation. Therefore the prediction intervals are narrow, suggesting the predictions will be fairly accurate.</p>
+</div>
+<div id="example-3" class="section level3" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> Example 3</h3>
+<p>Consider the following linear trend model</p>
+<p><span class="math display">\[X_t=10+2t+\epsilon_t\hspace{1cm}t=1,\ldots,10\]</span></p>
+<p>where <span class="math inline">\(\hat{\boldsymbol{\beta}}=(10,2)\)</span> and <span class="math inline">\(\hat\sigma^2=1\)</span>. The design matrix is given by</p>
+<p><span class="math display">\[Z=\left(\begin{array}{cc}
+1&amp; 1\\
+1&amp;2\\
+\vdots&amp;\vdots\\
+1&amp;10\\
+\end{array}\right)\]</span></p>
+<p>Calculate a prediction and 95% vinterval for time 11 where <span class="math inline">\(\mathbf{z}_{11}^\top=(1,11)\)</span></p>
+<p>The prediction is given by</p>
+<p><span class="math display">\[x_{10}(1)~=~\mathbf{z}_{11}^\top\hat{\boldsymbol{\beta}}~=~ 1 \times 10 + 11 \times 2~=~32\]</span></p>
+<p>To calculate the standard error we have that
+<span class="math display">\[Z^\top Z=\left(\begin{array}{cc}10 &amp;55\\55 &amp; 385\end{array}\right)
+\hspace{2cm}\mbox{and}\hspace{2cm}
+(Z^\top Z)^{-1}=\left(\begin{array}{cc}0.46667 &amp;-0.06667\\-0.06667 &amp; 0.01212\end{array}\right)\]</span></p>
+<p>Therefore we have that</p>
+<p><span class="math display">\[\mathrm{Var}[x_{10}(1)]~=~\hat{\sigma}^{2}(1+\mathbf{z}_{11}^\top (Z^\top Z)^{-1}\mathbf{z}_{11})=1.4665\]</span></p>
+<p>and the 95% CI</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathbf{z}_{n+1}^\top\hat{\boldsymbol{\beta}}&amp;\pm&amp; 1.96\sqrt{\hat{\sigma}^{2}
+(1+\mathbf{z}_{n+1}^\top (Z^\top Z)^{-1}\mathbf{z}_{n+1})}\nonumber\\
+32 &amp;\pm&amp; 1.96\times \sqrt{1.4665}\nonumber\\
+32 &amp;\pm&amp; 2.374\nonumber\\
+(29.63&amp;,&amp;34.37)\nonumber
+\end{eqnarray}
+\]</span></p>
+</div>
+</div>
+<div id="exponential-smoothing" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Exponential smoothing</h2>
+<p>Exponential smoothing is a simple procedure that does not assume a parametric model for the data, and is similar to moving average smoothing discussed in Chapter 2. It makes one step ahead forecasts of the form</p>
+<p><span class="math display">\[\hat{x}_{n}(1)=c_{0}x_{n}+c_{1}x_{n-1}+c_{2}x_{n-2}+\ldots+c_{n-1}x_{1}\]</span></p>
+<p>where the coefficient <span class="math inline">\((c_{0},\ldots,c_{n-1})\)</span> are called weights and must sum to one so that the prediction is of the correct size. In addition, the weights decrease as the observations move further away from the time point being predicted, i.e. <span class="math inline">\(c_{0}\geq c_{1} \geq\ldots\geq c_{n-1}\)</span></p>
+<div id="definition" class="section level3" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Definition</h3>
+<p>Given data <span class="math inline">\((x_{1},\ldots,x_{n})\)</span> the one step ahead forecast using exponential smoothing is given by</p>
+<p><span class="math display">\[\hat{x}_{n}(1)=\alpha x_{n}+\alpha(1-\alpha)x_{n-1}+\alpha(1-\alpha)^{2}x_{n-2}+\ldots+\alpha(1-\alpha)^{n-1}x_{1}\]</span></p>
+<p>where <span class="math inline">\(\alpha\in[0,1]\)</span> is a smoothing parameter</p>
+<p>Notes:</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\alpha\)</span> is close to 1, predictions are based on only the last few observations</p></li>
+<li><p>If <span class="math inline">\(\alpha\)</span> is close to 0, predictions are based on a large number of previous observations</p></li>
+</ol>
+<p>The one step ahead forecast can be written recursively as follows</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(1)&amp;=&amp;\alpha x_{n}+\alpha(1-\alpha)x_{n-1}+\alpha(1-\alpha)^{2}x_{n-2}+\ldots+\alpha(1-\alpha)^{n-1}x_{1}\nonumber\\
+&amp;=&amp;\alpha x_{n}+(1-\alpha)[\alpha x_{n-1}+\alpha(1-\alpha)x_{n-2}+\ldots+\alpha(1-\alpha)^{n-2}x_{1}]\nonumber\\
+&amp;=&amp;\alpha x_{n}+(1-\alpha)\hat{x}_{n-1}(1)\nonumber
+\end{eqnarray}\]</span></p>
+<p>making it straightforward computationally to update the forecasts in light of new data. To start the process, we set <span class="math inline">\(\hat{x}_{1}(1)=x_{2}\)</span></p>
+</div>
+<div id="choosing-alpha" class="section level3" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> Choosing <span class="math inline">\(\alpha\)</span></h3>
+<p>Choose <span class="math inline">\(\alpha\)</span> that minimizes the root mean square prediction error (RMSPE)</p>
+<p>In other words, for each candidate value of <span class="math inline">\(\alpha\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Calculate <span class="math inline">\(\hat{x}_{1}(1),\ldots,\hat{x}_{n-1}(1)\)</span> using the recursive formula described above</p></li>
+<li><p>Calculate the RMSPE</p></li>
+</ol>
+<p><span class="math display">\[\mbox{RMSPE}=\sqrt{\frac{1}{n-1}\sum_{k=1}^{n-1}(x_{k+1}-x_{k}(1))^{2}}\]</span></p>
+<p>and choose the value of <span class="math inline">\(\alpha\)</span> that minimizes this quantity</p>
+</div>
+<div id="measure-uncertainty" class="section level3" number="11.3.3">
+<h3><span class="header-section-number">11.3.3</span> Measure uncertainty</h3>
+<p>For exponential smoothing it has been shown that an approximate 95% prediction interval for <span class="math inline">\(x_{n}(1)\)</span> is given by</p>
+<p><span class="math display">\[\hat{x}_{n}(1)\pm1.96\sqrt{\mathrm{Var}[e_{n}(1)]}
+\]</span></p>
+<p>where <span class="math inline">\(\mathrm{Var}[e_{n}(1)]\)</span> can be approximated as the variance of the forecast errors <span class="math inline">\(e_{1}(1),e_{2}(1),\ldots,e_{n-1}(1)\)</span>, i.e. </p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(1)]=\frac{1}{n-2}\sum_{i=1}^{n-1}(e_{i}(1)-\bar{e})^{2}
+\]</span></p>
+<p>with <span class="math inline">\(\bar{e}=\sum_{i=1}^{n-1}e_{i}(1)/(n-1)\)</span></p>
+<div id="example" class="section level4" number="11.3.3.1">
+<h4><span class="header-section-number">11.3.3.1</span> Example</h4>
+<p>Given the time series <span class="math inline">\(\mathbf{x}=(1,2,4,4,6,5,7,9,9,10)\)</span>, calculate <span class="math inline">\(x_{10}(1)\)</span> using only the last 5 observations for <span class="math inline">\(\alpha=0.1, 0.5, 0.9\)</span></p>
+<p><span class="math display">\[\alpha=0.5\hspace{0.5cm}x_{10}(1)=0.5\times 10 + 0.5(1-0.5)\times 9 + 0.5(1-0.5)^{2}\times 9
++ 0.5(1-0.5)^{3}\times 7\\ + 0.5(1-0.5)^{4}\times 5~=~8.89
+\]</span></p>
+<p>Note that as we are only using the last 5 observations to compute the forecasts, the prediction when <span class="math inline">\(\alpha=0.1\)</span> is artificially low</p>
+</div>
+</div>
+</div>
+<div id="forecasting-from-arp-models" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Forecasting from AR(p) models</h2>
+<p>Assume the time series predicted is stationary with zero mean, as any trend or seasonal variation can be predicted using the regression methods described above.</p>
+<div id="ar1-forecasting" class="section level3" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> AR(1) forecasting</h3>
+<p>AR(1) process <span class="math inline">\(X_{t}=\alpha X_{t-1}+Z_{t}\)</span>. Then the one step ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(1)&amp;=&amp;\mathbb{E}[X_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\alpha X_{n}+Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha \mathbb{E}[X_{n}|X_{n},X_{n-1},\ldots,X_{1}]+\mathbb{E}[Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha x_{n}\nonumber
+\end{eqnarray}\]</span></p>
+<p>where <span class="math inline">\(x_n\)</span> is the observed value of the series at time <span class="math inline">\(n\)</span> and <span class="math inline">\(\mathbb{E}[Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]=0\)</span>. The two steps ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(2)&amp;=&amp;\mathbb{E}[X_{n+2}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\alpha X_{n+1}+Z_{n+2}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha \mathbb{E}[X_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]+\mathbb{E}[Z_{n+2}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha^{2} x_{n}.\nonumber
+\end{eqnarray}\]</span></p>
+<p>Iterating the above procedure gives the <span class="math inline">\(k\)</span> steps ahead forecast as</p>
+<p><span class="math display">\[\hat{x}_{n}(k)=\alpha^{k}x_{n}\]</span></p>
+<p>The forecast error variance at one step ahead is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[e_{n}(1)]&amp;=&amp;\mathrm{Var}[X_{n+1}-\hat{x}_{n}(1)]\nonumber\\
+&amp;=&amp;\mathrm{Var}[\alpha X_{n}+Z_{n+1} -\alpha X_{n}]\nonumber\\
+&amp;=&amp;\mathrm{Var}[Z_{n+1}]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}\nonumber
+\end{eqnarray}
+\]</span>
+and at two steps ahead it is</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[e_{n}(2)]&amp;=&amp;\mathrm{Var}[X_{n+2}-\hat{x}_{n}(2)]\nonumber\\
+&amp;=&amp;\mathrm{Var}[\alpha X_{n+1}+Z_{n+2} -\alpha \hat{x}_{n}(1)]\nonumber\\
+&amp;=&amp;\mathrm{Var}[Z_{n+2}]+\alpha^{2}\mathrm{Var}[X_{n+1}-\hat{x}_{n}(1)]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}(1+\alpha^{2}).\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>This process can also be iterated to give</p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(k)]=\sigma^{2}_{z}(1+\alpha^{2}+\ldots+\alpha^{2(k-1)})=\sigma^{2}_{z}\frac{1-\alpha^{2k}}{1-\alpha^{2}}
+\]</span></p>
+<p>because it is the sum of a geometric progression with finitely many terms. Approximate 95% prediction intervals are now straightforward to calculate as</p>
+<p><span class="math display">\[\hat{x}_{n}(k)\pm 1.96\sqrt{\mathrm{Var}[e_{n}(k)]}.
+\]</span></p>
+<p>Note: the variance gets a lot higher the further we predict into the future (more uncertainty)</p>
+</div>
+<div id="arp-forecasting" class="section level3" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> AR(p) forecasting</h3>
+<p>For an AR(p) process <span class="math inline">\(X_{t}=\alpha_{1}X_{t-1}+\ldots+\alpha_{p}X_{t-p}+Z_{t}\)</span>, the one step ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(1)&amp;=&amp;\mathbb{E}[X_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\alpha_{1}X_{n}+\ldots+\alpha_{p}X_{n-p+1}+Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha_{1}x_{n}+\ldots+\alpha_{p}x_{n-p+1}.\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Then for any <span class="math inline">\(k\)</span>, the <span class="math inline">\(k\)</span> steps ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(k)&amp;=&amp;\mathbb{E}[X_{n+k}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\alpha_{1}X_{n+k-1}+\ldots+\alpha_{p}X_{n+k-p}+Z_{n+k}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\alpha_{1}\mathbb{E}[X_{n+k-1}|X_{n},X_{n-1},\ldots,X_{1}]+\ldots+\alpha_{p}\mathbb{E}[X_{n+k-p}|X_{n},X_{n-1},\ldots,X_{1}].\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Two cases occur for these conditional expectations</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(X_{n+k-j}\)</span> has been observed, then <span class="math inline">\(\mathbb{E}[X_{n+k-j}|X_{n},X_{n-1},\ldots,X_{1}]\)</span> is equal to its observed value, <span class="math inline">\(x_{n+k-j}\)</span></p></li>
+<li><p>If <span class="math inline">\(X_{n+k-j}\)</span> is a future value, then <span class="math inline">\(\mathbb{E}[X_{n+k-j}|X_{n},X_{n-1},\ldots,X_{1}]\)</span> has already been forecast as one of <span class="math inline">\(\hat{x}_{n}(1),\ldots,\hat{x}_{n}(k-1)\)</span></p></li>
+</ol>
+<p>The error variance for the <span class="math inline">\(k\)</span> steps ahead forecast has the general form</p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(k)]=\sigma^{2}_{z}\sum_{i=0}^{k-1}\theta_{i}^{2}\]</span></p>
+<p>where <span class="math inline">\(\theta_{0}=1\)</span>, and the remaining <span class="math inline">\(\theta_i\)</span> are algebraically nasty to determine. Prediction invervals can be calculated using the same formula as for the AR(1) model.</p>
+</div>
+<div id="example-1-simulated-data" class="section level3" number="11.4.3">
+<h3><span class="header-section-number">11.4.3</span> Example 1: Simulated data</h3>
+<p>Simulated AR(1) process of length 100, with 20 future predictions together with prediction intervals</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="chapter-6-forecasting.html#cb101-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb101-2"><a href="chapter-6-forecasting.html#cb101-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ar =</span> <span class="fl">0.8</span>), <span class="at">n =</span> n)</span>
+<span id="cb101-3"><a href="chapter-6-forecasting.html#cb101-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">arima</span>(x, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb101-4"><a href="chapter-6-forecasting.html#cb101-4" aria-hidden="true" tabindex="-1"></a>predict.ar1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">n.ahead =</span> <span class="dv">20</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb101-5"><a href="chapter-6-forecasting.html#cb101-5" aria-hidden="true" tabindex="-1"></a>predict.lci <span class="ot">&lt;-</span> predict.ar1<span class="sc">$</span>pred <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>predict.ar1<span class="sc">$</span>se</span>
+<span id="cb101-6"><a href="chapter-6-forecasting.html#cb101-6" aria-hidden="true" tabindex="-1"></a>predict.uci <span class="ot">&lt;-</span> predict.ar1<span class="sc">$</span>pred <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>predict.ar1<span class="sc">$</span>se</span></code></pre></div>
+<p><img src="chpt6_plot3.png" /></p>
+<p>Note how the forecasts fall to zero as <span class="math inline">\(k\)</span> increases from 1 to 20.</p>
+</div>
+<div id="example-2-1" class="section level3" number="11.4.4">
+<h3><span class="header-section-number">11.4.4</span> Example 2</h3>
+<p>AR(1) process <span class="math inline">\(X_{t}=0.9X_{t-1}+Z_{t}\)</span>, where <span class="math inline">\(\hat{\sigma}^{2}_{z}=1\)</span> and <span class="math inline">\(x_{n}=20\)</span>. Calculate the one and two steps ahead forecasts and the associated error variances</p>
+<p>The forecasts are given by</p>
+<p><span class="math display">\[\hat{x}_{n}(1) = \alpha x_{n} = 0.9\times 20 = 18
+\]</span></p>
+<p>and the error variances are</p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(1)] = \hat{\sigma}^{2}_{z} = 1\hspace{1cm}\mbox{and}\hspace{1cm}
+\mathrm{Var}[e_{n}(2)] = \hat{\sigma}^{2}_{z}(1+\alpha^{2}) = 1.81
+\]</span></p>
+</div>
+<div id="example-3-1" class="section level3" number="11.4.5">
+<h3><span class="header-section-number">11.4.5</span> Example 3</h3>
+<p>AR(1) process <span class="math inline">\(X_{t}=0.1X_{t-1}+Z_{t}\)</span> where <span class="math inline">\(\hat\sigma^2=1\)</span> and <span class="math inline">\(x_n=20\)</span></p>
+<p>Calculate the one and two steps ahead forecasts and the associated error variances</p>
+<p>The forecasts are given by</p>
+<p><span class="math display">\[\hat{x}_{n}(1) = \alpha x_{n} = 0.1\times 20 = 2\]</span></p>
+<p>and the error variances are</p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(1)] = \hat{\sigma}^{2}_{z} = 1\hspace{1cm}\mbox{and}\hspace{1cm}
+\mathrm{Var}[e_{n}(2)] = \hat{\sigma}^{2}_{z}(1+\alpha^{2}) = 1.01
+\]</span></p>
+<p>Notes:
+1. As the lag 1 coefficient gets smaller the forecasts get closer to zero</p>
+<ol start="2" style="list-style-type: decimal">
+<li>As the lag 1 coefficient gets smaller the two steps ahead forecast error gets smaller</li>
+</ol>
+</div>
+</div>
+<div id="forecasting-from-maq-models" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> Forecasting from MA(q) models</h2>
+<p>Forecasting with an MA(q) model is similar to forecasting with an AR(p) model, as both is based on the conditional expectation</p>
+<p><span class="math display">\[\hat{x}_{n}(k)=\mathbb{E}[X_{n+k}|X_{n},X_{n-1},\ldots,X_{1}].
+\]</span></p>
+<div id="ma1-forecast" class="section level3" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> MA(1) forecast</h3>
+<p>For the MA(1) model <span class="math inline">\(X_t=\lambda Z_{t-1}+Z_t\)</span>, the one step ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(1)&amp;=&amp;\mathbb{E}[X_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\lambda Z_{n}+Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\lambda\mathbb{E}[Z_{n}|X_{n},X_{n-1},\ldots,X_{1}] + \mathbb{E}[Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\lambda z_{n}.\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>The last line is true because</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X_{n},X_{n-1},\ldots,X_{1}\)</span> do not depend on <span class="math inline">\(Z_{n+1}\)</span>, and hence</li>
+</ol>
+<p><span class="math display">\[\mathbb{E}[Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]~=~\mathbb{E}[Z_{n+1}]~=~0.
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>In contrast, <span class="math inline">\(X_n\)</span> depends on <span class="math inline">\(Z_n\)</span> so</li>
+</ol>
+<p><span class="math display">\[\mathbb{E}[Z_{n}|X_{n},X_{n-1},\ldots,X_{1}]~\neq~\mathbb{E}[Z_{n}]~=~0.
+\]</span></p>
+<p><span class="math inline">\(Z_n\)</span> cannot be observed directly but it can be estimated as follows. Re-write the MA(1) process as, <span class="math inline">\(Z_t=X_t-\lambda Z_{t-1}\)</span> and assuming that <span class="math inline">\(Z_0=0\)</span>, <span class="math inline">\(Z_t\)</span> can be estimated iteratively from <span class="math inline">\(t=1,\ldots,n\)</span> by replacing <span class="math inline">\(X_t\)</span> by its observed value <span class="math inline">\(x_t\)</span></p>
+<p>For k&gt;1 the k steps ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(k)&amp;=&amp;\mathbb{E}[X_{n+k}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\lambda Z_{n+k-1}+Z_{n+k}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;0.\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>The forecast error variance at one step ahead is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[e_{n}(1)]&amp;=&amp;\mathrm{Var}[X_{n+1}-\hat{x}_{n}(1)]\nonumber\\
+&amp;=&amp;\mathrm{Var}[\lambda Z_{n}+Z_{n+1} -\lambda Z_{n}]\nonumber\\
+&amp;=&amp;\mathrm{Var}[Z_{n+1}]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>while for k&gt;1 it is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathrm{Var}[e_{n}(k)]&amp;=&amp;\mathrm{Var}[X_{n+k}-\hat{x}_{n}(k)]\nonumber\\
+&amp;=&amp;\mathrm{Var}[X_{n+k}]\nonumber\\
+&amp;=&amp;\sigma^{2}_{z}(1+\lambda^2).\nonumber
+\end{eqnarray}
+\]</span></p>
+<p>Then 95% prediction intervals can be calculated as before using the formula</p>
+<p><span class="math display">\[\hat{x}_{n}(k)\pm 1.96\sqrt{\mathrm{Var}[e_{n}(k)]}.
+\]</span></p>
+</div>
+<div id="maq-forecasts" class="section level3" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> MA(q) forecasts</h3>
+<p>Works the same way as MA(1) model, the one step ahead forecast is given by</p>
+<p><span class="math display">\[\begin{eqnarray}
+\hat{x}_{n}(1)&amp;=&amp;\mathbb{E}[X_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\mathbb{E}[\lambda_{1}Z_{n}+\ldots+\lambda_{q}Z_{n-q+1}+Z_{n+1}|X_{n},X_{n-1},\ldots,X_{1}]\nonumber\\
+&amp;=&amp;\lambda_{1}z_{n}+\ldots+\lambda_{q}z_{n-q+1}\nonumber
+\end{eqnarray}
+\]</span>
+where as before the current and past values of <span class="math inline">\(Z_t\)</span> are calculated recursively from the MA(q) equation</p>
+<p><span class="math display">\[Z_{t}=X_{t}-\lambda_{1}Z_{t-1}-\ldots-\lambda_{q}Z_{t-q}\]</span></p>
+<p>with the initial conditions <span class="math inline">\(Z_{0}=Z_{-1}=\ldots=Z_{-q+1}=0\)</span>. The general k steps ahead forecast is calculated in an identical way, where current past values of <span class="math inline">\(Z_t\)</span> are estimate from the data, while future values are set to zero. Therefore the forecast is given by</p>
+<p><span class="math display">\[\begin{equation*}
+  \hat{x}_n(k) =
+  \begin{cases}
+    \lambda_k z_n + \cdots + \lambda_q z_{n+k-q} &amp; \text{if $k\leq q$} \\
+    0 &amp; \text{if $k &gt; q$}.
+  \end{cases}
+\end{equation*}
+\]</span></p>
+<p>It is straightforward to show that the k steps ahead error variance is given by</p>
+<p><span class="math display">\[\begin{equation*}
+  e_n(k) =
+  \begin{cases}
+     \sigma^{2}_{z}[1+\sum_{i=1}^{k-1}\lambda_{i}^{2}]&amp; \text{if $k\leq q$} \\
+    \sigma^{2}_{z}[1+\sum_{i=1}^{q}\lambda_{i}^{2}] &amp; \text{if $k &gt; q$}.
+  \end{cases}
+\end{equation*}
+\]</span></p>
+<div id="example-1-1" class="section level4" number="11.5.2.1">
+<h4><span class="header-section-number">11.5.2.1</span> Example 1</h4>
+<p>MA(3) process of length 100 with 20 future predictions together with prediction intervals. Note how the forecasts fall to zero for k &gt; 3, which was shown algebraically earlier.</p>
+<p><img src="chpt6_plot4.png" /></p>
+</div>
+<div id="example-2-2" class="section level4" number="11.5.2.2">
+<h4><span class="header-section-number">11.5.2.2</span> Example 2</h4>
+<p>Consider modelling the short time series <span class="math inline">\(\mathbf{x}=(3,8,2,5,6)\)</span> with an MA(1) time series process <span class="math inline">\(X_{t}=0.7Z_{t-1}+Z_{t}\)</span> where <span class="math inline">\(\hat{\sigma}^{2}_{z}=1\)</span>. Calculate the one and two steps ahead forecasts <span class="math inline">\(x_{5}(1)\)</span> and <span class="math inline">\(x_{5}(2)\)</span> as well as their associated error variances</p>
+<p>To calculate the forecasts we need to recursively estimate <span class="math inline">\(Z_{1},\ldots,Z_{5}\)</span> assuming that <span class="math inline">\(z_{0}=0\)</span>. This gives</p>
+<p><span class="math display">\[z_{1}=3,\hspace{0.5cm}z_{2}=5.9,\hspace{0.5cm}z_{3}=-2.13, \hspace{0.5cm}z_{4}=6.491, 
+\hspace{0.5cm}z_{5}=1.4563
+\]</span>
+<span class="math display">\[\hat{x}_{5}(1)~=~\lambda z_{5}~=~0.7\times 1.4563~=~1.01941
+\]</span>
+<span class="math display">\[\hat{x}_{n}(2)~=~0
+\]</span></p>
+<p>And the error variances are</p>
+<p><span class="math display">\[\mathrm{Var}[e_{n}(1)]~=~\hat{\sigma}^{2}_{z}~=~1\hspace{1cm}\mbox{and}\hspace{1cm}
+\mathrm{Var}[e_{n}(2)]~=~\hat{\sigma}^{2}_{z}(1+\lambda^2)~=~1.49.
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="forecasting-time-series-with-trend-seasonality-and-correlation" class="section level2" number="11.6">
+<h2><span class="header-section-number">11.6</span> Forecasting time series with trend, seasonality and correlation</h2>
+<p>There are a number of ways to forecast a time series that contains trend and seasonal variation in addition to short-term correlation. The method we consider in this course is a natural combination of regression and ARMA(p,q) models. For the time series model <span class="math inline">\(X_t=m_t+s_t+e_t\)</span> we represent the trend and seasonal variation by <span class="math inline">\(m_t+s_t=\textbf{z}_{t}^\top \boldsymbol{\beta}\)</span> while the residuals are given by <span class="math inline">\(e_{t}^{*}=X_{t}-\textbf{z}_{t}^\top\hat{\boldsymbol{\beta}}\)</span> and are modelled by a stationary ARMA(p,q) process. Then the k steps ahead forecast is given by</p>
+<p><span class="math display">\[\hat{x}_{n}(k)=\textbf{z}_{n+1}^\top\hat{\boldsymbol{\beta}} + e_{n}^{*}(k)
+\]</span></p>
+<p>Where the stationary process <span class="math inline">\(e_{n}^{*}(k)\)</span> is prediced using an AR(p), MA(q) or ARMA(p,q) model</p>
+<div id="example-4" class="section level3" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Example</h3>
+<p>This figure shows a simulated AR(1) process with a linear trend of length 100 with 20 future predictions together</p>
+<p><img src="chpt6_plot5.png" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="chapter-6-forecasting.html#cb102-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb102-2"><a href="chapter-6-forecasting.html#cb102-2" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb102-3"><a href="chapter-6-forecasting.html#cb102-3" aria-hidden="true" tabindex="-1"></a>time.predict <span class="ot">&lt;-</span> (n <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="dv">120</span></span>
+<span id="cb102-4"><a href="chapter-6-forecasting.html#cb102-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">model =</span> <span class="fu">list</span>(<span class="at">ar =</span> <span class="fl">0.8</span>), <span class="at">n =</span> n) <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fl">0.1</span><span class="sc">*</span>time</span>
+<span id="cb102-5"><a href="chapter-6-forecasting.html#cb102-5" aria-hidden="true" tabindex="-1"></a>model.ar1 <span class="ot">&lt;-</span> <span class="fu">arima</span>(x, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">xreg =</span> time, <span class="at">include.mean =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb102-6"><a href="chapter-6-forecasting.html#cb102-6" aria-hidden="true" tabindex="-1"></a>predict.ar1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model.ar1, <span class="at">n.ahead =</span> <span class="dv">20</span>, <span class="at">newxreg =</span> time.predict, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb102-7"><a href="chapter-6-forecasting.html#cb102-7" aria-hidden="true" tabindex="-1"></a>ar1.LCI <span class="ot">&lt;-</span> predict.ar1<span class="sc">$</span>pred <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>predict.ar1<span class="sc">$</span>se</span>
+<span id="cb102-8"><a href="chapter-6-forecasting.html#cb102-8" aria-hidden="true" tabindex="-1"></a>ar1.UCI <span class="ot">&lt;-</span> predict.ar1<span class="sc">$</span>pred <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>predict.ar1<span class="sc">$</span>se</span></code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-5-lab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-6-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/edit/master/Chapter6.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/commits/master/Chapter6.Rmd",
+"text": null
+},
+"view": {
+"link": "https://github.com/Econ481f20/YOUR REPO NAME/blob/master/Chapter6.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
